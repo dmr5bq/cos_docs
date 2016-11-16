@@ -4,73 +4,24 @@
    contain the root `toctree` directive.
 
 
+Welcome to the Center for Open Science development documentation. Here you’ll find style guides and best practices for working on COS projects.
 
-Getting Started
-***************
+NOTE: The documentation is always changing and growing, so expect frequent changes, and let us know if there is anything that needs to be added or changed (see the `Help and Troubleshooting`_ section's 'Need More Help?' page).
 
+----
+
+Table of Contents
+*****************
 .. toctree::
-	:maxdepth: 2
+	:maxdepth: 3
 
-	getting_started/getting_started
-	getting_started/about_osf
-	getting_started/installing_osf
-	getting_started/running_osf
-
-Contributing to the OSF Software
-********************************
-
-.. toctree::
-	:maxdepth: 2
-
-	contributing/version_control
-	contributing/testing
-	contributing/code_review
-	contrbuting/add_ons
-	contributing/pull_requests
-
-Styles and Guidelines
-*********************
-
-.. toctree::
-	:maxdepth: 1
-
-	styles/javascript
-	styles/python
-	styles/html_css
-	styles/ansible
-
-Tools and Resources
-*******************
-
-.. toctree::
-	:maxdepth: 1
-
-	resources/tools
-	resources/libraries
-
-Contributing to the OSF Documentation
-*************************************
- 
-.. toctree::
-	:maxdepth: 1
-
-	documentation/docs
-
-Help and Troubleshooting
-************************
-
-.. toctree:: 
-	:maxdepth: 1
-
-	help/troubleshoot
-	help/faq
-	help/contact
+	getting_started
+	contributing
+	styles
+	tools
+	documentation
+	help
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
