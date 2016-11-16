@@ -2,9 +2,6 @@
 Installing the OSF on Your Machine
 ==================================
 
-.. toctree::
-	:maxdepth: 2
-
-	install/prepare
-	install/procedure
+.. include :: install/prepare.rst
+.. include :: install/procedure.rst
 

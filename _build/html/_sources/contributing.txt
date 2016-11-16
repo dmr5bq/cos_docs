@@ -7,5 +7,5 @@ Contributing to the OSF Software
 	contributing/version_control
 	contributing/testing
 	contributing/code_review
-	contrbuting/add_ons
+	contributing/add_ons
 	contributing/pull_requests
