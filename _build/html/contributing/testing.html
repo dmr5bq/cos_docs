@@ -90,11 +90,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#general-testing-guidelines">General Testing Guidelines</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#unit-tests">Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#functional-tests">Functional Tests</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#supporting-libraries">Supporting Libraries</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#python">Python</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#javascript">Javascript</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="code_review.html">Code Reviews for Contributions</a></li>
@@ -165,12 +160,13 @@
 <div class="section" id="general-testing-guidelines">
 <h2>General Testing Guidelines<a class="headerlink" href="#general-testing-guidelines" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Use long, descriptive names. This often obviates the need for doctrings in test methods. This also makes it easier to locate tests that fail.</li>
-<li>Tests should be isolated. Don&#8217;t interact with a real database or network. Use a separate test database that gets torn down or use mock objects.</li>
-<li>Prefer <a class="reference external" href="https://github.com/rbarrois/factory_boy">factories</a> to fixtures.</li>
-<li>Never let incomplete tests pass, else you run the risk of forgetting about them. Instead, add a placeholder like <code class="docutils literal"><span class="pre">assert</span> <span class="pre">False,</span> <span class="pre">&quot;TODO:</span> <span class="pre">finish</span> <span class="pre">me&quot;</span></code>. If you are stubbing out a test that will be written in the future, use the <code class="xref py py-meth docutils literal"><span class="pre">&#64;unittest.skip()</span></code> decorator.</li>
-<li>Strive for 100% code coverage, but don&#8217;t get obsess over coverage scores.</li>
-<li>When testing the contents of a dictionary, test the keys individually.</li>
+<li>Use long, descriptive names in methods and functions. This often removes the need for doctrings in test methods. This also makes it easier to locate tests that fail.</li>
+<li>Tests should be isolated. Don&#8217;t interact with a real database or network. Use a separate test database that gets torn down after running or use mock objects.</li>
+<li>Prefer <a class="reference external" href="https://github.com/rbarrois/factory_boy">factories</a> to <a class="reference external" href="https://en.wikipedia.org/wiki/Test_fixture">fixtures</a>.</li>
+<li>Never let incomplete tests pass, or else you run the risk of forgetting about them. Instead, add a placeholder like <code class="docutils literal"><span class="pre">assert</span> <span class="pre">False,</span> <span class="pre">&quot;TODO:</span> <span class="pre">finish</span> <span class="pre">me&quot;</span></code>.</li>
+<li>If you are writing a stub for a test that will be written in the future, use the <code class="xref py py-meth docutils literal"><span class="pre">&#64;unittest.skip()</span></code> decorator.</li>
+<li>Strive for 100% code coverage, but do not obsess over a score that won&#8217;t reach perfection.</li>
+<li>When testing the contents of a dictionary, test the keys individually, i.e.,</li>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Yes</span>
 <span class="n">assert_equal</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">],</span> <span class="mi">42</span><span class="p">)</span>
@@ -184,9 +180,9 @@
 <div class="section" id="unit-tests">
 <h2>Unit Tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Focus on one tiny bit of functionality.</li>
-<li>Should be fast, but a slow test is better than no test.</li>
-<li>It often makes sense to have one testcase class for a single class or model.</li>
+<li>Focus on one unit of functionality, i.e., one method or function.</li>
+<li>Strive for fast tests, but a slow-running test is better than not having a test.</li>
+<li>It often makes sense to have one <code class="docutils literal"><span class="pre">unittest.TestCase</span></code> class for a single class or model.</li>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
 <span class="kn">import</span> <span class="nn">factories</span>
@@ -204,7 +200,7 @@
 <h2>Functional Tests<a class="headerlink" href="#functional-tests" title="Permalink to this headline">¶</a></h2>
 <p>Functional tests are higher level tests that are closer to how an end-user would interact with your application. They are typically used for web and GUI applications.</p>
 <ul class="simple">
-<li>Write tests as scenarios. Testcase and test method names should read like a scenario description.</li>
+<li>Write tests as scenarios. <code class="docutils literal"><span class="pre">TestCase</span></code> and test method names should read like a scenario description.</li>
 <li>Use comments to write out stories, <em>before writing the test code</em>.</li>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestAUser</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
@@ -222,28 +218,9 @@
 </pre></div>
 </div>
 <p>Notice how the testcase and test method read together like &#8220;Test A User can write a blog post&#8221;.</p>
-</div>
-<div class="section" id="supporting-libraries">
-<h2>Supporting Libraries<a class="headerlink" href="#supporting-libraries" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="python">
-<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><a class="reference external" href="https://nose.readthedocs.org/en/latest/">nose</a>: Extends Python&#8217;s unittest. Includes a test runner and various utilities.</li>
-<li><a class="reference external" href="http://pytest.org/latest/contents.html">pytest</a>: A powerful test runner and library for writing automated tests.</li>
-<li><a class="reference external" href="https://github.com/rbarrois/factory_boy">factory-boy</a>: Utility library for creating test objects. Replaces fixtures with &#8220;factories&#8221;.</li>
-<li><a class="reference external" href="http://www.voidspace.org.uk/python/mock/">mock</a>: Allows you to mock and patch objects for testing purposes.</li>
-<li><a class="reference external" href="http://webtest.readthedocs.org/en/latest/">webtest</a> / <a class="reference external" href="https://github.com/sloria/webtest-plus">webtest-plus</a> : Provides a <code class="xref py py-class docutils literal"><span class="pre">TestApp</span></code> with which to send test requests and make assertions about the responses.</li>
-<li><a class="reference external" href="https://github.com/joke2k/faker">faker</a> : A fake data generator.</li>
-</ul>
-</div>
-<div class="section" id="javascript">
-<h3>Javascript<a class="headerlink" href="#javascript" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><a class="reference external" href="https://karma-runner.github.io/">Karma</a>: Test runner.</li>
-<li><a class="reference external" href="http://mochajs.org/">Mocha</a>: Test framework/interface.</li>
-<li><a class="reference external" href="http://chaijs.com/">Chai</a>: Assertion library.</li>
-<li><a class="reference external" href="http://sinonjs.org/">Sinon</a>: Test spies and mocks.</li>
-</ul>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Look at the <a class="reference internal" href="../resources.html"><span class="doc">Tools and Resources</span></a> page for testing libraries and frameworks useful in developing for the OSF.</p>
 </div>
 </div>
 </div>

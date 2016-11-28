@@ -1,4 +1,3 @@
-
 Recommended Libraries and APIs
 ------------------------------
 
