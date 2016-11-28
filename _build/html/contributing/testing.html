@@ -86,7 +86,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../contributing.html">Contributing to the OSF Software</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="version_control.html">Version Control Standards and Guidelines</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Testing Standards and Guidelines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Testing Standards and Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-testing-guidelines">General Testing Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unit-tests">Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functional-tests">Functional Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supporting-libraries">Supporting Libraries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#javascript">Javascript</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="code_review.html">Code Reviews for Contributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add_ons.html">Developing Add-On Features to the OSF</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pull_requests.html">Pull Request Standards and Guidelines</a></li>
@@ -143,7 +153,99 @@
            <div itemprop="articleBody">
             
   <div class="section" id="testing-standards-and-guidelines">
-<h1>Testing Standards and Guidelines<a class="headerlink" href="#testing-standards-and-guidelines" title="Permalink to this headline">¶</a></h1>
+<span id="testing"></span><h1>Testing Standards and Guidelines<a class="headerlink" href="#testing-standards-and-guidelines" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The below examples are in Python, but the concepts apply to testing in any language.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Looking for OSF-specific testing guidelines? See the <span class="xref std std-ref">Testing the OSF</span> page.</p>
+</div>
+<div class="section" id="general-testing-guidelines">
+<h2>General Testing Guidelines<a class="headerlink" href="#general-testing-guidelines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Use long, descriptive names. This often obviates the need for doctrings in test methods. This also makes it easier to locate tests that fail.</li>
+<li>Tests should be isolated. Don&#8217;t interact with a real database or network. Use a separate test database that gets torn down or use mock objects.</li>
+<li>Prefer <a class="reference external" href="https://github.com/rbarrois/factory_boy">factories</a> to fixtures.</li>
+<li>Never let incomplete tests pass, else you run the risk of forgetting about them. Instead, add a placeholder like <code class="docutils literal"><span class="pre">assert</span> <span class="pre">False,</span> <span class="pre">&quot;TODO:</span> <span class="pre">finish</span> <span class="pre">me&quot;</span></code>. If you are stubbing out a test that will be written in the future, use the <code class="xref py py-meth docutils literal"><span class="pre">&#64;unittest.skip()</span></code> decorator.</li>
+<li>Strive for 100% code coverage, but don&#8217;t get obsess over coverage scores.</li>
+<li>When testing the contents of a dictionary, test the keys individually.</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Yes</span>
+<span class="n">assert_equal</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">],</span> <span class="mi">42</span><span class="p">)</span>
+<span class="n">assert_equal</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">],</span> <span class="mi">24</span><span class="p">)</span>
+
+<span class="c1"># No</span>
+<span class="n">assert_equal</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="mi">24</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unit-tests">
+<h2>Unit Tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Focus on one tiny bit of functionality.</li>
+<li>Should be fast, but a slow test is better than no test.</li>
+<li>It often makes sense to have one testcase class for a single class or model.</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">factories</span>
+
+<span class="k">class</span> <span class="nc">PersonTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">person</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">PersonFactory</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_has_age_in_dog_years</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">person</span><span class="o">.</span><span class="n">dog_years</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">person</span><span class="o">.</span><span class="n">age</span> <span class="o">/</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="functional-tests">
+<h2>Functional Tests<a class="headerlink" href="#functional-tests" title="Permalink to this headline">¶</a></h2>
+<p>Functional tests are higher level tests that are closer to how an end-user would interact with your application. They are typically used for web and GUI applications.</p>
+<ul class="simple">
+<li>Write tests as scenarios. Testcase and test method names should read like a scenario description.</li>
+<li>Use comments to write out stories, <em>before writing the test code</em>.</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestAUser</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_can_write_a_blog_post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Goes to the her dashboard</span>
+        <span class="o">...</span>
+        <span class="c1"># Clicks &quot;New Post&quot;</span>
+        <span class="o">...</span>
+        <span class="c1"># Fills out the post form</span>
+        <span class="o">...</span>
+        <span class="c1"># Clicks &quot;Submit&quot;</span>
+        <span class="o">...</span>
+        <span class="c1"># Can see the new post</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>Notice how the testcase and test method read together like &#8220;Test A User can write a blog post&#8221;.</p>
+</div>
+<div class="section" id="supporting-libraries">
+<h2>Supporting Libraries<a class="headerlink" href="#supporting-libraries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://nose.readthedocs.org/en/latest/">nose</a>: Extends Python&#8217;s unittest. Includes a test runner and various utilities.</li>
+<li><a class="reference external" href="http://pytest.org/latest/contents.html">pytest</a>: A powerful test runner and library for writing automated tests.</li>
+<li><a class="reference external" href="https://github.com/rbarrois/factory_boy">factory-boy</a>: Utility library for creating test objects. Replaces fixtures with &#8220;factories&#8221;.</li>
+<li><a class="reference external" href="http://www.voidspace.org.uk/python/mock/">mock</a>: Allows you to mock and patch objects for testing purposes.</li>
+<li><a class="reference external" href="http://webtest.readthedocs.org/en/latest/">webtest</a> / <a class="reference external" href="https://github.com/sloria/webtest-plus">webtest-plus</a> : Provides a <code class="xref py py-class docutils literal"><span class="pre">TestApp</span></code> with which to send test requests and make assertions about the responses.</li>
+<li><a class="reference external" href="https://github.com/joke2k/faker">faker</a> : A fake data generator.</li>
+</ul>
+</div>
+<div class="section" id="javascript">
+<h3>Javascript<a class="headerlink" href="#javascript" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://karma-runner.github.io/">Karma</a>: Test runner.</li>
+<li><a class="reference external" href="http://mochajs.org/">Mocha</a>: Test framework/interface.</li>
+<li><a class="reference external" href="http://chaijs.com/">Chai</a>: Assertion library.</li>
+<li><a class="reference external" href="http://sinonjs.org/">Sinon</a>: Test spies and mocks.</li>
+</ul>
+</div>
+</div>
 </div>
 
 
