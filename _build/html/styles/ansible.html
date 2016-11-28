@@ -90,7 +90,10 @@
 <li class="toctree-l2"><a class="reference internal" href="javascript.html">JavaScript Style Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python Style Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_css.html">HTML and CSS Style Guidelines</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Ansible Style Guidelines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ansible Style Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ansible">Ansible</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources.html">Tools and Resources</a></li>
@@ -143,6 +146,60 @@
             
   <div class="section" id="ansible-style-guidelines">
 <h1>Ansible Style Guidelines<a class="headerlink" href="#ansible-style-guidelines" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ansible">
+<h2>Ansible<a class="headerlink" href="#ansible" title="Permalink to this headline">¶</a></h2>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">If you are not familiar with Ansible, additional resources can be found on the <a class="reference external" href="https://en.wikipedia.org/wiki/Ansible_(software)">Ansible Wikipedia page</a>, the <a class="reference external" href="https://www.ansible.com/">official website</a>, or on the <a class="reference external" href="https://github.com/ansible/ansible">official Ansible git repository</a>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Ansible is coordinated using the YAML language, which is a human-readable data serialization language, which has similar uses to XML or JSON (which are more commonly recognized.)</p>
+<p class="last">A full YAML syntax guide can be found on the <a class="reference external" href="https://en.wikipedia.org/wiki/YAML#Syntax">YAML Wikipedia page</a> or on this <a class="reference external" href="http://www.yaml.org/refcard.html">YAML quick-reference sheet</a>.</p>
+</div>
+<ul class="simple">
+<li>Use <a class="reference external" href="http://docs.ansible.com/ansible/YAMLSyntax.html#yaml-basics">dictionary syntax</a> when writing YAML blocks for <a class="reference external" href="http://docs.ansible.com/ansible/playbooks.html">Ansible Playbooks</a>.</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span>    <span class="c1"># YAML dictionary syntax declaration</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure proper permissions on apps directory</span>
+  <span class="l l-Scalar l-Scalar-Plain">file</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="s">&quot;/opt/apps/&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">mode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
+    <span class="l l-Scalar l-Scalar-Plain">group</span><span class="p p-Indicator">:</span> <span class="s">&quot;osf&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">owner</span><span class="p p-Indicator">:</span> <span class="s">&quot;www-data&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><em>Note</em>: In opposition to the Ansible style guide, do <em>not</em> prefix task names with the name of the role. (Learn more about Ansible Playbook roles on the <a class="reference external" href="http://docs.ansible.com/ansible/playbooks_roles.html#roles">Ansible docs</a>).</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="c1"># YES</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Make user python is installed</span>
+  <span class="l l-Scalar l-Scalar-Plain">apt</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name=&quot;python-dev&quot;</span>
+
+<span class="c1"># NO</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">uwsgi | Make user python is installed</span>
+  <span class="l l-Scalar l-Scalar-Plain">apt</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name=&quot;python-dev&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Prefix all default variables with the role name and an underscore.</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="c1"># OSF role</span>
+
+<span class="l l-Scalar l-Scalar-Plain">osf_virtualenv</span><span class="p p-Indicator">:</span> <span class="s">&quot;/opt/envs/osf/&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">osf_repo_branch</span><span class="p p-Indicator">:</span> <span class="s">&quot;master&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Document all default variables using comments.</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="c1"># OSF role</span>
+
+<span class="l l-Scalar l-Scalar-Plain">osf_virtualenv</span><span class="p p-Indicator">:</span> <span class="s">&quot;/opt/envs/osf/&quot;</span> <span class="c1"># directs the virtual environment path to the OSF virtualenv</span>
+<span class="l l-Scalar l-Scalar-Plain">osf_repo_branch</span><span class="p p-Indicator">:</span> <span class="s">&quot;master&quot;</span> <span class="c1"># directs Git to find the master branch of the OSF repository</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

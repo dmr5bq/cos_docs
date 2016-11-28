@@ -2,8 +2,8 @@
 HTML and CSS Style Guidelines
 ============================= 
 
-HTML Style Guide
-****************
+HTML Style Guidelines
+*********************
 
 - Follow `mdo's Code Guide <http://mdo.github.io/code-guide/>`_, with one exception: Use *four spaces* for indentation instead of two spaces.
 - Use ``.lowercase-and-dashes`` for class names and ``#camelCase`` for IDs.
@@ -15,24 +15,22 @@ HTML Style Guide
     <div class="container-fluid">
         <div class="row">
         	<div class="col-md-4">
-        		...
-        	</div>
+        		<div class="inner-element">
+        			...
+        		</div> <!-- end inner-element-->
+        	</div><!-- end col-md-4 -->
         	<div class="col-md-8">
         		...
-        	</div>
+        	</div><!-- end col-md-8 -->
         </div><!-- end row -->
         <div class="row">
-
-        	...
-
+        	... 
         </div><!-- end row -->
-        
         ...
-
     </div><!-- end container-fluid -->
 
-CSS Style Guide
-***************
+CSS Style Guidelines
+********************
 
 - Avoid inline CSS. 
 - Use CSS classes for maintainability and reusability.
