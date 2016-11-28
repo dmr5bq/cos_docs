@@ -87,7 +87,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../contributing.html">Contributing to the OSF Software</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="version_control.html">Version Control Standards and Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="testing.html">Testing Standards and Guidelines</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Code Reviews for Contributions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Code Reviews for Contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-guidelines">General Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#having-your-code-reviewed">Having Your Code Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reviewing-code">Reviewing Code</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="add_ons.html">Developing Add-On Features to the OSF</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pull_requests.html">Pull Request Standards and Guidelines</a></li>
 </ul>
@@ -144,6 +149,44 @@
             
   <div class="section" id="code-reviews-for-contributions">
 <h1>Code Reviews for Contributions<a class="headerlink" href="#code-reviews-for-contributions" title="Permalink to this headline">¶</a></h1>
+<p>This document contains the guidelines for our code review process, through which all OSF contributions must go before they are worked into the OSF software.</p>
+<div class="section" id="general-guidelines">
+<h2>General Guidelines<a class="headerlink" href="#general-guidelines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Ask for clarification on vague or ambiguous code review comments, i.e., &#8220;I didn&#8217;t understand this comment. Can you clarify?&#8221;</li>
+<li>Talk in person, when possible, if there are too many &#8220;I didn&#8217;t understand&#8221; comments.</li>
+</ul>
+</div>
+<div class="section" id="having-your-code-reviewed">
+<h2>Having Your Code Reviewed<a class="headerlink" href="#having-your-code-reviewed" title="Permalink to this headline">¶</a></h2>
+<p>Before sending a pull request for code review, make sure you have met the <a class="reference internal" href="pull_requests.html"><span class="doc">pull request guidelines</span></a>.</p>
+<ul class="simple">
+<li>It may be difficult not to perceive code review as personal criticism, but, keep in mind, it is a review of the code, not the person.</li>
+<li>Code reviews are supposed to be a helpful learning experience and should be treated as such.</li>
+<li>After addressing all comments from a review, reach out to your reviewer on Flowdock for the next pass.</li>
+<li>If there is a style guideline that affects your pull request and you believe the guideline itself is incorrect, post an issue or send a pull request to the <a class="reference external" href="https://github.com/CenterForOpenScience/COSDev">COSDev</a> repo rather than discussing it in the pull request itself. Make sure to reference the problematic guidelines directly.</li>
+</ul>
+</div>
+<div class="section" id="reviewing-code">
+<h2>Reviewing Code<a class="headerlink" href="#reviewing-code" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Make sure you understand the purpose of the code being reviewed.</li>
+<li>Checkout the branch being reviewed, and manually test the intended behavior.</li>
+<li>In your comments, keep in mind the fact that what you&#8217;re saying can easily be perceived as personal criticism and adjust your tone accordingly; stick to constructive and objective comments.</li>
+<li>After doing a pass of code review, add a comment with an emoji attached to signify that your pass is complete and ready to be processed.</li>
+<li>Style fixes should refer to the style guides, when possible.</li>
+</ul>
+<p>Example style comment:</p>
+<div class="highlight-markdown"><div class="highlight"><pre><span></span>&gt; Use parentheses for line continuation.
+
+From http://cosdev.readthedocs.org/en/latest/style_guides/python.html:
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When possible, include a link to COS documentation (or outside documentation, as applicable) to back up claims of style violations or best practices violations. This practice aids in keeping the tone of comments objective and hopefully mitigates any feelings of criticism in the recipient. <em>(See the example comment above)</em></p>
+</div>
+</div>
 </div>
 
 
