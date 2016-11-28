@@ -89,7 +89,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../styles.html">Styles and Guidelines</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="javascript.html">JavaScript Style Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python Style Guidelines</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">HTML and CSS Style Guidelines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTML and CSS Style Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#html-style-guide">HTML Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#css-style-guide">CSS Style Guide</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="ansible.html">Ansible Style Guidelines</a></li>
 </ul>
 </li>
@@ -143,6 +147,43 @@
             
   <div class="section" id="html-and-css-style-guidelines">
 <h1>HTML and CSS Style Guidelines<a class="headerlink" href="#html-and-css-style-guidelines" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="html-style-guide">
+<h2>HTML Style Guide<a class="headerlink" href="#html-style-guide" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Follow <a class="reference external" href="http://mdo.github.io/code-guide/">mdo&#8217;s Code Guide</a>, with one exception: Use <em>four spaces</em> for indentation instead of two spaces.</li>
+<li>Use <code class="docutils literal"><span class="pre">.lowercase-and-dashes</span></code> for class names and <code class="docutils literal"><span class="pre">#camelCase</span></code> for IDs.</li>
+<li>Add a comment marking the end of large blocks where clarity may be a problem. Use <code class="docutils literal"><span class="pre">&lt;!--</span> <span class="pre">end</span> <span class="pre">class-name</span> <span class="pre">--&gt;</span></code></li>
+<li>When closing a nested <code class="docutils literal"><span class="pre">div</span></code>, make sure to include a <code class="docutils literal"><span class="pre">&lt;!--</span> <span class="pre">end</span> <span class="pre">&lt;name&gt;</span> <span class="pre">--&gt;</span></code> comment at the end for clarity.</li>
+</ul>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container-fluid&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-md-4&quot;</span><span class="p">&gt;</span>
+                    ...
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-md-8&quot;</span><span class="p">&gt;</span>
+                    ...
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="c">&lt;!-- end row --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
+
+            ...
+
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="c">&lt;!-- end row --&gt;</span>
+
+    ...
+
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="c">&lt;!-- end container-fluid --&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="css-style-guide">
+<h2>CSS Style Guide<a class="headerlink" href="#css-style-guide" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Avoid inline CSS.</li>
+<li>Use CSS classes for maintainability and reusability.</li>
+<li>Use separate stylesheets whenever possible, including a link in the <code class="docutils literal"><span class="pre">&lt;head&gt;</span></code> section of the HTML document.</li>
+</ul>
+</div>
 </div>
 
 

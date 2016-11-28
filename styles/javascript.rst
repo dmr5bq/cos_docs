@@ -4,9 +4,6 @@ JavaScript Style Guidelines
 
 .. _javascript_style:
 
-Javascript
-==========
-
 Style guidelines for writing Javascript.
 
 .. seealso::

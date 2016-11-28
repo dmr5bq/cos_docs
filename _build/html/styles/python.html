@@ -88,7 +88,26 @@
 <li class="toctree-l1"><a class="reference internal" href="../documentation.html">Contributing to the OSF Documentation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../styles.html">Styles and Guidelines</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="javascript.html">JavaScript Style Guidelines</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Python Style Guidelines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python Style Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#identifier-naming-conventions">Identifier Naming Conventions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#general-naming-guidelines">General Naming Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#indentation">Indentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#string-formatting">String formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#print-statements">Print statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#method-overrides">Method Overrides</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#calling-superclass-methods">Calling Superclass Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#line-lengths">Line lengths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recommended-syntax-checkers">Recommended Syntax Checkers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#credits">Credits</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="html_css.html">HTML and CSS Style Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansible.html">Ansible Style Guidelines</a></li>
 </ul>
@@ -143,6 +162,301 @@
             
   <div class="section" id="python-style-guidelines">
 <h1>Python Style Guidelines<a class="headerlink" href="#python-style-guidelines" title="Permalink to this headline">¶</a></h1>
+<p>Follow <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP8</a>, when sensible.</p>
+<div class="section" id="identifier-naming-conventions">
+<h2>Identifier Naming Conventions<a class="headerlink" href="#identifier-naming-conventions" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Variables, functions, methods, packages, modules</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">lower_case_with_underscores</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Classes and Exceptions</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">CapWords</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Protected methods and internal functions</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">_single_leading_underscore(self,</span> <span class="pre">...)</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Private methods</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">__double_leading_underscore(self,</span> <span class="pre">...)</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Constants</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">ALL_CAPS_WITH_UNDERSCORES</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="general-naming-guidelines">
+<h3>General Naming Guidelines<a class="headerlink" href="#general-naming-guidelines" title="Permalink to this headline">¶</a></h3>
+<p>Use single quotes for strings, e.g., <code class="docutils literal"><span class="pre">str_literal</span> <span class="pre">=</span> <span class="pre">'This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">string.'</span></code>, unless doing so requires lots of escaping.</p>
+<p>Avoid one-letter variables (esp. <code class="docutils literal"><span class="pre">l</span></code>, <code class="docutils literal"><span class="pre">O</span></code>, <code class="docutils literal"><span class="pre">I</span></code>).</p>
+<p><em>Exception</em>: In very short blocks, when the meaning is clearly visible from the immediate context, e.g., indices like <code class="docutils literal"><span class="pre">i</span></code>, <code class="docutils literal"><span class="pre">j</span></code>, or <code class="docutils literal"><span class="pre">k</span></code> and simple integers with clear meaning like <code class="docutils literal"><span class="pre">h</span></code>, <code class="docutils literal"><span class="pre">k</span></code>, <code class="docutils literal"><span class="pre">m</span></code>, <code class="docutils literal"><span class="pre">n</span></code> or coordinate integers like <code class="docutils literal"><span class="pre">x</span></code>, <code class="docutils literal"><span class="pre">y</span></code>, <code class="docutils literal"><span class="pre">z</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>    <span class="c1"># Another clear acceptable use:</span>
+    <span class="c1"># using a for-loop to iterate over some collection</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+    <span class="n">e</span><span class="o">.</span><span class="n">mutate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Avoid redundant labeling when possible.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Yes</span>
+<span class="kn">import</span> <span class="nn">audio</span>
+
+<span class="n">core</span> <span class="o">=</span> <span class="n">audio</span><span class="o">.</span><span class="n">Core</span><span class="p">()</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">audio</span><span class="o">.</span><span class="n">Controller</span><span class="p">()</span>
+
+<span class="c1"># No, note the slight redundancy in naming</span>
+<span class="kn">import</span> <span class="nn">audio</span>
+
+<span class="n">core</span> <span class="o">=</span> <span class="n">audio</span><span class="o">.</span><span class="n">AudioCore</span><span class="p">()</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">audio</span><span class="o">.</span><span class="n">AudioController</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Prefer &#8220;reverse notation&#8221; for clarity in identifier naming.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Yes</span>
+<span class="n">elements</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">elements_active</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">elements_defunct</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># No</span>
+<span class="n">elements</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">active_elements</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">defunct_elements</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>Avoid getter and setter methods; access fields directly instead.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Yes</span>
+<span class="n">person</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">42</span>
+
+<span class="c1"># No</span>
+<span class="n">person</span><span class="o">.</span><span class="n">set_age</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="indentation">
+<h2>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h2>
+<p>Use 4 spaces instead of tabs. You may need to change the settings in your
+text editor of choice.</p>
+</div>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<p>Import entire modules instead of individual symbols within a module.</p>
+<p>For example, for a top-level module <cite>canteen</cite> that has a file <cite>canteen/sessions.py</cite>,</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Yes, importing entire module or submodule</span>
+<span class="kn">import</span> <span class="nn">canteen</span>
+<span class="kn">import</span> <span class="nn">canteen.sessions</span>
+<span class="kn">from</span> <span class="nn">canteen</span> <span class="kn">import</span> <span class="n">sessions</span>
+
+<span class="c1"># No, importing one specific symbol or method</span>
+<span class="kn">from</span> <span class="nn">canteen</span> <span class="kn">import</span> <span class="n">get_user</span>  <span class="c1"># Symbol from canteen/__init__.py</span>
+<span class="kn">from</span> <span class="nn">canteen.sessions</span> <span class="kn">import</span> <span class="n">get_session</span>  <span class="c1"># Symbol from canteen/sessions.py</span>
+</pre></div>
+</div>
+<p><em>Exception</em>: For third-party code where documentation explicitly says to import individual symbols.</p>
+<p><em>Rationale</em>: Avoids circular imports. See <a class="reference external" href="https://sites.google.com/a/khanacademy.org/forge/for-developers/styleguide/python#TOC-Imports">here</a>.</p>
+<p>Put all imports at the top of the page with three sections, each separated by a blank line, in this order:</p>
+<ol class="arabic simple">
+<li>System imports</li>
+<li>Third-party imports</li>
+<li>Local source tree imports</li>
+</ol>
+<p><em>Rationale</em>: Makes it clear where each module is coming from.</p>
+<p>If you have intentionally have an unused import that exists only to make imports less verbose, be explicit about it. This will make sure that someone doesn&#8217;t accidentally remove the import (not to mention that it keeps linters happy)</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">my.very.distant.module</span> <span class="kn">import</span> <span class="n">foo</span>
+
+<span class="n">foo</span> <span class="o">=</span> <span class="n">foo</span> <span class="c1"># shows explicit reasoning for foo import</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="string-formatting">
+<h2>String formatting<a class="headerlink" href="#string-formatting" title="Permalink to this headline">¶</a></h2>
+<p>Prefer <code class="docutils literal"><span class="pre">str.format</span></code> to &#8220;%-style&#8221; formatting.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Yes</span>
+<span class="s1">&#39;Hello {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;World&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Yes</span>
+<span class="s1">&#39;Hello {name}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;World&#39;</span><span class="p">)</span>
+
+<span class="c1"># No</span>
+<span class="s1">&#39;Hello </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;World&#39;</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="print-statements">
+<h2>Print statements<a class="headerlink" href="#print-statements" title="Permalink to this headline">¶</a></h2>
+<p>Use the <code class="docutils literal"><span class="pre">print()</span></code> function rather than the <code class="docutils literal"><span class="pre">print</span></code> keyword (even if you&#8217;re using Python 2).</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Yes</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Hello {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+<span class="c1"># No</span>
+<span class="k">print</span> <span class="s1">&#39;Hello {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Follow  <a class="reference external" href="http://www.python.org/dev/peps/pep-0257/">PEP257</a>&#8216;s docstring guidelines. <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">reStructured Text</a> and <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> can help to enforce these standards.</p>
+<p>All functions should have a docstring - for very simple functions, one line may be enough:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Return the pathname of ``foo``.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Multiline docstrings should include:</p>
+<ul class="simple">
+<li>Summary line</li>
+<li>Use case, if appropriate</li>
+<li>Args</li>
+<li>Return type and semantics, unless <code class="docutils literal"><span class="pre">None</span></code> is returned</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Train a model to classify Foos and Bars.</span>
+
+<span class="sd">Usage::</span>
+
+<span class="sd">    &gt;&gt;&gt; import klassify</span>
+<span class="sd">    &gt;&gt;&gt; data = [(&quot;green&quot;, &quot;foo&quot;), (&quot;orange&quot;, &quot;bar&quot;)]</span>
+<span class="sd">    &gt;&gt;&gt; classifier = klassify.train(data)</span>
+
+<span class="sd">:param train_data: A list of tuples of the form ``(color, label)``.</span>
+<span class="sd">:return: A trained :class:`Classifier &lt;Classifier&gt;`</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Notes</p>
+<ul class="simple">
+<li>Use action words (&#8220;Return&#8221;) rather than descriptions (&#8220;Returns&#8221;).</li>
+<li>Document <code class="docutils literal"><span class="pre">__init__</span></code> methods in the docstring for the class.</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A simple representation of a human being.</span>
+
+<span class="sd">    :param name: A string, the person&#39;s name.</span>
+<span class="sd">    :param age: An int, the person&#39;s age.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<p>Use them sparingly. Prefer code readability to writing a lot of comments. Often, small methods and functions are more effective than comments.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Yes:</span>
+<span class="k">def</span> <span class="nf">is_stop_sign</span><span class="p">(</span><span class="n">sign</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sign</span><span class="o">.</span><span class="n">color</span> <span class="o">==</span> <span class="s1">&#39;red&#39;</span> <span class="ow">and</span> <span class="n">sign</span><span class="o">.</span><span class="n">sides</span> <span class="o">==</span> <span class="mi">8</span>
+
+<span class="k">if</span> <span class="n">is_stop_sign</span><span class="p">(</span><span class="n">sign</span><span class="p">):</span>
+    <span class="n">stop</span><span class="p">()</span>
+
+<span class="c1"># No:</span>
+<span class="c1"># If the sign is a stop sign</span>
+<span class="k">if</span> <span class="n">sign</span><span class="o">.</span><span class="n">color</span> <span class="o">==</span> <span class="s1">&#39;red&#39;</span> <span class="ow">and</span> <span class="n">sign</span><span class="o">.</span><span class="n">sides</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+    <span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>When you do write comments, use them to explain <em>why</em> a piece code was used, not <em>what</em> it does.</p>
+<div class="section" id="method-overrides">
+<h3>Method Overrides<a class="headerlink" href="#method-overrides" title="Permalink to this headline">¶</a></h3>
+<p>One useful place for comments are method overrides.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserDetail</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">RetrieveUpdateAPIView</span><span class="p">,</span> <span class="n">UserMixin</span><span class="p">):</span>
+
+    <span class="c1"># overrides RetrieveUpdateAPIView</span>
+    <span class="k">def</span> <span class="nf">get_serializer_context</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;request&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="calling-superclass-methods">
+<h2>Calling Superclass Methods<a class="headerlink" href="#calling-superclass-methods" title="Permalink to this headline">¶</a></h2>
+<p>Use <cite>super</cite> when there is only one superclass.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Employee</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="c1"># or super().__init__(name) in Python 3</span>
+        <span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>Call the method directly when there are multiple superclasses.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DevOps</span><span class="p">(</span><span class="n">Developer</span><span class="p">,</span> <span class="n">Operations</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Developer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="line-lengths">
+<h2>Line lengths<a class="headerlink" href="#line-lengths" title="Permalink to this headline">¶</a></h2>
+<p>80-100 characters is a good range for maximum line lengths.</p>
+<p>Use parentheses for line continuations when necessary.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">wiki</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;The Colt Python is a .357 Magnum caliber revolver formerly manufactured &quot;</span>
+    <span class="s2">&quot;by Colt&#39;s Manufacturing Company of Hartford, Connecticut. It is sometimes &quot;</span>
+    <span class="s1">&#39;referred to as a &quot;Combat Magnum&quot;. It was first introduced in 1955, the &#39;</span>
+    <span class="s2">&quot;same year as Smith &amp; Wesson&#39;s M29 .44 Magnum.&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="recommended-syntax-checkers">
+<h2>Recommended Syntax Checkers<a class="headerlink" href="#recommended-syntax-checkers" title="Permalink to this headline">¶</a></h2>
+<p>We recommend using a syntax checker to help you find errors quickly and easily format your code to abide by the guidelines above. <a class="reference external" href="http://flake8.readthedocs.org/en/latest/">Flake8</a> is our recommended checker for Python. It will check for both syntax and style errors and is easily configurable. It can be installed with pip:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install flake8
+</pre></div>
+</div>
+<p>Once installed, you can run a check with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ flake8
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>We highly recommend that you add a git hook to check your code before you commit it. You only need to run the following command once:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span># Current directory must be a git repo
+$ flake8 --install-hook
+</pre></div>
+</div>
+<p class="last">This adds the proper hook to <code class="docutils literal"><span class="pre">.git/hooks/pre-commit</span></code>.</p>
+</div>
+<p>There are a number of plugins for integrating Flake8 with your preferred text editor.</p>
+<p>Vim</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/scrooloose/syntastic">syntastic</a> (multi-language)</li>
+</ul>
+<p>Sublime Text</p>
+<ul class="simple">
+<li><a class="reference external" href="https://sublime.wbond.net/packages/SublimeLinter">Sublime Linter</a> with <a class="reference external" href="https://sublime.wbond.net/packages/SublimeLinter-flake8">SublimeLinter-flake8</a> (must install both)</li>
+</ul>
+</div>
+<div class="section" id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP8</a> (Style Guide for Python)</li>
+<li><a class="reference external" href="http://www.nilunder.com/blog/2013/08/03/pythonic-sensibilities/">Pythonic Sensibilities</a></li>
+<li><a class="reference external" href="http://youtu.be/GZNUfkVIHAY">Python Best Practice Patterns</a></li>
+</ul>
+</div>
 </div>
 
 

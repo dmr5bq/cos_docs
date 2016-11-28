@@ -88,17 +88,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../documentation.html">Contributing to the OSF Documentation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../styles.html">Styles and Guidelines</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">JavaScript Style Guidelines</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#javascript">Javascript</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#style">Style</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#errors">Errors</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#commonjs-modules">CommonJS Modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#documentation">Documentation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#jquery">jQuery</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#promises">Promises</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#encapsulation">Encapsulation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#recommended-syntax-checkers">Recommended Syntax Checkers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#style">Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors">Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commonjs-modules">CommonJS Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jquery">jQuery</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ajax">AJAX</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#promises">Promises</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encapsulation">Encapsulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recommended-syntax-checkers">Recommended Syntax Checkers</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python Style Guidelines</a></li>
@@ -156,15 +156,13 @@
             
   <div class="section" id="javascript-style-guidelines">
 <h1>JavaScript Style Guidelines<a class="headerlink" href="#javascript-style-guidelines" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="javascript">
-<span id="javascript-style"></span><h2>Javascript<a class="headerlink" href="#javascript" title="Permalink to this headline">¶</a></h2>
-<p>Style guidelines for writing Javascript.</p>
+<p id="javascript-style">Style guidelines for writing Javascript.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last">Writing a JS module for the OSF? See the <a class="reference internal" href="../contributing/add_ons.html"><span class="doc">Developing Add-On Features to the OSF</span></a> page in the <a class="reference internal" href="../contributing.html"><span class="doc">Contributing to the OSF Software</span></a> section.</p>
 </div>
 <div class="section" id="style">
-<h3>Style<a class="headerlink" href="#style" title="Permalink to this headline">¶</a></h3>
+<h2>Style<a class="headerlink" href="#style" title="Permalink to this headline">¶</a></h2>
 <p>Follow <a class="reference external" href="https://github.com/felixge/node-style-guide">Felix&#8217;s Node Style</a> and <a class="reference external" href="https://github.com/airbnb/javascript/tree/es5-deprecated/es5">airbnb&#8217;s Style Guide</a> with a few exceptions:</p>
 <ul class="simple">
 <li>Use <strong>4 spaces</strong> for indentation.</li>
@@ -172,7 +170,7 @@
 </ul>
 </div>
 <div class="section" id="errors">
-<h3>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h3>
+<h2>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Always throw <code class="docutils literal"><span class="pre">Error</span></code> instances, not strings.</li>
 </ul>
@@ -188,7 +186,7 @@
 </div>
 </div>
 <div class="section" id="commonjs-modules">
-<h3>CommonJS Modules<a class="headerlink" href="#commonjs-modules" title="Permalink to this headline">¶</a></h3>
+<h2>CommonJS Modules<a class="headerlink" href="#commonjs-modules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Group imports in the following order, separated by a blank line:</li>
 </ul>
@@ -219,7 +217,7 @@
 </div>
 </div>
 <div class="section" id="documentation">
-<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
 <p>Use the <a class="reference external" href="https://yui.github.io/yuidoc/">YUIDoc</a> standard for writing JS comment blocks.</p>
 <p>Example:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="cm">/**</span>
@@ -237,10 +235,10 @@
 </div>
 </div>
 <div class="section" id="jquery">
-<h3>jQuery<a class="headerlink" href="#jquery" title="Permalink to this headline">¶</a></h3>
+<h2>jQuery<a class="headerlink" href="#jquery" title="Permalink to this headline">¶</a></h2>
 <p>Follow <a class="reference external" href="http://lab.abhinayrathore.com/jquery-standards/">Abhinay Rathore&#8217;s jQuery Coding Standards Guide</a>.</p>
 <div class="section" id="ajax">
-<h4>AJAX<a class="headerlink" href="#ajax" title="Permalink to this headline">¶</a></h4>
+<h3>AJAX<a class="headerlink" href="#ajax" title="Permalink to this headline">¶</a></h3>
 <p>For PUTting and POSTing to JSON endpoints in the OSF, use the <code class="docutils literal"><span class="pre">$osf.postJSON</span></code> and <code class="docutils literal"><span class="pre">$osf.putJSON</span></code> functions (located in <code class="docutils literal"><span class="pre">osfHelpers.js</span></code>). This will handle JSON stringification as well as set the correct dataType and contentType.</p>
 <p>When using <code class="docutils literal"><span class="pre">$osf.postJSON</span></code>, <code class="docutils literal"><span class="pre">$osf.putJSON</span></code>, or <code class="docutils literal"><span class="pre">jQuery.ajax</span></code>, use the Promises interface.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">successHandler</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
@@ -258,7 +256,7 @@
 </div>
 </div>
 <div class="section" id="promises">
-<h3>Promises<a class="headerlink" href="#promises" title="Permalink to this headline">¶</a></h3>
+<h2>Promises<a class="headerlink" href="#promises" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Prefer promises to callbacks.</li>
 </ul>
@@ -280,7 +278,7 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li>When doing AJAX requests or other async work, it&#8217;s often useful to return a promise that resolves to a useful value (e.g. model objects or &#8220;unwrapped&#8221; responses).</li>
+<li>When doing AJAX requests or other asynchronous work, it&#8217;s often useful to return a promise that resolves to a useful value (e.g. model objects or &#8220;unwrapped&#8221; responses).</li>
 </ul>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">User</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">_id</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">_id</span><span class="p">;</span>
@@ -315,7 +313,7 @@
 </div>
 </div>
 <div class="section" id="encapsulation">
-<h3>Encapsulation<a class="headerlink" href="#encapsulation" title="Permalink to this headline">¶</a></h3>
+<h2>Encapsulation<a class="headerlink" href="#encapsulation" title="Permalink to this headline">¶</a></h2>
 <p>Use the Combination Constructor/Prototype pattern for encapsulation. You can use the following functions to provide syntactic sugar for creating &#8220;classes&#8221;:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">noop</span><span class="p">()</span> <span class="p">{}</span>
 
@@ -357,7 +355,7 @@
 </div>
 </div>
 <div class="section" id="recommended-syntax-checkers">
-<h3>Recommended Syntax Checkers<a class="headerlink" href="#recommended-syntax-checkers" title="Permalink to this headline">¶</a></h3>
+<h2>Recommended Syntax Checkers<a class="headerlink" href="#recommended-syntax-checkers" title="Permalink to this headline">¶</a></h2>
 <p>We recommend using a syntax checker to help you find errors quickly and easily format your code to abide by the guidelines above. <a class="reference external" href="http://jshint.com">JSHint</a> is our recommended checker for Javascript. It can be installed with <code class="docutils literal"><span class="pre">npm</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ npm install -g jshint
 </pre></div>
@@ -375,7 +373,6 @@
 <ul class="simple">
 <li>Follow these docs: <a class="reference external" href="http://www.jetbrains.com/pycharm/webhelp/jshint.html">http://www.jetbrains.com/pycharm/webhelp/jshint.html</a></li>
 </ul>
-</div>
 </div>
 </div>
 

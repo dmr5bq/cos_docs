@@ -4,9 +4,6 @@ JavaScript Style Guidelines
 
 .. _javascript_style:
 
-Javascript
-==========
-
 Style guidelines for writing Javascript.
 
 .. seealso::
@@ -142,7 +139,7 @@ Promises
     makeRequest(function(response) {console.log(response)});
 
 
-- When doing AJAX requests or other async work, it's often useful to return a promise that resolves to a useful value (e.g. model objects or "unwrapped" responses).
+- When doing AJAX requests or other asynchronous work, it's often useful to return a promise that resolves to a useful value (e.g. model objects or "unwrapped" responses).
 
 .. code-block:: javascript
 
