@@ -4,13 +4,12 @@
 Testing Standards and Guidelines
 ================================
 
+This document contains information on testing practices used in developing the OSF, as well as how to specifically test the OSF itself.
+
 .. note::
 
     The below examples are in Python, but the concepts apply to testing in any language.
 
-.. seealso::
-
-    Looking for OSF-specific testing guidelines? See the :ref:`Testing the OSF <osftesting>` page.
 
 
 General Testing Guidelines
@@ -80,3 +79,6 @@ Notice how the testcase and test method read together like "Test A User can writ
 .. seealso::
 
 	Look at the :doc:`/resources` page for testing libraries and frameworks useful in developing for the OSF.
+
+.. todo:: 
+	This page will also need the Testing the OSF page content
