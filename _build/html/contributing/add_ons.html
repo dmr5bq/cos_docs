@@ -97,14 +97,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#routes">Routes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#views">Views</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#logs">Logs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#static-files-for-add-ons">Static files for add-ons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#static-files-for-add-ons">Static Files for Add-ons</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rubeus-and-the-filebrowser">Rubeus and the FileBrowser</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#rubeus">Rubeus</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#addons-using-oauth-and-oauth2">Addons using OAuth and OAuth2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#deselecting-and-deauthorizing">Deselecting and Deauthorizing</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#important-privacy-considerations">IMPORTANT Privacy Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#important-privacy-considerations">Important Privacy Considerations</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pull_requests.html">Pull Request Standards and Guidelines</a></li>
@@ -162,7 +162,7 @@
             
   <div class="section" id="developing-add-on-features-for-the-osf">
 <h1>Developing Add-On Features for the OSF<a class="headerlink" href="#developing-add-on-features-for-the-osf" title="Permalink to this headline">¶</a></h1>
-<p>This document lays out the process for developing an add-on feature to the OSF.</p>
+<p>This document lays out the process for developing an add-on feature to the OSF. Follow all guidelines within this document, and pay special attention to adhere to the standards laid out in the <a class="reference internal" href="#privacy"><span class="std std-ref">Important Privacy Considerations</span></a> section.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last"><strong>In Progress</strong>: This document is still under construction. Check out <a class="reference internal" href="../documentation/todo.html"><span class="doc">To-Do: Updates and Edits to the Documentation</span></a> if you would like to contribute.</p>
@@ -305,7 +305,6 @@ the user is “browsing” add-ons</p>
 <dt><strong>Miscellaneous Technical Standards</strong></dt>
 <dd><ul class="first last simple">
 <li>An <cite>AddonSettings</cite> object MUST NOT be instantiated by the contributor.</li>
-<li>Log templates: the <cite>id</cite> of each script tag correspond to log actions.</li>
 <li>Don&#8217;t forget to do error handling! This includes handling errors that might occur if 3rd party HTTP APIs cause a failure and any exceptions that a client library might raise</li>
 <li>Any static assets that you put in <code class="docutils literal"><span class="pre">website/addons/&lt;addon_name&gt;/static/</span></code> will be served from <code class="docutils literal"><span class="pre">/static/addons/&lt;addon_name&gt;/</span></code>. This means that <code class="docutils literal"><span class="pre">&lt;link&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;script&gt;</span></code> tags should always point to URLs that begin with <code class="docutils literal"><span class="pre">/static/</span></code>.</li>
 <li><cite>to_json</cite> returns the mako context for the settings pages</li>
@@ -482,7 +481,7 @@ model as the requested addon.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">Routes whose views are with decorated <code class="docutils literal"><span class="pre">must_have_addon('addon_short_name',</span> <span class="pre">'node')</span></code> MUST start with <code class="docutils literal"><span class="pre">/project/&lt;pid&gt;/...</span></code>.</p>
 </div>
-<p><code class="docutils literal"><span class="pre">website.project.decorators.must_have_permission</span></code> is another decorator factory that takes a <code class="docutils literal"><span class="pre">permission</span></code> argument (may be&#8217;write&#8217;,&#8217;read&#8217;, or&#8217;admin&#8217;). This prevents the decorated view function from being called unless the
+<p><code class="docutils literal"><span class="pre">website.project.decorators.must_have_permission</span></code> is another decorator factory that takes a <code class="docutils literal"><span class="pre">permission</span></code> argument (may be &#8216;write&#8217;,&#8217;read&#8217;, or &#8216;admin&#8217;). This prevents the decorated view function from being called unless the
 user issuing the request has the required permission.</p>
 </div>
 <div class="section" id="logs">
@@ -502,27 +501,26 @@ user issuing the request has the required permission.</p>
 <p>Every log action requires a template in <code class="docutils literal"><span class="pre">youraddon/templates/log_templates.mako</span></code>. Each template&#8217;s id corresponds to the name of the log action.</p>
 </div>
 <div class="section" id="static-files-for-add-ons">
-<h2>Static files for add-ons<a class="headerlink" href="#static-files-for-add-ons" title="Permalink to this headline">¶</a></h2>
+<h2>Static Files for Add-ons<a class="headerlink" href="#static-files-for-add-ons" title="Permalink to this headline">¶</a></h2>
 <p>First make sure your add-on&#8217;s short name is listed in <code class="docutils literal"><span class="pre">addons.json</span></code>.</p>
 <p><strong>addons.json</strong></p>
-<div class="highlight-json"><div class="highlight"><pre><span></span>   {
-       &quot;addons&quot;: [
-           ...
-           &quot;dropbox&quot;,
-           ...
-       ]
-   }
-
-This adds the proper entry points for webpack to build your add-on&#39;s static files.
+<div class="highlight-json"><div class="highlight"><pre><span></span>{
+    &quot;addons&quot;: [
+        ...
+        &quot;dropbox&quot;,
+        ...
+    ]
+}
 </pre></div>
 </div>
+<p>This adds the proper entry points for webpack to build your add-on&#8217;s static files.</p>
 <p>The following files in the <code class="docutils literal"><span class="pre">static</span></code> folder of your addon directory will be built by webpack:</p>
 <ul class="simple">
-<li>user-cfg.js : Executed on the user addon configuration page.</li>
-<li>node-cfg.js : Executed on the node addon configuration page.</li>
-<li>files.js : Executed on the files page of a node.</li>
+<li><code class="docutils literal"><span class="pre">user-cfg.js</span></code> : Executed on the user addon configuration page.</li>
+<li><code class="docutils literal"><span class="pre">node-cfg.js</span></code> : Executed on the node addon configuration page.</li>
+<li><code class="docutils literal"><span class="pre">files.js</span></code> : Executed on the files page of a node.</li>
 </ul>
-<p><strong>You do not have to include these files in a ``&lt;script&gt;`` tag in your templates.</strong> They will dynamically be included when your addon is enabled.</p>
+<p><strong>You do not have to include these files in a</strong> <code class="docutils literal"><span class="pre">&lt;script&gt;</span></code> <strong>tag in your templates.</strong> They will dynamically be included when your add-on is enabled.</p>
 </div>
 <div class="section" id="rubeus-and-the-filebrowser">
 <h2>Rubeus and the FileBrowser<a class="headerlink" href="#rubeus-and-the-filebrowser" title="Permalink to this headline">¶</a></h2>
@@ -531,14 +529,16 @@ This adds the proper entry points for webpack to build your add-on&#39;s static 
 <span class="n">GET_HGRID_DATA</span> <span class="o">=</span> <span class="n">views</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="p">{{</span><span class="n">addon</span><span class="p">}}</span><span class="n">_hgrid_data</span>
 </pre></div>
 </div>
-<p>Has hgrid files is just a flag to attempt to load files from the addon.
-get hgrid data is a function that will return FileBrowser formatted data.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">HAS_HGRID_FILES</span></code> is just a flag to attempt to load files from the addon.</li>
+<li><code class="docutils literal"><span class="pre">GET_HGRID_DATA</span></code> is a function that will return FileBrowser formatted data.</li>
+</ul>
 <div class="section" id="rubeus">
 <h3>Rubeus<a class="headerlink" href="#rubeus" title="Permalink to this headline">¶</a></h3>
-<p>Rubeus is a helper module for filebrowser compatible add ons.</p>
-<p><code class="docutils literal"><span class="pre">rubeus.FOLDER,KIND,FILE</span></code> are rubeus constants for use when defining filebrowser data.</p>
+<p>Rubeus is a helper module for filebrowser-compatible add-ons.</p>
+<p><code class="docutils literal"><span class="pre">rubeus.FOLDER,KIND,FILE</span></code> are Rubeus constants for use when defining filebrowser data.</p>
 <p><code class="docutils literal"><span class="pre">rubeus.build_addon_root</span></code>:</p>
-<p>Builds the root or &#8220;dummy&#8221; folder for an addon.</p>
+<p>Builds the root or &#8220;dummy&#8221; folder for an add-on.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">param</span> <span class="n">AddonNodeSettingsBase</span> <span class="n">node_settings</span><span class="p">:</span> <span class="n">Addon</span> <span class="n">settings</span>
 
 <span class="p">:</span><span class="n">param</span> <span class="nb">str</span> <span class="n">name</span><span class="p">:</span> <span class="n">Additional</span> <span class="n">information</span> <span class="k">for</span> <span class="n">the</span> <span class="n">folder</span> <span class="n">title</span>
@@ -562,12 +562,54 @@ get hgrid data is a function that will return FileBrowser formatted data.</p>
 <div class="section" id="addons-using-oauth-and-oauth2">
 <h3>Addons using OAuth and OAuth2<a class="headerlink" href="#addons-using-oauth-and-oauth2" title="Permalink to this headline">¶</a></h3>
 <p>There are utilities for add-ons that use OAuth or Oauth2 for authentication. These include:</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">website.oauth.models.ExternalProvider</span></code> : a helper class for managing and acquiring credentials (see <code class="docutils literal"><span class="pre">website.addons.mendeley.model.Mendeley</span></code> as an example)</li>
-<li><code class="docutils literal"><span class="pre">website.oauth.models.ExternalAccount</span></code> : abstract representation of stored credentials; you do not need to implement a subclass of this class</li>
-<li><code class="docutils literal"><span class="pre">website.addons.base.AddonOAuthUserSettingsBase</span></code> : abstract interface to access user credentials (see <code class="docutils literal"><span class="pre">website.addons.mendeley.model.MendeleyUserSettings</span></code> as an example)</li>
-<li><code class="docutils literal"><span class="pre">website.addons.base.AddonOAuthUserSettingsBase</span></code> : abstract interface for nodes to manage and  access user credentials (see <code class="docutils literal"><span class="pre">website.addons.mendeley.model.MendeleyNodeSettings</span></code> as an example)</li>
-<li><code class="docutils literal"><span class="pre">website.addons.base.serializer.AddonSerializer</span></code> &amp; <code class="docutils literal"><span class="pre">website.addons.base.serializer.OAuthAddonSerializer</span></code>: helper classes to facilitate serializing add-on settings</li>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">website.oauth.models.ExternalProvider</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>a helper class for managing and acquiring credentials (see <code class="docutils literal"><span class="pre">website.addons.mendeley.model.Mendeley</span></code> as an example)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">website.oauth.models.ExternalAccount</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>abstract representation of stored credentials; you do not need to implement a subclass of this class</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">website.addons.base.AddonOAuthUserSettingsBase</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>abstract interface to access user credentials (see <code class="docutils literal"><span class="pre">website.addons.mendeley.model.MendeleyUserSettings</span></code> as an example)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">website.addons.base.AddonOAuthUserSettingsBase</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>abstract interface for nodes to manage and  access user credentials (see <code class="docutils literal"><span class="pre">website.addons.mendeley.model.MendeleyNodeSettings</span></code> as an example)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">website.addons.base.serializer.AddonSerializer</span></code> and <code class="docutils literal"><span class="pre">website.addons.base.serializer.OAuthAddonSerializer</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>helper classes to facilitate serializing add-on settings</li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 </div>
 <div class="section" id="deselecting-and-deauthorizing">
@@ -607,15 +649,28 @@ get hgrid data is a function that will return FileBrowser formatted data.</p>
 </div>
 </div>
 <div class="section" id="important-privacy-considerations">
-<h2>IMPORTANT Privacy Considerations<a class="headerlink" href="#important-privacy-considerations" title="Permalink to this headline">¶</a></h2>
-<p>Every add-on will come with its own unique set of privacy considerations. There are a number of ways to make small errors with a <em>large</em> impact.</p>
-<p>General</p>
-<ul class="simple">
-<li><strong>Using</strong> <code class="docutils literal"><span class="pre">must_be_contributor_or_public</span></code>, <code class="docutils literal"><span class="pre">must_have_addon</span></code>, <strong>etc. is not enough.</strong> While you should make sure that you correctly decorate your views, that does not ensure that <em>non-OSF</em>-related permissions have been handled.</li>
-<li>For file storage add-ons, make sure that contributors can only see the folder that the authorizing user has selected to share.</li>
-<li>Think carefully about security when writing the node settings view ({{addon}}_node_settings.mako / {{addon}}NodeConfig.js}}. For example, in the GitHub add-on, the user should only be able to see the list of repos from the authenticating account if the user is the authenticator for the current node. Most add-ons will need to tell the view (1) whether the current user is the authenticator of the current node and (2) whether the current user has added an auth token for the current add-on to her OSF account.</li>
+<span id="privacy"></span><h2>Important Privacy Considerations<a class="headerlink" href="#important-privacy-considerations" title="Permalink to this headline">¶</a></h2>
+<p>Every add-on will come with its own unique set of privacy considerations. There are a number of ways to make small errors with a large impact.</p>
+<ul>
+<li><p class="first">Using <code class="docutils literal"><span class="pre">must_be_contributor_or_public</span></code>, <code class="docutils literal"><span class="pre">must_have_addon</span></code>, etc.  is not enough.</p>
+<blockquote>
+<div><ul class="simple">
+<li>While you should make sure that you correctly decorate your views, that does not ensure that <em>non-OSF</em>-related permissions have been handled.</li>
 </ul>
-<p>Example: When a Dropbox folder is shared on a project, contributors (and the public, if the project is public) should only perform CRUD operations on files and folders that are within that shared folder. An error should be thrown if a user tries to access anything outside of that folder.</p>
+</div></blockquote>
+</li>
+<li><p class="first">For file-storage add-ons, make sure that contributors can only see the folder that the authorizing user has selected to share.</p>
+</li>
+<li><p class="first">Think carefully about security when writing the node settings view — <code class="docutils literal"><span class="pre">{{addon}}_node_settings.mako</span></code> and <code class="docutils literal"><span class="pre">{{addon}}NodeConfig.js}}</span></code>.</p>
+<blockquote>
+<div><ul class="simple">
+<li>For example, in the GitHub add-on, the user should only be able to see the list of repos from the authenticating account if the user is the authenticator for the current node. Most add-ons will need to tell the view (1) whether the current user is the authenticator of the current node and (2) whether the current user has added an auth token for the current add-on to her OSF account.</li>
+<li>Example: When a Dropbox folder is shared on a project, contributors (and the public, if the project is public) should only perform CRUD operations on files and folders that are within that shared folder. An error should be thrown if a user tries to access anything outside of that folder.</li>
+<li>Make sure that any view (CRUD, settings views...) that accesses resources from a 3rd-party service is secured in this way:</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@must_be_contributor_or_public</span>
 <span class="nd">@must_have_addon</span><span class="p">(</span><span class="s1">&#39;dropbox&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dropbox_view_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">node_addon</span><span class="p">,</span> <span class="n">auth</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -629,7 +684,6 @@ get hgrid data is a function that will return FileBrowser formatted data.</p>
     <span class="o">...</span>
 </pre></div>
 </div>
-<p>Make sure that any view (CRUD, settings views...) that accesses resources from a 3rd-party service is secured in this way.</p>
 </div>
 </div>
 

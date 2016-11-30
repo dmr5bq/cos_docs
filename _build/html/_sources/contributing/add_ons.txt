@@ -2,7 +2,7 @@
 Developing Add-On Features for the OSF
 ======================================
 
-This document lays out the process for developing an add-on feature to the OSF.
+This document lays out the process for developing an add-on feature to the OSF. Follow all guidelines within this document, and pay special attention to adhere to the standards laid out in the :ref:`privacy` section.
 
 .. warning::
 
@@ -124,7 +124,6 @@ Minimum Requirements
 
 	**Miscellaneous Technical Standards**
 		- An `AddonSettings` object MUST NOT be instantiated by the contributor.
-		- Log templates: the `id` of each script tag correspond to log actions.
 		- Don't forget to do error handling! This includes handling errors that might occur if 3rd party HTTP APIs cause a failure and any exceptions that a client library might raise
 		- Any static assets that you put in ``website/addons/<addon_name>/static/`` will be served from ``/static/addons/<addon_name>/``. This means that ``<link>`` and ``<script>`` tags should always point to URLs that begin with ``/static/``.
 		- `to_json` returns the mako context for the settings pages
@@ -281,7 +280,7 @@ model as the requested addon.
 .. note::
     Routes whose views are with decorated ``must_have_addon('addon_short_name', 'node')`` MUST start with ``/project/<pid>/...``.
 
-``website.project.decorators.must_have_permission`` is another decorator factory that takes a ``permission`` argument (may be'write','read', or'admin'). This prevents the decorated view function from being called unless the
+``website.project.decorators.must_have_permission`` is another decorator factory that takes a ``permission`` argument (may be 'write','read', or 'admin'). This prevents the decorated view function from being called unless the
 user issuing the request has the required permission.
 
 
@@ -305,7 +304,7 @@ Use the ``NodeLog`` class's named constants when possible,
 Every log action requires a template in ``youraddon/templates/log_templates.mako``. Each template's id corresponds to the name of the log action.
 
 
-Static files for add-ons
+Static Files for Add-ons
 ************************
 
 .. todo:: Add detail.
@@ -325,15 +324,15 @@ First make sure your add-on's short name is listed in ``addons.json``.
         ]
     }
 
- This adds the proper entry points for webpack to build your add-on's static files.
+This adds the proper entry points for webpack to build your add-on's static files.
 
 The following files in the ``static`` folder of your addon directory will be built by webpack:
 
-- user-cfg.js : Executed on the user addon configuration page.
-- node-cfg.js : Executed on the node addon configuration page.
-- files.js : Executed on the files page of a node.
+- ``user-cfg.js`` : Executed on the user addon configuration page.
+- ``node-cfg.js`` : Executed on the node addon configuration page.
+- ``files.js`` : Executed on the files page of a node.
 
-**You do not have to include these files in a ``<script>`` tag in your templates.** They will dynamically be included when your addon is enabled.
+**You do not have to include these files in a** ``<script>`` **tag in your templates.** They will dynamically be included when your add-on is enabled.
 
 Rubeus and the FileBrowser
 **************************
@@ -346,20 +345,20 @@ For an addon to be included in the files view they must first define the followi
     GET_HGRID_DATA = views.hgrid.{{addon}}_hgrid_data
 
 
-Has hgrid files is just a flag to attempt to load files from the addon.
-get hgrid data is a function that will return FileBrowser formatted data.
+- ``HAS_HGRID_FILES`` is just a flag to attempt to load files from the addon.
+- ``GET_HGRID_DATA`` is a function that will return FileBrowser formatted data.
 
 
 Rubeus
 ------
 
-Rubeus is a helper module for filebrowser compatible add ons.
+Rubeus is a helper module for filebrowser-compatible add-ons.
 
-``rubeus.FOLDER,KIND,FILE`` are rubeus constants for use when defining filebrowser data.
+``rubeus.FOLDER,KIND,FILE`` are Rubeus constants for use when defining filebrowser data.
 
 ``rubeus.build_addon_root``:
 
-Builds the root or "dummy" folder for an addon.
+Builds the root or "dummy" folder for an add-on.
 
 ::
 
@@ -386,11 +385,33 @@ Addons using OAuth and OAuth2
 
 There are utilities for add-ons that use OAuth or Oauth2 for authentication. These include:
 
-- ``website.oauth.models.ExternalProvider`` : a helper class for managing and acquiring credentials (see ``website.addons.mendeley.model.Mendeley`` as an example)
-- ``website.oauth.models.ExternalAccount`` : abstract representation of stored credentials; you do not need to implement a subclass of this class
-- ``website.addons.base.AddonOAuthUserSettingsBase`` : abstract interface to access user credentials (see ``website.addons.mendeley.model.MendeleyUserSettings`` as an example)
-- ``website.addons.base.AddonOAuthUserSettingsBase`` : abstract interface for nodes to manage and  access user credentials (see ``website.addons.mendeley.model.MendeleyNodeSettings`` as an example)
-- ``website.addons.base.serializer.AddonSerializer`` & ``website.addons.base.serializer.OAuthAddonSerializer``: helper classes to facilitate serializing add-on settings
+- ``website.oauth.models.ExternalProvider`` 
+
+	- a helper class for managing and acquiring credentials (see ``website.addons.mendeley.model.Mendeley`` as an example)
+
+----
+
+- ``website.oauth.models.ExternalAccount``
+
+	- abstract representation of stored credentials; you do not need to implement a subclass of this class
+
+----
+
+- ``website.addons.base.AddonOAuthUserSettingsBase`` 
+
+	- abstract interface to access user credentials (see ``website.addons.mendeley.model.MendeleyUserSettings`` as an example)
+
+----
+
+- ``website.addons.base.AddonOAuthUserSettingsBase``
+
+	- abstract interface for nodes to manage and  access user credentials (see ``website.addons.mendeley.model.MendeleyNodeSettings`` as an example)
+
+----
+
+- ``website.addons.base.serializer.AddonSerializer`` and ``website.addons.base.serializer.OAuthAddonSerializer`` 
+
+	- helper classes to facilitate serializing add-on settings
 
 
 Deselecting and Deauthorizing
@@ -434,18 +455,26 @@ You will also have to override the ``delete`` method for ``MyAddonNodeSettings``
             if add_log:
                 ...
 
-IMPORTANT Privacy Considerations
+.. _privacy:
+
+Important Privacy Considerations
 ********************************
 
-Every add-on will come with its own unique set of privacy considerations. There are a number of ways to make small errors with a *large* impact.
+Every add-on will come with its own unique set of privacy considerations. There are a number of ways to make small errors with a large impact.
 
-General
 
-- **Using** ``must_be_contributor_or_public``, ``must_have_addon``, **etc. is not enough.** While you should make sure that you correctly decorate your views, that does not ensure that *non-OSF*-related permissions have been handled.
-- For file storage add-ons, make sure that contributors can only see the folder that the authorizing user has selected to share.
-- Think carefully about security when writing the node settings view ({{addon}}_node_settings.mako / {{addon}}NodeConfig.js}}. For example, in the GitHub add-on, the user should only be able to see the list of repos from the authenticating account if the user is the authenticator for the current node. Most add-ons will need to tell the view (1) whether the current user is the authenticator of the current node and (2) whether the current user has added an auth token for the current add-on to her OSF account.
+- Using ``must_be_contributor_or_public``, ``must_have_addon``, etc.  is not enough.
 
-Example: When a Dropbox folder is shared on a project, contributors (and the public, if the project is public) should only perform CRUD operations on files and folders that are within that shared folder. An error should be thrown if a user tries to access anything outside of that folder.
+	- While you should make sure that you correctly decorate your views, that does not ensure that *non-OSF*-related permissions have been handled.
+
+- For file-storage add-ons, make sure that contributors can only see the folder that the authorizing user has selected to share.
+
+- Think carefully about security when writing the node settings view — ``{{addon}}_node_settings.mako`` and ``{{addon}}NodeConfig.js}}``. 
+
+	- For example, in the GitHub add-on, the user should only be able to see the list of repos from the authenticating account if the user is the authenticator for the current node. Most add-ons will need to tell the view (1) whether the current user is the authenticator of the current node and (2) whether the current user has added an auth token for the current add-on to her OSF account.
+	- Example: When a Dropbox folder is shared on a project, contributors (and the public, if the project is public) should only perform CRUD operations on files and folders that are within that shared folder. An error should be thrown if a user tries to access anything outside of that folder.
+
+	- Make sure that any view (CRUD, settings views...) that accesses resources from a 3rd-party service is secured in this way:
 
 .. code-block:: python
 
@@ -460,8 +489,6 @@ Example: When a Dropbox folder is shared on a project, contributors (and the pub
             # raise HTTPError(403) if path is a not a subdirectory of the shared folder
             abort_if_not_subdir(path, node_addon.folder)
         ...
-
-Make sure that any view (CRUD, settings views...) that accesses resources from a 3rd-party service is secured in this way.
 
 
 .. _routes: #routes
