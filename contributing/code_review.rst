@@ -39,3 +39,4 @@ Example style comment:
 
 .. note::
 	When possible, include a link to COS documentation (or outside documentation, as applicable) to back up claims of style violations or best practices violations. This practice aids in keeping the tone of comments objective and hopefully mitigates any feelings of criticism in the recipient. *(See the example comment above)*
+
