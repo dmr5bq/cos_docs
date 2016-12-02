@@ -88,15 +88,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Contributing to the OSF Documentation</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">How to Contribute to the Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#accessing-the-documents">Accessing the Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accessing-the-documents">Accessing the documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-the-docs">Build the docs</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#build-the-documents-for-viewing">Build the Documents for Viewing</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#autobuilding-on-file-changes">Autobuilding on File Changes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#send-a-pull-request">Send a Pull Request</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#miscellaneous-style-conventions">Miscellaneous Style Conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#autobuilding-on-file-changes">Autobuilding on File Changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#send-a-pr">Send a PR!</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#header-conventions">Header Conventions</a></li>
 </ul>
 </li>
@@ -156,39 +153,31 @@
             
   <div class="section" id="how-to-contribute-to-the-documentation">
 <h1>How to Contribute to the Documentation<a class="headerlink" href="#how-to-contribute-to-the-documentation" title="Permalink to this headline">¶</a></h1>
-<p>This document explains the basics of contributing to our development documentation. The documentation is always changing, and outside contributions are always welcome from developers. Follow the process below to get started, and see the <a class="reference internal" href="todo.html"><span class="doc">To-Do: Updates and Edits to the Documentation</span></a> page for ideas on where to begin.</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>Documentation is written in <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructured Text</a> (rST). A quick rST reference can be found <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">here</a>. Builds are powered by <a class="reference external" href="http://sphinx.pocoo.org/">Sphinx</a> and are hosted by <a class="reference external" href="http://readthedocs.org">ReadTheDocs</a>.</div></blockquote>
+<p>Contributions to this documentation are welcome. Documentation is written in <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructured Text</a> (rST). A quick rST reference can be found <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">here</a>. Builds are powered by <a class="reference external" href="http://sphinx.pocoo.org/">Sphinx</a> and are hosted by <a class="reference external" href="http://readthedocs.org">ReadTheDocs</a>.</p>
 <div class="section" id="accessing-the-documents">
-<h3>Accessing the Documents<a class="headerlink" href="#accessing-the-documents" title="Permalink to this headline">¶</a></h3>
-<p>First, <a class="reference external" href="https://github.com/CenterForOpenScience/COSDev">fork the COSDev repo</a>, clone it to your machine, and install the requirements (requires Python 2.7 or 3.4 with <code class="docutils literal"><span class="pre">pip</span></code>):</p>
+<h3>Accessing the documents<a class="headerlink" href="#accessing-the-documents" title="Permalink to this headline">¶</a></h3>
+<p>First, <a class="reference external" href="https://github.com/CenterForOpenScience/COSDev">fork the COSDev repo</a>, clone it, and install the requirements (requires Python 2.7 or 3.4 with pip):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span># After forking CenterForOpenScience/COSDev
-# cd into the directory where you want the repository installation
 $ git clone https://github.com/&lt;your_github_username&gt;/COSDev.git
 $ cd COSDev
 $ pip install -r requirements.txt
 </pre></div>
 </div>
-<p>Be sure to replace <code class="docutils literal"><span class="pre">&lt;your_github_username&gt;</span></code> with your Github username. These actions will put an updated repository of our documentation on your local machine.</p>
+<p>Be sure to replace <code class="docutils literal"><span class="pre">&lt;your_github_username&gt;</span></code> with your Github username.</p>
 </div>
-</div>
-<div class="section" id="build-the-documents-for-viewing">
-<h2>Build the Documents for Viewing<a class="headerlink" href="#build-the-documents-for-viewing" title="Permalink to this headline">¶</a></h2>
-<p>To build the documents with the <code class="docutils literal"><span class="pre">invoke</span></code> library:</p>
+<div class="section" id="build-the-docs">
+<h3>Build the docs<a class="headerlink" href="#build-the-docs" title="Permalink to this headline">¶</a></h3>
+<p>To build docs:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ invoke docs -b
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">-b</span></code> (abbreviation for &#8220;browser&#8221;) automatically opens up the HTML-rendered documents in your browser after building.</p>
-<p>Alternatively, you can open up the <code class="docutils literal"><span class="pre">docs/_build/index.html</span></code> file manually with the terminal.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd &lt;path to COSDev&gt;/COSDev
-$ open _build/html/index.html
-</pre></div>
+<p>The <code class="docutils literal"><span class="pre">-b</span></code> (for &#8220;browse&#8221;) automatically opens up the docs in your browser after building. Alternatively, you can open up the <code class="docutils literal"><span class="pre">docs/_build/index.html</span></code> file manually.</p>
 </div>
-<p>This should automatically open a browser window with the rendered HTML home page.</p>
+</div>
 <div class="section" id="autobuilding-on-file-changes">
-<h3>Autobuilding on File Changes<a class="headerlink" href="#autobuilding-on-file-changes" title="Permalink to this headline">¶</a></h3>
+<h2>Autobuilding on File Changes<a class="headerlink" href="#autobuilding-on-file-changes" title="Permalink to this headline">¶</a></h2>
 <p>You can use <code class="docutils literal"><span class="pre">sphinx-autobuild</span></code> to automatically build the docs when you change a file in the <code class="docutils literal"><span class="pre">docs</span></code> directory.</p>
 <p>To install <code class="docutils literal"><span class="pre">sphinx-autobuild</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install sphinx-autobuild
@@ -198,15 +187,11 @@ $ open _build/html/index.html
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ invoke watch
 </pre></div>
 </div>
-<p>Open <code class="docutils literal"><span class="pre">http://localhost:8000</span></code> on your browser to see the rendered documentation.</p>
+<p>Point your browser to <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> to see your docs.</p>
+<div class="section" id="send-a-pr">
+<h3>Send a PR!<a class="headerlink" href="#send-a-pr" title="Permalink to this headline">¶</a></h3>
+<p>Once you are done making your edits, send a pull request on Github to the <a class="reference external" href="https://github.com/CenterForOpenScience/COSDev">COSDev</a> repo.</p>
 </div>
-<div class="section" id="send-a-pull-request">
-<h3>Send a Pull Request<a class="headerlink" href="#send-a-pull-request" title="Permalink to this headline">¶</a></h3>
-<p>Once you are done making your edits, send a pull request on Github to the <a class="reference external" href="https://github.com/CenterForOpenScience/COSDev">COSDev</a> repository.</p>
-</div>
-</div>
-<div class="section" id="miscellaneous-style-conventions">
-<h2>Miscellaneous Style Conventions<a class="headerlink" href="#miscellaneous-style-conventions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="header-conventions">
 <h3>Header Conventions<a class="headerlink" href="#header-conventions" title="Permalink to this headline">¶</a></h3>
 <p>Use the following underlining conventions for heading levels:</p>

@@ -9,7 +9,7 @@ Getting Started
 
  Documentation is written in `reStructured Text`_ (rST). A quick rST reference can be found `here <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_. Builds are powered by Sphinx_ and are hosted by `ReadTheDocs <http://readthedocs.org>`_.
 
-Accessing the Documents
+Accessing the documents
 ***********************
 
 First, `fork the COSDev repo <https://github.com/CenterForOpenScience/COSDev>`_, clone it to your machine, and install the requirements (requires Python 2.7 or 3.4 with ``pip``):  ::
@@ -22,24 +22,17 @@ First, `fork the COSDev repo <https://github.com/CenterForOpenScience/COSDev>`_,
 
 Be sure to replace ``<your_github_username>`` with your Github username. These actions will put an updated repository of our documentation on your local machine.
 
-Build the Documents for Viewing
--------------------------------
+Build the documents
+**************
 
-To build the documents with the ``invoke`` library: ::
+To build docs: ::
 
     $ invoke docs -b
 
-The ``-b`` (abbreviation for "browser") automatically opens up the HTML-rendered documents in your browser after building. 
-
-Alternatively, you can open up the ``docs/_build/index.html`` file manually with the terminal. ::
-	
-	$ cd <path to COSDev>/COSDev
-	$ open _build/html/index.html
-
-This should automatically open a browser window with the rendered HTML home page.
+The ``-b`` (for "browse") automatically opens up the docs in your browser after building. Alternatively, you can open up the ``docs/_build/index.html`` file manually.
 
 Autobuilding on File Changes
-*******************************
+----------------------------
 
 You can use ``sphinx-autobuild`` to automatically build the docs when you change a file in the ``docs`` directory.
 
@@ -52,18 +45,16 @@ You can now start the livereload server with: ::
 
     $ invoke watch
 
-Open ``http://localhost:8000`` on your browser to see the rendered documentation.
+Point your browser to http://localhost:8000 to see your docs.
 
-Send a Pull Request
-*******************
+Send a PR!
+**********
 
-Once you are done making your edits, send a pull request on Github to the `COSDev <https://github.com/CenterForOpenScience/COSDev>`_ repository.
+Once you are done making your edits, send a pull request on Github to the `COSDev <https://github.com/CenterForOpenScience/COSDev>`_ repo.
 
 .. _Sphinx: http://sphinx.pocoo.org/
 .. _`reStructured Text`: http://docutils.sourceforge.net/rst.html
 
-Miscellaneous Style Conventions
--------------------------------
 
 Header Conventions
 ******************
