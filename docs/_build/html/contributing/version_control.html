@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Version Control Standards and Guidelines &mdash; Center for Open Science Development Documentation v. 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Center for Open Science Development Documentation v. 1.0 documentation" href="../index.html"/>
+        <link rel="up" title="Contributing to the OSF Software" href="../contributing.html"/>
+        <link rel="next" title="Testing Standards and Guidelines" href="testing.html"/>
+        <link rel="prev" title="Contributing to the OSF Software" href="../contributing.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Center for Open Science Development Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../contributing.html">Contributing to the OSF Software</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Version Control Standards and Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-control">Version Control</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#general-guidelines">General Guidelines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#useful-tools">Useful Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#releases-features">Releases: Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#releases-package-and-application-maintainers">Releases: Package and Application Maintainers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#git-style-guidelines">Git Style Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing Standards and Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_review.html">Code Reviews for Contributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_ons.html">Developing Add-On Features for the OSF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pull_requests.html">Pull Request Standards and Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Contributing to the OSF Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../styles.html">Styles and Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Tools and Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">Help and Troubleshooting</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Center for Open Science Development Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../contributing.html">Contributing to the OSF Software</a> &raquo;</li>
+      
+    <li>Version Control Standards and Guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/contributing/version_control.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="version-control-standards-and-guidelines">
+<h1>Version Control Standards and Guidelines<a class="headerlink" href="#version-control-standards-and-guidelines" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="version-control">
+<h2>Version Control<a class="headerlink" href="#version-control" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general-guidelines">
+<h3>General Guidelines<a class="headerlink" href="#general-guidelines" title="Permalink to this headline">¶</a></h3>
+<p>We use <a class="reference external" href="https://git-scm.com/">Git</a> for version control.</p>
+<dl class="docutils">
+<dt>General Guidelines for Git VCS:</dt>
+<dd><ul class="first last simple">
+<li>Follow the <a class="reference internal" href="#git-style"><span class="std std-ref">Git Style Guidelines</span></a>, found below.</li>
+<li>Use Vincent Driessen&#8217;s <a class="reference external" href="http://nvie.com/posts/a-successful-git-branching-model/">Successful Git Branching Model</a> (this is also knows as Git-Flow).</li>
+<li>In your <strong>feature</strong> branches, pull from <code class="docutils literal"><span class="pre">develop</span></code> frequently to keep an updated copy and to avoid potential conflicts.</li>
+<li><strong>DO NOT</strong> merge <code class="docutils literal"><span class="pre">develop</span></code> into <code class="docutils literal"><span class="pre">hotfix</span></code> branches, see more below.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="useful-tools">
+<h3>Useful Tools<a class="headerlink" href="#useful-tools" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="http://www.sourcetreeapp.com/">SourceTree</a> - Mac OS X; GUI.</li>
+<li><a class="reference external" href="https://github.com/nvie/gitflow">gitflow</a> - Cross-platform; CLI.</li>
+<li><a class="reference external" href="https://github.com/github/hub">hub</a> - GitHub integration with the git CLI. Very useful for checking out pull requests.</li>
+</ul>
+</div>
+<div class="section" id="releases-features">
+<h3>Releases: Features<a class="headerlink" href="#releases-features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Once <code class="docutils literal"><span class="pre">develop</span></code> is ready for release, start a release branch with git-flow.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git flow release start 0.17.0
+</pre></div>
+</div>
+<ul class="simple">
+<li>Update the CHANGELOG and bump the version where necessary. Commit changes.</li>
+<li>Finish the release with git-flow</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git flow release finish 0.17.0
+</pre></div>
+</div>
+<ul class="simple">
+<li>If prompted to add a tag message, write <code class="docutils literal"><span class="pre">See</span> <span class="pre">CHANGELOG</span></code>.</li>
+<li>Push <code class="docutils literal"><span class="pre">develop</span></code> and <code class="docutils literal"><span class="pre">master</span></code>. Push tags.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git push origin develop
+$ git push origin master
+$ git push --tags
+</pre></div>
+</div>
+<ul class="simple">
+<li>Once Travis tests pass, deploy to production and staging.</li>
+</ul>
+</div>
+<div class="section" id="releases-package-and-application-maintainers">
+<h3>Releases: Package and Application Maintainers<a class="headerlink" href="#releases-package-and-application-maintainers" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Package and app maintainers: Use <a class="reference external" href="http://semver.org">semantic versioning</a>.</li>
+</ul>
+<div class="section" id="hotfix-releases">
+<h4>Hotfix releases<a class="headerlink" href="#hotfix-releases" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Once a hotfix pull request has been checked out locally and <span class="xref std std-ref">code review</span> is complete, rename the hotfix branch with the incremented PATCH number.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span># hotfix/fix-serialization-bug is currently checked out
+# rename with version number
+$ git branch -m hotfix/0.16.3
+</pre></div>
+</div>
+<ul class="simple">
+<li>Finish the hotfix with git-flow.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git flow hotfix finish 0.16.3
+</pre></div>
+</div>
+<ul class="simple">
+<li>When prompted to add a tag message, write a brief (1-2 sentence) description of the hotfix.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You can also use the <code class="docutils literal"><span class="pre">hotfix</span></code> invoke task to automatically rename the current hotfix branch and finish it.</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span>$ invoke hotfix --finish
+</pre></div>
+</div>
+</div>
+<ul class="simple">
+<li>Push <code class="docutils literal"><span class="pre">develop</span></code> and <code class="docutils literal"><span class="pre">master</span></code>. Push tags with your commit.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git push origin develop
+$ git push origin master
+$ git push --tags
+</pre></div>
+</div>
+<ul class="simple">
+<li>Once Travis tests pass, deploy to production and staging.</li>
+</ul>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">If you&#8217;re unfamiliar with Travis testing, you can learn more on the <a class="reference external" href="https://travis-ci.org/">official website</a>.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Many git-flow tools will try to force you to merge hotfix branches into master <em>before</em> publishing code to a hosting service (e.g. Github). Do <strong>not</strong> do this. Just push your hotfix branch on its own and <a class="reference internal" href="pull_requests.html#pull-requests"><span class="std std-ref">send a pull request</span></a>.</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span># Push a new hotfix branch up to origin
+$ git push -u origin hotfix/nav-header-size
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="git-style-guidelines">
+<span id="git-style"></span><h2>Git Style Guidelines<a class="headerlink" href="#git-style-guidelines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Use the imperative mode (e.g, &#8220;Fix rendering of user logs&#8221;) in commit messages.</li>
+<li>If your patch addresses a JIRA ticket, add the JIRA ticket ID to the commit message.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Improve</span> <span class="n">UI</span> <span class="k">for</span> <span class="n">changing</span> <span class="n">names</span>
+
+<span class="o">-</span> <span class="n">Change</span> <span class="n">button</span> <span class="n">color</span> <span class="k">for</span> <span class="n">Auto</span><span class="o">-</span><span class="n">fill</span>
+<span class="o">-</span> <span class="n">Add</span> <span class="n">help</span> <span class="n">text</span>
+
+<span class="p">[</span><span class="c1">#OSF-4251]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>If your patch fixes a Github issue, you can add the issue to your commit message so that the issue will automatically be closed when the patch is merged.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Fix</span> <span class="n">bug</span> <span class="ow">in</span> <span class="n">loading</span> <span class="n">filetree</span>
+
+<span class="p">[</span><span class="n">fix</span> <span class="n">CenterForOpenScience</span><span class="o">/</span><span class="n">osf</span><span class="o">.</span><span class="n">io</span><span class="c1">#982]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Write <a class="reference external" href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">good commit messages</a>.</li>
+</ul>
+<p>Here&#8217;s a model message, taken from the above post:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Capitalized</span><span class="p">,</span> <span class="n">short</span> <span class="p">(</span><span class="mi">50</span> <span class="n">chars</span> <span class="ow">or</span> <span class="n">less</span><span class="p">)</span> <span class="n">summary</span>
+
+<span class="n">More</span> <span class="n">detailed</span> <span class="n">explanatory</span> <span class="n">text</span><span class="p">,</span> <span class="k">if</span> <span class="n">necessary</span><span class="o">.</span>  <span class="n">Wrap</span> <span class="n">it</span> <span class="n">to</span> <span class="n">about</span> <span class="mi">72</span>
+<span class="n">characters</span> <span class="ow">or</span> <span class="n">so</span><span class="o">.</span>  <span class="n">In</span> <span class="n">some</span> <span class="n">contexts</span><span class="p">,</span> <span class="n">the</span> <span class="n">first</span> <span class="n">line</span> <span class="ow">is</span> <span class="n">treated</span> <span class="k">as</span> <span class="n">the</span>
+<span class="n">subject</span> <span class="n">of</span> <span class="n">an</span> <span class="n">email</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">rest</span> <span class="n">of</span> <span class="n">the</span> <span class="n">text</span> <span class="k">as</span> <span class="n">the</span> <span class="n">body</span><span class="o">.</span>  <span class="n">The</span> <span class="n">blank</span>
+<span class="n">line</span> <span class="n">separating</span> <span class="n">the</span> <span class="n">summary</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">body</span> <span class="ow">is</span> <span class="n">critical</span> <span class="p">(</span><span class="n">unless</span> <span class="n">you</span> <span class="n">omit</span>
+<span class="n">the</span> <span class="n">body</span> <span class="n">entirely</span><span class="p">);</span> <span class="n">tools</span> <span class="n">like</span> <span class="n">rebase</span> <span class="n">can</span> <span class="n">get</span> <span class="n">confused</span> <span class="k">if</span> <span class="n">you</span> <span class="n">run</span> <span class="n">the</span>
+<span class="n">two</span> <span class="n">together</span><span class="o">.</span>
+
+<span class="n">Write</span> <span class="n">your</span> <span class="n">commit</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">imperative</span><span class="p">:</span> <span class="s2">&quot;Fix bug&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="s2">&quot;Fixed bug&quot;</span>
+<span class="ow">or</span> <span class="s2">&quot;Fixes bug.&quot;</span>  <span class="n">This</span> <span class="n">convention</span> <span class="n">matches</span> <span class="n">up</span> <span class="k">with</span> <span class="n">commit</span> <span class="n">messages</span> <span class="n">generated</span>
+<span class="n">by</span> <span class="n">commands</span> <span class="n">like</span> <span class="n">git</span> <span class="n">merge</span> <span class="ow">and</span> <span class="n">git</span> <span class="n">revert</span><span class="o">.</span>
+
+<span class="n">Further</span> <span class="n">paragraphs</span> <span class="n">come</span> <span class="n">after</span> <span class="n">blank</span> <span class="n">lines</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">Bullet</span> <span class="n">points</span> <span class="n">are</span> <span class="n">okay</span><span class="p">,</span> <span class="n">too</span>
+
+<span class="o">-</span> <span class="n">Typically</span> <span class="n">a</span> <span class="n">hyphen</span> <span class="ow">or</span> <span class="n">asterisk</span> <span class="ow">is</span> <span class="n">used</span> <span class="k">for</span> <span class="n">the</span> <span class="n">bullet</span><span class="p">,</span> <span class="n">followed</span> <span class="n">by</span> <span class="n">a</span>
+  <span class="n">single</span> <span class="n">space</span><span class="p">,</span> <span class="k">with</span> <span class="n">blank</span> <span class="n">lines</span> <span class="ow">in</span> <span class="n">between</span><span class="p">,</span> <span class="n">but</span> <span class="n">conventions</span> <span class="n">vary</span> <span class="n">here</span>
+
+<span class="o">-</span> <span class="n">Use</span> <span class="n">a</span> <span class="n">hanging</span> <span class="n">indent</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="testing.html" class="btn btn-neutral float-right" title="Testing Standards and Guidelines" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../contributing.html" class="btn btn-neutral" title="Contributing to the OSF Software" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Center for Open Science.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v. 1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

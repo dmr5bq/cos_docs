@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>JavaScript Style Guidelines &mdash; Center for Open Science Development Documentation v. 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Center for Open Science Development Documentation v. 1.0 documentation" href="../index.html"/>
+        <link rel="up" title="Styles and Guidelines" href="../styles.html"/>
+        <link rel="next" title="Python Style Guidelines" href="python.html"/>
+        <link rel="prev" title="Styles and Guidelines" href="../styles.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Center for Open Science Development Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to the OSF Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Contributing to the OSF Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../styles.html">Styles and Guidelines</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">JavaScript Style Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#style">Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors">Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commonjs-modules">CommonJS Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jquery">jQuery</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ajax">AJAX</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#promises">Promises</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encapsulation">Encapsulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recommended-syntax-checkers">Recommended Syntax Checkers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python Style Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_css.html">HTML and CSS Style Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansible.html">Ansible Style Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Tools and Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">Help and Troubleshooting</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Center for Open Science Development Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../styles.html">Styles and Guidelines</a> &raquo;</li>
+      
+    <li>JavaScript Style Guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/styles/javascript.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="javascript-style-guidelines">
+<h1>JavaScript Style Guidelines<a class="headerlink" href="#javascript-style-guidelines" title="Permalink to this headline">¶</a></h1>
+<p id="javascript-style">Style guidelines for writing Javascript.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Writing a JS module for the OSF? See the <a class="reference internal" href="../contributing/add_ons.html"><span class="doc">Developing Add-On Features for the OSF</span></a> page in the <a class="reference internal" href="../contributing.html"><span class="doc">Contributing to the OSF Software</span></a> section.</p>
+</div>
+<div class="section" id="style">
+<h2>Style<a class="headerlink" href="#style" title="Permalink to this headline">¶</a></h2>
+<p>Follow <a class="reference external" href="https://github.com/felixge/node-style-guide">Felix&#8217;s Node Style</a> and <a class="reference external" href="https://github.com/airbnb/javascript/tree/es5-deprecated/es5">airbnb&#8217;s Style Guide</a> with a few exceptions:</p>
+<ul class="simple">
+<li>Use <strong>4 spaces</strong> for indentation.</li>
+<li>Use <code class="docutils literal"><span class="pre">self</span></code> to save a reference to <code class="docutils literal"><span class="pre">this</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="errors">
+<h2>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Always throw <code class="docutils literal"><span class="pre">Error</span></code> instances, not strings.</li>
+</ul>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Yes</span>
+<span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Something went wrong&#39;</span><span class="p">);</span>
+
+<span class="c1">// No</span>
+<span class="k">throw</span> <span class="s1">&#39;Something went wrong&#39;</span><span class="p">;</span>
+
+<span class="c1">// No</span>
+<span class="k">throw</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Something went wrong&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="commonjs-modules">
+<h2>CommonJS Modules<a class="headerlink" href="#commonjs-modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Group imports in the following order, separated by a blank line:</li>
+</ul>
+<ol class="arabic simple">
+<li>Third party libraries</li>
+<li>Local application/library-specific imports</li>
+</ol>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">module.exports</span></code> are always grouped at the end of a file. Do not use <code class="docutils literal"><span class="pre">export</span></code> throughout the file.</li>
+<li>Keep testability in mind in deciding what to export.</li>
+</ul>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Yes</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">SomeClass</span><span class="o">:</span> <span class="nx">SomeClass</span><span class="p">,</span>
+    <span class="nx">_privateFunction</span><span class="o">:</span> <span class="nx">privateFunction</span>
+<span class="p">}</span>
+
+<span class="c1">// Yes</span>
+<span class="kd">function</span> <span class="nx">SomeClass</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="nx">SomeClass</span><span class="p">.</span><span class="nx">_privateFunction</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{...}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">SomeClass</span><span class="p">;</span>
+
+<span class="c1">// No</span>
+<span class="kd">var</span> <span class="nx">SomeClass</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">SomeClass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
+<span class="kd">var</span> <span class="nx">privateFunction</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">_privateFunction</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Use the <a class="reference external" href="https://yui.github.io/yuidoc/">YUIDoc</a> standard for writing JS comment blocks.</p>
+<p>Example:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">* A wrapper around the ACE editor that asynchronously loads</span>
+<span class="cm">* and publishes its content.</span>
+<span class="cm">*</span>
+<span class="cm">* @param {String} selector Selector for the editor element</span>
+<span class="cm">* @param {String} url URL for retrieving and posting content.</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+<p>For simple functions and methods, a single-line docstring will suffice.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="cm">/** Update the viewModel with data fetched from a server. */</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="jquery">
+<h2>jQuery<a class="headerlink" href="#jquery" title="Permalink to this headline">¶</a></h2>
+<p>Follow <a class="reference external" href="http://lab.abhinayrathore.com/jquery-standards/">Abhinay Rathore&#8217;s jQuery Coding Standards Guide</a>.</p>
+<div class="section" id="ajax">
+<h3>AJAX<a class="headerlink" href="#ajax" title="Permalink to this headline">¶</a></h3>
+<p>For PUTting and POSTing to JSON endpoints in the OSF, use the <code class="docutils literal"><span class="pre">$osf.postJSON</span></code> and <code class="docutils literal"><span class="pre">$osf.putJSON</span></code> functions (located in <code class="docutils literal"><span class="pre">osfHelpers.js</span></code>). This will handle JSON stringification as well as set the correct dataType and contentType.</p>
+<p>When using <code class="docutils literal"><span class="pre">$osf.postJSON</span></code>, <code class="docutils literal"><span class="pre">$osf.putJSON</span></code>, or <code class="docutils literal"><span class="pre">jQuery.ajax</span></code>, use the Promises interface.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">successHandler</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="kd">function</span> <span class="nx">failureHandler</span><span class="p">(</span><span class="nx">jqXHR</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{...}</span>
+
+
+<span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> <span class="p">...</span> <span class="p">});</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="nx">successHandler</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">failureHandler</span><span class="p">);</span>
+
+<span class="c1">// OR</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> <span class="p">...</span> <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">successHandler</span><span class="p">,</span> <span class="nx">failureHandler</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="promises">
+<h2>Promises<a class="headerlink" href="#promises" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Prefer promises to callbacks.</li>
+</ul>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Yes</span>
+<span class="kd">function</span> <span class="nx">makeRequest</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">&#39;/api/projects/&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">request</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">makeRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span> <span class="p">})</span>
+
+<span class="c1">// No</span>
+<span class="kd">function</span> <span class="nx">makeRequest</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">&#39;/api/projects/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">callback</span> <span class="o">&amp;&amp;</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+    <span class="p">})</span> <span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">makeRequest</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">)});</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>When doing AJAX requests or other asynchronous work, it&#8217;s often useful to return a promise that resolves to a useful value (e.g. model objects or &#8220;unwrapped&#8221; responses).</li>
+</ul>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">User</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_id</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">_id</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/** Return a promise that resolves to a list of Users */</span>
+<span class="kd">var</span> <span class="nx">getUsers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">ret</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+
+    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">&#39;/users/&#39;</span><span class="p">);</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">users</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+            <span class="k">return</span> <span class="nx">User</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        <span class="p">});</span>
+        <span class="nx">ret</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">users</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Raven</span><span class="p">.</span><span class="nx">captureMessage</span><span class="p">(...);</span>
+        <span class="nx">ret</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">ret</span><span class="p">.</span><span class="nx">promise</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="nx">getUsers</span><span class="p">().</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">users</span><span class="p">){</span>
+    <span class="nx">users</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">_id</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="encapsulation">
+<h2>Encapsulation<a class="headerlink" href="#encapsulation" title="Permalink to this headline">¶</a></h2>
+<p>Use the Combination Constructor/Prototype pattern for encapsulation. You can use the following functions to provide syntactic sugar for creating &#8220;classes&#8221;:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">noop</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="kd">function</span> <span class="nx">defclass</span><span class="p">(</span><span class="nx">prototype</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">constructor</span> <span class="o">=</span> <span class="nx">prototype</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;constructor&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">:</span> <span class="nx">noop</span><span class="p">;</span>
+    <span class="nx">constructor</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">prototype</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">constructor</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">cls</span><span class="p">,</span> <span class="nx">sub</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">cls</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">sub</span><span class="p">)</span> <span class="p">{</span> <span class="nx">prototype</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">sub</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span> <span class="p">}</span>
+    <span class="nx">prototype</span><span class="p">.</span><span class="kr">super</span> <span class="o">=</span> <span class="nx">cls</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">defclass</span><span class="p">(</span><span class="nx">prototype</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage:</span>
+<span class="kd">var</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="nx">defclass</span><span class="p">({</span>
+    <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">||</span> <span class="s1">&#39;unnamed&#39;</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">sleeping</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">sayHi</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Hi, my name is &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">Animal</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="kr">super</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">||</span> <span class="s1">&#39;Steve&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the OSF, the <code class="docutils literal"><span class="pre">defclass</span></code> and <code class="docutils literal"><span class="pre">extend</span></code> functions are available in the <code class="docutils literal"><span class="pre">oop.js</span></code> module.</p>
+</div>
+</div>
+<div class="section" id="recommended-syntax-checkers">
+<h2>Recommended Syntax Checkers<a class="headerlink" href="#recommended-syntax-checkers" title="Permalink to this headline">¶</a></h2>
+<p>We recommend using a syntax checker to help you find errors quickly and easily format your code to abide by the guidelines above. <a class="reference external" href="http://jshint.com">JSHint</a> is our recommended checker for Javascript. It can be installed with <code class="docutils literal"><span class="pre">npm</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ npm install -g jshint
+</pre></div>
+</div>
+<p>There are a number of plugins for integrating jshint with your preferred text editor.</p>
+<p>Vim</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/scrooloose/syntastic">syntastic</a> (multi-language)</li>
+</ul>
+<p>Sublime Text</p>
+<ul class="simple">
+<li><a class="reference external" href="https://sublime.wbond.net/packages/SublimeLinter">Sublime Linter</a> with <a class="reference external" href="https://sublime.wbond.net/packages/SublimeLinter-jshint">SublimeLinter-jshint</a> (must install both)</li>
+</ul>
+<p>PyCharm</p>
+<ul class="simple">
+<li>Follow these docs: <a class="reference external" href="http://www.jetbrains.com/pycharm/webhelp/jshint.html">http://www.jetbrains.com/pycharm/webhelp/jshint.html</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="python.html" class="btn btn-neutral float-right" title="Python Style Guidelines" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../styles.html" class="btn btn-neutral" title="Styles and Guidelines" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Center for Open Science.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v. 1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developing Add-On Features for the OSF &mdash; Center for Open Science Development Documentation v. 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Center for Open Science Development Documentation v. 1.0 documentation" href="../index.html"/>
+        <link rel="up" title="Contributing to the OSF Software" href="../contributing.html"/>
+        <link rel="next" title="Pull Request Standards and Guidelines" href="pull_requests.html"/>
+        <link rel="prev" title="Code Reviews for Contributions" href="code_review.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Center for Open Science Development Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../contributing.html">Contributing to the OSF Software</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="version_control.html">Version Control Standards and Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing Standards and Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_review.html">Code Reviews for Contributions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Developing Add-On Features for the OSF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-add-ons">Installing Add-ons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#minimum-requirements">Minimum Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-fields">Optional Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-on-structure">Add-on Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#storedobject">StoredObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#routes">Routes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#views">Views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logs">Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#static-files-for-add-ons">Static Files for Add-ons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rubeus-and-the-filebrowser">Rubeus and the FileBrowser</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rubeus">Rubeus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#addons-using-oauth-and-oauth2">Addons using OAuth and OAuth2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deselecting-and-deauthorizing">Deselecting and Deauthorizing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#important-privacy-considerations">Important Privacy Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pull_requests.html">Pull Request Standards and Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Contributing to the OSF Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../styles.html">Styles and Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Tools and Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">Help and Troubleshooting</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Center for Open Science Development Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../contributing.html">Contributing to the OSF Software</a> &raquo;</li>
+      
+    <li>Developing Add-On Features for the OSF</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/contributing/add_ons.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developing-add-on-features-for-the-osf">
+<h1>Developing Add-On Features for the OSF<a class="headerlink" href="#developing-add-on-features-for-the-osf" title="Permalink to this headline">¶</a></h1>
+<p>This document lays out the process for developing an add-on feature to the OSF. Follow all guidelines within this document, and pay special attention to adhere to the standards laid out in the <a class="reference internal" href="#privacy"><span class="std std-ref">Important Privacy Considerations</span></a> section.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><strong>In Progress</strong>: This document is still under construction. Check out <a class="reference internal" href="../documentation/todo.html"><span class="doc">To-Do: Updates and Edits to the Documentation</span></a> if you would like to contribute.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt><strong>Important Standards and Considerations</strong></dt>
+<dd><ul class="first last simple">
+<li>The words SHALL, MUST, MAY, etc are to be interpreted as defined <a class="reference external" href="https://tools.ietf.org/html/rfc2119">here</a>.</li>
+<li>The add-on system is module-based not class-based.</li>
+<li>Anything edited by a developer should be in the <code class="docutils literal"><span class="pre">website/addons/</span></code> directory.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="installing-add-ons">
+<h2>Installing Add-ons<a class="headerlink" href="#installing-add-ons" title="Permalink to this headline">¶</a></h2>
+<p>Open terminal and <code class="docutils literal"><span class="pre">cd</span></code> into to the folder where your OSF installation is located. We will install the addons to the website folder. So navigate to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">website</span><span class="o">/</span><span class="n">addons</span>
+</pre></div>
+</div>
+<p>During your installation you created a virtual environment for OSF — If this is unfamiliar, see <a class="reference internal" href="../getting_started/installing_osf.html"><span class="doc">Installing the OSF on Your Machine</span></a>. Switch to the environment by typing <code class="docutils literal"><span class="pre">workon</span></code> followed by the name of your virtual environment</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span># If you use virtualenvwrapper
+$ workon osf
+</pre></div>
+</div>
+</div>
+<div class="section" id="minimum-requirements">
+<h2>Minimum Requirements<a class="headerlink" href="#minimum-requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">__init__.py</span></code> declares all views/models/routes/hooks for your add-on</li>
+</ul>
+<p><strong>An add-on MUST declare the following in</strong> <code class="docutils literal"><span class="pre">__init__.py</span></code>:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">SHORT_NAME</span></code> (string)<ul>
+<li>The name that will be used to refer to your add-on on the back end.</li>
+<li>Examples:<ul>
+<li>Amazon Simple Storage Service is <code class="docutils literal"><span class="pre">&quot;s3&quot;</span></code></li>
+<li>Google Drive is <code class="docutils literal"><span class="pre">&quot;googledrive&quot;</span></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">FULL_NAME</span></code> (string)<ul>
+<li>The display name of your add-on. Whenever the user is
+interacting with your add-on this is the name they will see.</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">ROUTES</span></code> (list of <a class="reference external" href="#routes">routes</a> dictionaries)<ul>
+<li>A list containing all <a class="reference external" href="#routes">routes</a> defined by your add-on.</li>
+<li>Maps URLs to views in the add-on.</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">MODELS</span></code> (list of <a class="reference external" href="#storedobject">StoredObjects</a>)<ul>
+<li>A list of all <a class="reference external" href="http://www.cdisc.org/standards/foundational/odm">ODM objects</a> defined by your add-on.</li>
+<li>If a model is not in this list, it will not be usable in the add-on.</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">ADDED_DEFAULT</span></code> (list of strings)<ul>
+<li>A list of <code class="docutils literal"><span class="pre">AddonMixin</span></code> models that your add-on SHALL be added to
+when they are created</li>
+<li>Valid options are <code class="docutils literal"><span class="pre">user</span></code> and <code class="docutils literal"><span class="pre">node</span></code></li>
+<li><em>Example:</em> The Wiki addon is added by default for nodes.</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">ADDED_MANDATORY</span></code> (list of strings)<ul>
+<li>A list of <code class="docutils literal"><span class="pre">AddonMixin</span></code> models that your add-on MUST be
+attached/connected to at all times.</li>
+<li>Valid options are <code class="docutils literal"><span class="pre">user</span></code> and <code class="docutils literal"><span class="pre">node</span></code></li>
+<li><em>Example:</em> <code class="docutils literal"><span class="pre">OsfStorage</span></code> is a required add-on for nodes</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">VIEWS</span></code> (list of strings)<ul>
+<li>Additional builtin views for your add-on</li>
+<li>Valid options are <code class="docutils literal"><span class="pre">page</span></code> and <code class="docutils literal"><span class="pre">widget</span></code></li>
+<li>EX: The wiki defines both a <code class="docutils literal"><span class="pre">page</span></code> view and a <code class="docutils literal"><span class="pre">widget</span></code> view</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">CATEGORIES</span></code> (list of strings)</p>
+<ul>
+<li><p class="first">A list of categories this add-on should be displayed under when
+the user is “browsing” add-ons</p>
+</li>
+<li><p class="first">SHOULD be <code class="docutils literal"><span class="pre">documentation</span></code>, <code class="docutils literal"><span class="pre">storage</span></code>, <code class="docutils literal"><span class="pre">citations</span></code>, <code class="docutils literal"><span class="pre">security</span></code>, <code class="docutils literal"><span class="pre">bibliography</span></code>, or <code class="docutils literal"><span class="pre">other</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>Additional categories can be added to <code class="docutils literal"><span class="pre">ADDON_CATEGORIES</span></code> in <code class="docutils literal"><span class="pre">website.settings.defaults</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">INCLUDE_JS</span></code> and <code class="docutils literal"><span class="pre">INCLUDE_CSS</span></code><ul>
+<li>Deprecated field, define as empty dict (<code class="docutils literal"><span class="pre">{}</span></code>)</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">OWNERS</span></code> (list of strings)<ul>
+<li>Valid options are <code class="docutils literal"><span class="pre">user</span></code> and <code class="docutils literal"><span class="pre">node</span></code></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">CONFIGS</span></code> (list of strings)<ul>
+<li>Valid options are <code class="docutils literal"><span class="pre">accounts</span></code> and <code class="docutils literal"><span class="pre">node</span></code></li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt><strong>Miscellaneous Technical Standards</strong></dt>
+<dd><ul class="first last simple">
+<li>An <cite>AddonSettings</cite> object MUST NOT be instantiated by the contributor.</li>
+<li>Don&#8217;t forget to do error handling! This includes handling errors that might occur if 3rd party HTTP APIs cause a failure and any exceptions that a client library might raise</li>
+<li>Any static assets that you put in <code class="docutils literal"><span class="pre">website/addons/&lt;addon_name&gt;/static/</span></code> will be served from <code class="docutils literal"><span class="pre">/static/addons/&lt;addon_name&gt;/</span></code>. This means that <code class="docutils literal"><span class="pre">&lt;link&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;script&gt;</span></code> tags should always point to URLs that begin with <code class="docutils literal"><span class="pre">/static/</span></code>.</li>
+<li><cite>to_json</cite> returns the mako context for the settings pages</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="optional-fields">
+<h2>Optional Fields<a class="headerlink" href="#optional-fields" title="Permalink to this headline">¶</a></h2>
+<p><strong>An add-on MAY define the following fields</strong></p>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">HAS_HGRID_FILES</span></code> (boolean)</p>
+<blockquote>
+<div><ul class="simple">
+<li>A boolean that indicated that this add-on’s <code class="docutils literal"><span class="pre">GET_HGRID_DATA</span></code> function should be used to populate the files grid</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">GET_HGRID_DATA</span></code> (function)</p>
+<blockquote>
+<div><ul class="simple">
+<li>A function that returns HGrid/Treebeard formatted data to be included in a project’s files grid</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">USER_SETTINGS_MODEL</span></code> (<a class="reference external" href="#storedobject">StoredObject</a>)</p>
+<blockquote>
+<div><ul class="simple">
+<li>MUST inherit from <code class="docutils literal"><span class="pre">website.addons.base.AddonUserSettingsBase</span></code></li>
+<li>A model that will be used to store settings for users</li>
+<li>Will be returned when <code class="docutils literal"><span class="pre">User.get_addon('YourAddon')</span></code> is called</li>
+<li><em>Example:</em> Amazon S3’s User settings is used to store the user’s AWS access keys</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">NODE_SETTINGS_MODEL</span></code> (<a class="reference external" href="#storedobject">StoredObject</a>)</dt>
+<dd><ul class="first last simple">
+<li>MUST inherit from <code class="docutils literal"><span class="pre">website.addons.base.AddonNodeSettingsBase</span></code></li>
+<li>A model that will be used to store settings for nodes</li>
+<li>Will be returned when <code class="docutils literal"><span class="pre">Node.get_addon('YourAddon')</span></code> is called</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">NODE_SETTINGS_TEMPLATE</span></code> (string to directory)</dt>
+<dd><ul class="first last simple">
+<li>A <a class="reference external" href="http://www.makotemplates.org/">mako</a> template for configuring your add-on’s node settings object</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">USER_SETTINGS_TEMPLATE</span></code> (string to directory)</dt>
+<dd><ul class="first last simple">
+<li>A <a class="reference external" href="http://www.makotemplates.org/">mako</a> template for configuring your add-on’s user settings object</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">MAX_FILE_SIZE</span></code></dt>
+<dd><ul class="first last simple">
+<li>This maximum size, in MB, that can be uploaded to your add-on (supposing it supports files.)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="add-on-structure">
+<h2>Add-on Structure<a class="headerlink" href="#add-on-structure" title="Permalink to this headline">¶</a></h2>
+<p><strong>An add-on SHOULD have the following folder structure</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>website/addons/addonshortname/
+├── __init__.py
+├── model.py
+├── requirements.txt
+├── routes.py
+├── settings
+│   ├── __init__.py
+│   └── defaults.py
+├── static
+│   ├── comicon.png
+│   ├── node-cfg.js*
+│   ├── tests
+│   │   └── ...
+│   └── user-cfg.js*
+├── templates
+│   ├── log_templates.mako
+│   ├── addonshortname_node_settings.mako*
+│   └── addonshortname_user_settings.mako*
+├── tests
+│   ├── __init__.py
+│   ├── test_model.py
+│   └── test_views.py
+└── views
+    └── ...
+
+    * optional
+</pre></div>
+</div>
+</div>
+<div class="section" id="storedobject">
+<h2>StoredObject<a class="headerlink" href="#storedobject" title="Permalink to this headline">¶</a></h2>
+<p>All models SHOULD be defined as subclasses of <code class="docutils literal"><span class="pre">framework.mongo.StoredObject</span></code>.</p>
+</div>
+<div class="section" id="routes">
+<h2>Routes<a class="headerlink" href="#routes" title="Permalink to this headline">¶</a></h2>
+<p>Routes are defined in a dictionary containing <code class="docutils literal"><span class="pre">rules</span></code> and an optional <code class="docutils literal"><span class="pre">prefix</span></code>.</p>
+<p>Add-on URL templating works the same way that <a class="reference external" href="http://flask.pocoo.org/docs/0.10/views/">flask’s</a> does.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_route</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;rules&#39;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="n">Rule</span><span class="p">(</span>
+      <span class="p">[</span>
+        <span class="s1">&#39;/my/&lt;templated&gt;/path/&#39;</span><span class="p">,</span>  <span class="c1"># Note all routes SHOULD end with a forward slash (/)</span>
+        <span class="s1">&#39;/also/my/&lt;templated&gt;/path/&#39;</span>
+      <span class="p">],</span>
+      <span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">),</span>  <span class="c1"># Valid HTTP methods</span>
+      <span class="n">view</span><span class="o">.</span><span class="n">my_view_function</span><span class="p">,</span>  <span class="c1"># The view method this route maps to</span>
+      <span class="n">json_renderer</span>  <span class="c1"># The renderer used for this view function, either OsfWebRenderer or json_renderer</span>
+    <span class="p">)</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Routes SHOULD be defined in <code class="docutils literal"><span class="pre">website.addons.youraddon.routes</span></code> but could be defined anywhere</p>
+</div>
+<div class="section" id="views">
+<h2>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h2>
+<p>Add-on views are implemented the same way that <a class="reference external" href="http://flask.pocoo.org/docs/0.10/views/">flask’s</a> are.</p>
+<p>Any value matched by url templating (<code class="docutils literal"><span class="pre">&lt;value_name&gt;</span></code>) will be passed to
+your view function as a keyword argument</p>
+<p>Our framework supplies many python decorators to make writing view
+functions more pleasant.</p>
+<p>Below are a few examples that are commonly used in our code base.</p>
+<p>More can be found in <code class="docutils literal"><span class="pre">website.project.decorators</span></code>.</p>
+<p><code class="docutils literal"><span class="pre">framework.auth.decorators.must_be_logged_in</span></code> ensures that a user is logged in and imputes <code class="docutils literal"><span class="pre">auth</span></code> into keyword
+arguments</p>
+<p><code class="docutils literal"><span class="pre">website.project.decorators.must_have_addon</span></code> is a decorator factory meaning you must supply
+arguments to it to get a decorator.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@must_have_addon</span><span class="p">(</span><span class="s1">&#39;myaddon&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+  <span class="k">pass</span>
+
+
+<span class="nd">@must_have_addon</span><span class="p">(</span><span class="s1">&#39;myaddon&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_node_view</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+  <span class="k">pass</span>
+</pre></div>
+</div>
+<p>The above code snippet will only run the view function if the specified
+model as the requested addon.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Routes whose views are with decorated <code class="docutils literal"><span class="pre">must_have_addon('addon_short_name',</span> <span class="pre">'node')</span></code> MUST start with <code class="docutils literal"><span class="pre">/project/&lt;pid&gt;/...</span></code>.</p>
+</div>
+<p><code class="docutils literal"><span class="pre">website.project.decorators.must_have_permission</span></code> is another decorator factory that takes a <code class="docutils literal"><span class="pre">permission</span></code> argument (may be &#8216;write&#8217;,&#8217;read&#8217;, or &#8216;admin&#8217;). This prevents the decorated view function from being called unless the
+user issuing the request has the required permission.</p>
+</div>
+<div class="section" id="logs">
+<h2>Logs<a class="headerlink" href="#logs" title="Permalink to this headline">¶</a></h2>
+<p>Some common log examples</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">dropbox_node_authorized</span></code></li>
+<li><code class="docutils literal"><span class="pre">dropbox_node_authorized</span></code></li>
+<li><code class="docutils literal"><span class="pre">dropbox_file_added</span></code></li>
+<li><code class="docutils literal"><span class="pre">dropbox_file_removed</span></code></li>
+<li><code class="docutils literal"><span class="pre">dropbox_folder_selected</span></code>, <code class="docutils literal"><span class="pre">github_repo_linked</span></code>, etc.</li>
+</ul>
+<p>Use the <code class="docutils literal"><span class="pre">NodeLog</span></code> class&#8217;s named constants when possible,</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="s1">&#39;dropbox_&#39;</span> <span class="o">+</span> <span class="n">NodeLog</span><span class="o">.</span><span class="n">FILE_ADDED</span>
+</pre></div>
+</div>
+<p>Every log action requires a template in <code class="docutils literal"><span class="pre">youraddon/templates/log_templates.mako</span></code>. Each template&#8217;s id corresponds to the name of the log action.</p>
+</div>
+<div class="section" id="static-files-for-add-ons">
+<h2>Static Files for Add-ons<a class="headerlink" href="#static-files-for-add-ons" title="Permalink to this headline">¶</a></h2>
+<p>First make sure your add-on&#8217;s short name is listed in <code class="docutils literal"><span class="pre">addons.json</span></code>.</p>
+<p><strong>addons.json</strong></p>
+<div class="highlight-json"><div class="highlight"><pre><span></span>{
+    &quot;addons&quot;: [
+        ...
+        &quot;dropbox&quot;,
+        ...
+    ]
+}
+</pre></div>
+</div>
+<p>This adds the proper entry points for webpack to build your add-on&#8217;s static files.</p>
+<p>The following files in the <code class="docutils literal"><span class="pre">static</span></code> folder of your addon directory will be built by webpack:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">user-cfg.js</span></code> : Executed on the user addon configuration page.</li>
+<li><code class="docutils literal"><span class="pre">node-cfg.js</span></code> : Executed on the node addon configuration page.</li>
+<li><code class="docutils literal"><span class="pre">files.js</span></code> : Executed on the files page of a node.</li>
+</ul>
+<p><strong>You do not have to include these files in a</strong> <code class="docutils literal"><span class="pre">&lt;script&gt;</span></code> <strong>tag in your templates.</strong> They will dynamically be included when your add-on is enabled.</p>
+</div>
+<div class="section" id="rubeus-and-the-filebrowser">
+<h2>Rubeus and the FileBrowser<a class="headerlink" href="#rubeus-and-the-filebrowser" title="Permalink to this headline">¶</a></h2>
+<p>For an addon to be included in the files view they must first define the following in the addon&#8217;s <code class="docutils literal"><span class="pre">__init__.py</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">HAS_HGRID_FILES</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">GET_HGRID_DATA</span> <span class="o">=</span> <span class="n">views</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="p">{{</span><span class="n">addon</span><span class="p">}}</span><span class="n">_hgrid_data</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">HAS_HGRID_FILES</span></code> is just a flag to attempt to load files from the addon.</li>
+<li><code class="docutils literal"><span class="pre">GET_HGRID_DATA</span></code> is a function that will return FileBrowser formatted data.</li>
+</ul>
+<div class="section" id="rubeus">
+<h3>Rubeus<a class="headerlink" href="#rubeus" title="Permalink to this headline">¶</a></h3>
+<p>Rubeus is a helper module for filebrowser-compatible add-ons.</p>
+<p><code class="docutils literal"><span class="pre">rubeus.FOLDER,KIND,FILE</span></code> are Rubeus constants for use when defining filebrowser data.</p>
+<p><code class="docutils literal"><span class="pre">rubeus.build_addon_root</span></code>:</p>
+<p>Builds the root or &#8220;dummy&#8221; folder for an add-on.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">param</span> <span class="n">AddonNodeSettingsBase</span> <span class="n">node_settings</span><span class="p">:</span> <span class="n">Addon</span> <span class="n">settings</span>
+
+<span class="p">:</span><span class="n">param</span> <span class="nb">str</span> <span class="n">name</span><span class="p">:</span> <span class="n">Additional</span> <span class="n">information</span> <span class="k">for</span> <span class="n">the</span> <span class="n">folder</span> <span class="n">title</span>
+
+    <span class="n">eg</span><span class="o">.</span> <span class="n">Repo</span> <span class="n">name</span> <span class="k">for</span> <span class="n">Github</span> <span class="ow">or</span> <span class="n">bucket</span> <span class="n">name</span> <span class="k">for</span> <span class="n">S3</span>
+
+<span class="p">:</span><span class="n">param</span> <span class="nb">dict</span> <span class="ow">or</span> <span class="n">Auth</span> <span class="n">permissions</span><span class="p">:</span> <span class="n">Dictionary</span> <span class="n">of</span> <span class="n">permissions</span> <span class="k">for</span> <span class="n">the</span> <span class="n">add</span><span class="o">-</span><span class="n">on</span><span class="s1">&#39;s content or Auth for use in node.can_X methods</span>
+
+<span class="p">:</span><span class="n">param</span> <span class="nb">dict</span> <span class="n">urls</span><span class="p">:</span> <span class="n">Hgrid</span> <span class="n">related</span> <span class="n">urls</span>
+
+<span class="p">:</span><span class="n">param</span> <span class="nb">str</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Html</span> <span class="n">to</span> <span class="n">be</span> <span class="n">appended</span> <span class="n">to</span> <span class="n">the</span> <span class="n">addon</span> <span class="n">folder</span> <span class="n">name</span>
+
+    <span class="n">eg</span><span class="o">.</span> <span class="n">Branch</span> <span class="n">switcher</span> <span class="k">for</span> <span class="n">github</span>
+
+<span class="p">:</span><span class="n">param</span> <span class="nb">dict</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span> <span class="n">additional</span> <span class="n">information</span> <span class="n">to</span> <span class="n">add</span> <span class="n">to</span> <span class="n">the</span> <span class="n">root</span> <span class="n">folder</span>
+
+<span class="p">:</span><span class="k">return</span> <span class="nb">dict</span><span class="p">:</span> <span class="n">Hgrid</span> <span class="n">formatted</span> <span class="n">dictionary</span> <span class="k">for</span> <span class="n">the</span> <span class="n">addon</span> <span class="n">root</span> <span class="n">folder</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="addons-using-oauth-and-oauth2">
+<h3>Addons using OAuth and OAuth2<a class="headerlink" href="#addons-using-oauth-and-oauth2" title="Permalink to this headline">¶</a></h3>
+<p>There are utilities for add-ons that use OAuth or Oauth2 for authentication. These include:</p>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">website.oauth.models.ExternalProvider</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>a helper class for managing and acquiring credentials (see <code class="docutils literal"><span class="pre">website.addons.mendeley.model.Mendeley</span></code> as an example)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">website.oauth.models.ExternalAccount</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>abstract representation of stored credentials; you do not need to implement a subclass of this class</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">website.addons.base.AddonOAuthUserSettingsBase</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>abstract interface to access user credentials (see <code class="docutils literal"><span class="pre">website.addons.mendeley.model.MendeleyUserSettings</span></code> as an example)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">website.addons.base.AddonOAuthUserSettingsBase</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>abstract interface for nodes to manage and  access user credentials (see <code class="docutils literal"><span class="pre">website.addons.mendeley.model.MendeleyNodeSettings</span></code> as an example)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">website.addons.base.serializer.AddonSerializer</span></code> and <code class="docutils literal"><span class="pre">website.addons.base.serializer.OAuthAddonSerializer</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>helper classes to facilitate serializing add-on settings</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="deselecting-and-deauthorizing">
+<h3>Deselecting and Deauthorizing<a class="headerlink" href="#deselecting-and-deauthorizing" title="Permalink to this headline">¶</a></h3>
+<p>Many add-ons will have both user and node settings. It is important to ensure that, if a user&#8217;s add-on settings are deleted or authorization to that add-on is removed, every node authorized by the user is deauthorized, which includes resetting all fields including its user settings.</p>
+<p>It is necessary to override the <code class="docutils literal"><span class="pre">delete</span></code> method for <code class="docutils literal"><span class="pre">MyAddonUserSettings</span></code> in order to clear all fields from the user settings.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyAddonUserSettings</span><span class="p">(</span><span class="n">AddonUserSettingsBase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyAddonUserSettings</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addon_id</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span><span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">node_settings</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">myaddonnodesettings__authorized</span><span class="p">:</span>
+            <span class="n">node_settings</span><span class="o">.</span><span class="n">deauthorize</span><span class="p">(</span><span class="n">Auth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">owner</span><span class="p">))</span>
+            <span class="n">node_settings</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</pre></div>
+</div>
+<p>You will also have to override the <code class="docutils literal"><span class="pre">delete</span></code> method for <code class="docutils literal"><span class="pre">MyAddonNodeSettings</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyAddonNodeSettings</span><span class="p">(</span><span class="n">AddonNodeSettingsBase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deauthorize</span><span class="p">(</span><span class="n">Auth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_settings</span><span class="o">.</span><span class="n">owner</span><span class="p">),</span> <span class="n">add_log</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AddonDataverseNodeSettings</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">deauthorize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auth</span><span class="p">,</span> <span class="n">add_log</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">example_field</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_settings</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">if</span> <span class="n">add_log</span><span class="p">:</span>
+            <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="important-privacy-considerations">
+<span id="privacy"></span><h2>Important Privacy Considerations<a class="headerlink" href="#important-privacy-considerations" title="Permalink to this headline">¶</a></h2>
+<p>Every add-on will come with its own unique set of privacy considerations. There are a number of ways to make small errors with a large impact.</p>
+<ul>
+<li><p class="first">Using <code class="docutils literal"><span class="pre">must_be_contributor_or_public</span></code>, <code class="docutils literal"><span class="pre">must_have_addon</span></code>, etc.  is not enough.</p>
+<blockquote>
+<div><ul class="simple">
+<li>While you should make sure that you correctly decorate your views, that does not ensure that <em>non-OSF</em>-related permissions have been handled.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">For file-storage add-ons, make sure that contributors can only see the folder that the authorizing user has selected to share.</p>
+</li>
+<li><p class="first">Think carefully about security when writing the node settings view — <code class="docutils literal"><span class="pre">{{addon}}_node_settings.mako</span></code> and <code class="docutils literal"><span class="pre">{{addon}}NodeConfig.js}}</span></code>.</p>
+<blockquote>
+<div><ul class="simple">
+<li>For example, in the GitHub add-on, the user should only be able to see the list of repos from the authenticating account if the user is the authenticator for the current node. Most add-ons will need to tell the view (1) whether the current user is the authenticator of the current node and (2) whether the current user has added an auth token for the current add-on to her OSF account.</li>
+<li>Example: When a Dropbox folder is shared on a project, contributors (and the public, if the project is public) should only perform CRUD operations on files and folders that are within that shared folder. An error should be thrown if a user tries to access anything outside of that folder.</li>
+<li>Make sure that any view (CRUD, settings views...) that accesses resources from a 3rd-party service is secured in this way:</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@must_be_contributor_or_public</span>
+<span class="nd">@must_have_addon</span><span class="p">(</span><span class="s1">&#39;dropbox&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">dropbox_view_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">node_addon</span><span class="p">,</span> <span class="n">auth</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Web view for the file detail page.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPError</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">NOT_FOUND</span><span class="p">)</span>
+    <span class="c1"># check that current user was the one who authorized the Dropbox addon</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_authorizer</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span> <span class="n">node_addon</span><span class="p">):</span>
+        <span class="c1"># raise HTTPError(403) if path is a not a subdirectory of the shared folder</span>
+        <span class="n">abort_if_not_subdir</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">node_addon</span><span class="o">.</span><span class="n">folder</span><span class="p">)</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pull_requests.html" class="btn btn-neutral float-right" title="Pull Request Standards and Guidelines" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="code_review.html" class="btn btn-neutral" title="Code Reviews for Contributions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Center for Open Science.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v. 1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

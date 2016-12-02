@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Testing Standards and Guidelines &mdash; Center for Open Science Development Documentation v. 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Center for Open Science Development Documentation v. 1.0 documentation" href="../index.html"/>
+        <link rel="up" title="Contributing to the OSF Software" href="../contributing.html"/>
+        <link rel="next" title="Code Reviews for Contributions" href="code_review.html"/>
+        <link rel="prev" title="Version Control Standards and Guidelines" href="version_control.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Center for Open Science Development Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../contributing.html">Contributing to the OSF Software</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="version_control.html">Version Control Standards and Guidelines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Testing Standards and Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-testing-guidelines">General Testing Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unit-tests">Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functional-tests">Functional Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-the-osf">Testing the OSF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-osftestcase">The <code class="docutils literal"><span class="pre">OsfTestCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Factories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Unit Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#views-tests">Views Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Functional Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#regression-tests">Regression Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#javascript-tests">Javascript Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="code_review.html">Code Reviews for Contributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_ons.html">Developing Add-On Features for the OSF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pull_requests.html">Pull Request Standards and Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Contributing to the OSF Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../styles.html">Styles and Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Tools and Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">Help and Troubleshooting</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Center for Open Science Development Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../contributing.html">Contributing to the OSF Software</a> &raquo;</li>
+      
+    <li>Testing Standards and Guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/contributing/testing.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="testing-standards-and-guidelines">
+<span id="testing"></span><h1>Testing Standards and Guidelines<a class="headerlink" href="#testing-standards-and-guidelines" title="Permalink to this headline">¶</a></h1>
+<p>This document contains information on testing practices used in developing the OSF, as well as how to specifically test the OSF itself (see <span class="xref std std-ref">osftesting</span>).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The below examples are in Python, but the concepts apply to testing in any language.</p>
+</div>
+<div class="section" id="general-testing-guidelines">
+<h2>General Testing Guidelines<a class="headerlink" href="#general-testing-guidelines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Use long, descriptive names in methods and functions. This often removes the need for doctrings in test methods. This also makes it easier to locate tests that fail.</li>
+<li>Tests should be isolated. Don&#8217;t interact with a real database or network. Use a separate test database that gets torn down after running or use mock objects.</li>
+<li>Prefer <a class="reference external" href="https://github.com/rbarrois/factory_boy">factories</a> to <a class="reference external" href="https://en.wikipedia.org/wiki/Test_fixture">fixtures</a>.</li>
+<li>Never let incomplete tests pass, or else you run the risk of forgetting about them. Instead, add a placeholder like <code class="docutils literal"><span class="pre">assert</span> <span class="pre">False,</span> <span class="pre">&quot;TODO:</span> <span class="pre">finish</span> <span class="pre">me&quot;</span></code>.</li>
+<li>If you are writing a stub for a test that will be written in the future, use the <code class="xref py py-meth docutils literal"><span class="pre">&#64;unittest.skip()</span></code> decorator.</li>
+<li>Strive for 100% code coverage, but do not obsess over a score that won&#8217;t reach perfection.</li>
+<li>When testing the contents of a dictionary, test the keys individually, i.e.,</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Yes</span>
+<span class="n">assert_equal</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">],</span> <span class="mi">42</span><span class="p">)</span>
+<span class="n">assert_equal</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">],</span> <span class="mi">24</span><span class="p">)</span>
+
+<span class="c1"># No</span>
+<span class="n">assert_equal</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="mi">24</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unit-tests">
+<h2>Unit Tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Focus on one unit of functionality, i.e., one method or function.</li>
+<li>Strive for fast tests, but a slow-running test is better than not having a test.</li>
+<li>It often makes sense to have one <code class="docutils literal"><span class="pre">unittest.TestCase</span></code> class for a single class or model.</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">factories</span>
+
+<span class="k">class</span> <span class="nc">PersonTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">person</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">PersonFactory</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_has_age_in_dog_years</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">person</span><span class="o">.</span><span class="n">dog_years</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">person</span><span class="o">.</span><span class="n">age</span> <span class="o">/</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="functional-tests">
+<h2>Functional Tests<a class="headerlink" href="#functional-tests" title="Permalink to this headline">¶</a></h2>
+<p>Functional tests are higher level tests that are closer to how an end-user would interact with your application. They are typically used for web and GUI applications.</p>
+<ul class="simple">
+<li>Write tests as scenarios. <code class="docutils literal"><span class="pre">TestCase</span></code> and test method names should read like a scenario description.</li>
+<li>Use comments to write out stories, <em>before writing the test code</em>.</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestAUser</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_can_write_a_blog_post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Goes to the her dashboard</span>
+        <span class="o">...</span>
+        <span class="c1"># Clicks &quot;New Post&quot;</span>
+        <span class="o">...</span>
+        <span class="c1"># Fills out the post form</span>
+        <span class="o">...</span>
+        <span class="c1"># Clicks &quot;Submit&quot;</span>
+        <span class="o">...</span>
+        <span class="c1"># Can see the new post</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>Notice how the testcase and test method read together like &#8220;Test A User can write a blog post&#8221;.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Look at the <a class="reference internal" href="../resources.html"><span class="doc">Tools and Resources</span></a> page for testing libraries and frameworks useful in developing for the OSF.</p>
+</div>
+</div>
+<hr class="docutils" id="osftesting" />
+<div class="section" id="testing-the-osf">
+<h2>Testing the OSF<a class="headerlink" href="#testing-the-osf" title="Permalink to this headline">¶</a></h2>
+<p>This section includes information about testing the OSF codebase.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">For more general testing guidelines, see the <a class="reference internal" href="#testing"><span class="std std-ref">Testing</span></a> section.</p>
+</div>
+<div class="section" id="the-osftestcase">
+<h3>The <code class="docutils literal"><span class="pre">OsfTestCase</span></code><a class="headerlink" href="#the-osftestcase" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="xref py py-class docutils literal"><span class="pre">tests.base.OsfTestCase</span></code> class is the base class for all OSF tests that require a database. Its class setup and teardown methods will create a temporary database that only lives for the duration of the test class.</p>
+<p>A few things to note about the <code class="xref py py-class docutils literal"><span class="pre">OsfTestCase</span></code>:</p>
+<ul class="simple">
+<li>Its <code class="docutils literal"><span class="pre">setUp</span></code> method will instantiate a <code class="xref py py-class docutils literal"><span class="pre">webtest_plus.TestApp</span></code>. You should <strong>not</strong> instantiate a <code class="docutils literal"><span class="pre">TestApp</span></code> yourself. Just use <code class="docutils literal"><span class="pre">self.app</span></code>.</li>
+<li>If you override <code class="docutils literal"><span class="pre">setUp</span></code> or <code class="docutils literal"><span class="pre">tearDown</span></code>, you must <strong>always</strong> call <code class="docutils literal"><span class="pre">super(</span> <span class="pre">YourTestClass</span> <span class="pre">,</span> <span class="pre">self</span> <span class="pre">).setUp</span></code> or <code class="docutils literal"><span class="pre">super(</span> <span class="pre">YourTestClass</span> <span class="pre">,</span> <span class="pre">self</span> <span class="pre">).tearDown()</span></code>, respectively.</li>
+<li>Following the above two rules ensures that your tests execute within a Flask <a class="reference external" href="http://flask.pocoo.org/docs/appcontext/">app context</a>.</li>
+<li>The test database lives for the duration of a test class. This means that database records created within a TestCase&#8217;s methods may interact with each other in unexpected ways. Use <span class="xref std std-ref">factories</span> and the <code class="docutils literal"><span class="pre">tests.base.fake</span></code> generator for creating unique test objects.</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<span id="id2"></span><h3>Factories<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>We use the <a class="reference external" href="https://github.com/rbarrois/factory_boy">factory-boy</a> library for defining our factories. Factories allow you to create test objects customized for the current test, while only declaring test-specific fields.</p>
+<div class="section" id="using-factories">
+<h4>Using Factories<a class="headerlink" href="#using-factories" title="Permalink to this headline">¶</a></h4>
+<p>Below is an example usage of a factory in testing.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tests.factories</span> <span class="kn">import</span> <span class="n">UserFactory</span>
+<span class="kn">from</span> <span class="nn">tests.base</span> <span class="kn">import</span> <span class="n">fake</span>
+
+<span class="k">class</span> <span class="nc">TestUser</span><span class="p">(</span><span class="n">OsfTestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">test_a_method_of_the_user_class</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserFactory</span><span class="p">()</span>  <span class="c1"># creates a user</span>
+        <span class="n">user2</span> <span class="o">=</span> <span class="n">UserFactory</span><span class="p">()</span>  <span class="c1"># creates a user with a different email address</span>
+
+        <span class="c1"># You can also specify attributes when needed</span>
+        <span class="n">user3</span> <span class="o">=</span> <span class="n">UserFactory</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;fredmercury@queen.io&#39;</span><span class="p">)</span>
+        <span class="n">user4</span> <span class="o">=</span> <span class="n">UserFactory</span><span class="p">(</span><span class="n">password</span><span class="o">=</span><span class="n">fake</span><span class="o">.</span><span class="n">md5</span><span class="p">())</span>
+        <span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Unit Tests<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="testing-models">
+<h4>Testing Models<a class="headerlink" href="#testing-models" title="Permalink to this headline">¶</a></h4>
+<p>Unit tests for models belong in <code class="docutils literal"><span class="pre">tests/test_models.py</span></code>. Each model should have its own test class. You can have multiple test classes for a single model if necessary. Below is an example of this test.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">frameworks.auth.core</span> <span class="kn">import</span> <span class="n">User</span>
+
+<span class="kn">from</span> <span class="nn">tests.base</span> <span class="kn">import</span> <span class="n">OsfTestCase</span><span class="p">,</span> <span class="n">fake</span>
+
+<span class="k">class</span> <span class="nc">TestUser</span><span class="p">(</span><span class="n">OsfTestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">test_check_password</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">fake</span><span class="o">.</span><span class="n">email</span><span class="p">(),</span> <span class="n">fullname</span><span class="o">=</span><span class="s1">&#39;Nick Cage&#39;</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="s1">&#39;ghostrider&#39;</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">assert_true</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">check_password</span><span class="p">(</span><span class="s1">&#39;ghostrider&#39;</span><span class="p">))</span>
+        <span class="n">assert_false</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">check_password</span><span class="p">(</span><span class="s1">&#39;ghostride&#39;</span><span class="p">))</span>
+
+    <span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="views-tests">
+<h3>Views Tests<a class="headerlink" href="#views-tests" title="Permalink to this headline">¶</a></h3>
+<p>Views tests are used to test that our endpoints return the expected responses. We use the <a class="reference external" href="http://webtest.readthedocs.org/en/latest/">webtest</a> library to interact with our application under test.</p>
+<p>The <code class="xref py py-class docutils literal"><span class="pre">OsfTestCase</span></code> provides a <cite>self.app</cite> attribute that is a <cite>webtest_plus.TestApp</cite> object.</p>
+<p>Components to test:</p>
+<ul class="simple">
+<li>Status codes</li>
+<li>JSON responses</li>
+<li>Records are updated appropriately in the database</li>
+</ul>
+<p>Below is an example of a standard view test.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tests.base</span> <span class="kn">import</span> <span class="n">OsfTestCase</span>
+<span class="kn">from</span> <span class="nn">tests.factories</span> <span class="kn">import</span> <span class="n">ProjectFactory</span><span class="p">,</span> <span class="n">AuthUserFactory</span>
+
+<span class="k">class</span> <span class="nc">TestProjectViews</span><span class="p">(</span><span class="n">OsfTestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">OsfTestCase</span><span class="o">.</span><span class="n">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># The AuthUserFactory automatically generates an</span>
+        <span class="c1"># API key for the user. It can be accessed from the</span>
+        <span class="c1">#  `auth` attribute</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">AuthUserFactory</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="n">ProjectFactory</span><span class="p">(</span><span class="n">creator</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+
+    <span class="c1"># Status codes should be tested</span>
+    <span class="k">def</span> <span class="nf">test_get_project_returns_200_with_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">api_url_for</span><span class="p">(</span><span class="s1">&#39;project_get&#39;</span><span class="p">)</span>
+        <span class="c1"># This endpoint requires authentication. We use the user&#39;s API key to</span>
+        <span class="c1"># circumvent the login process</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+        <span class="c1"># The JSON response is correct</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_id</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="c1"># ...</span>
+
+    <span class="k">def</span> <span class="nf">test_get_project_returns_403_with_no_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">api_url_for</span><span class="p">(</span><span class="s1">&#39;project_get&#39;</span><span class="p">)</span>
+        <span class="c1"># Make sure to pass expect_error=True if you expect an error response.</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">expect_errors</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">403</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Functional Tests<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Functional tests in the OSF also use webtest. These tests mimic how a user would interact with the application through their browser.</p>
+<p>Components to test:</p>
+<ul class="simple">
+<li>User interactions, such as clicking on links, <a class="reference external" href="http://webtest.readthedocs.org/en/latest/forms.html">filling out forms</a></li>
+<li>Content that you expect to appear on the page.</li>
+</ul>
+<p>Below is an example of a standard functional test.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tests.base</span> <span class="kn">import</span> <span class="n">OsfTestCase</span>
+<span class="kn">from</span> <span class="nn">tests.factories</span> <span class="kn">import</span> <span class="n">ProjectFactory</span><span class="p">,</span> <span class="n">AuthUserFactory</span>
+
+<span class="k">class</span> <span class="nc">TestProjectDashboard</span><span class="p">(</span><span class="n">OsfTestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">OsfTestCase</span><span class="o">.</span><span class="n">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">AuthUserFactory</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="n">ProjectFactory</span><span class="p">(</span><span class="n">creator</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+
+    <span class="c1"># Use line comments to write out user stories</span>
+    <span class="k">def</span> <span class="nf">test_can_access_wiki_from_project_dashboard</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Goes to project dashboard (user is logged in)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">web_url_for</span><span class="p">(</span><span class="s1">&#39;view_project&#39;</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+
+        <span class="c1"># Clicks the Wiki link,</span>
+        <span class="c1"># follows redirect to wiki home page</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="s1">&#39;Wiki&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">follow</span><span class="p">()</span>
+
+        <span class="c1"># Sees &#39;home&#39; on the page</span>
+        <span class="n">assert_in</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The <code class="xref py py-meth docutils literal"><span class="pre">TestResponse.showbrowser()</span></code> method is especially useful for debugging functional
+tests. It allows you to open the current page in your browser at a given point in the test.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">res</span><span class="o">.</span><span class="n">showbrowser</span><span class="p">()</span>  <span class="c1"># for debugging</span>
+</pre></div>
+</div>
+<p class="last">Remove the line when you are done debugging.</p>
+</div>
+</div>
+<div class="section" id="regression-tests">
+<h3>Regression Tests<a class="headerlink" href="#regression-tests" title="Permalink to this headline">¶</a></h3>
+<p>Regression tests may fall under any one of the categories above (unit, model, views, functional). If you write a regression test for a specific issue, it is often helpful to link to the issue in a line comment above the test.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Regression test for https://github.com/CenterForOpenScience/osf.io/issues/1136</span>
+<span class="k">def</span> <span class="nf">test_cannot_create_project_with_blank_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="javascript-tests">
+<h3>Javascript Tests<a class="headerlink" href="#javascript-tests" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="running-tests">
+<h4>Running tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h4>
+<p>Before running tests, make sure you have the dependencies installed.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ npm install
+</pre></div>
+</div>
+<p>Javascript tests are run with</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ inv karma
+</pre></div>
+</div>
+<p>This will start a <a class="reference external" href="https://karma-runner.github.io/">Karma</a> process which will run the tests on every JS code change.</p>
+<p>You can specify which browser to run your tests against by passing the <code class="docutils literal"><span class="pre">--browser</span></code> (or <code class="docutils literal"><span class="pre">-b</span></code>, for short) option.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ inv karma -b Chrome
+</pre></div>
+</div>
+<p>Chrome and Firefox are supported after you&#8217;ve run <code class="docutils literal"><span class="pre">npm</span> <span class="pre">install</span></code>. To run on other browsers, install the appropriate launcher with <code class="docutils literal"><span class="pre">npm</span></code> (see <a class="reference external" href="https://karma-runner.github.io/0.12/config/browsers.html">here</a> for available launchers).</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ npm install karma-safari-launcher
+$ inv karma -b Safari
+</pre></div>
+</div>
+</div>
+<div class="section" id="writing-tests">
+<h4>Writing Tests<a class="headerlink" href="#writing-tests" title="Permalink to this headline">¶</a></h4>
+<p>We use the following libraries for writing tests:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://mochajs.org/">Mocha</a>: Provides the interface for test cases.</li>
+<li><a class="reference external" href="http://chaijs.com/">Chai</a>: Provides assertion functions.</li>
+<li><a class="reference external" href="http://sinonjs.org/">Sinon</a>: Provides test spies, stubs, and mocks.</li>
+</ul>
+<p>See the official docs for these libraries for more information.</p>
+<div class="section" id="osf-specific-guidelines">
+<h5>OSF-specific Guidelines<a class="headerlink" href="#osf-specific-guidelines" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li>Core OSF tests go in <cite>website/static/js/tests/</cite>. Addons tests go in <cite>website/addons/&lt;addon_name&gt;/static/tests/</cite></li>
+<li>Karma will run every module that has the <code class="docutils literal"><span class="pre">.test.js</span></code> extension.</li>
+<li>Use Chai&#8217;s <code class="docutils literal"><span class="pre">assert</span></code> <a class="reference external" href="http://chaijs.com/api/assert/">interface</a>.</li>
+<li>To mock HTTP requests, use the <code class="docutils literal"><span class="pre">createServer</span></code> utility from the <code class="docutils literal"><span class="pre">js/tests/utils</span></code> module.</li>
+</ul>
+</div>
+<div class="section" id="common-problems">
+<h5>Common Problems<a class="headerlink" href="#common-problems" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li>When mocking endpoints with sinon, be careful when dealing with URLs that accept query parameters. You can pass a regular expression (regex) as a <code class="docutils literal"><span class="pre">url</span></code> value to <code class="docutils literal"><span class="pre">createServer</span></code>. (See example below)</li>
+</ul>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">endpoints</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// Use regex to handle query params</span>
+    <span class="p">{</span><span class="nx">url</span><span class="o">:</span> <span class="sr">/\/api\/users\/.+/</span><span class="p">,</span> <span class="nx">response</span><span class="o">:</span> <span class="p">{...}}</span>
+<span class="p">];</span>
+<span class="nx">server</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">sinon</span><span class="p">,</span> <span class="nx">endpoints</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Remember for async tests, you need to pass and call the <code class="docutils literal"><span class="pre">done</span></code> callback. Failing to pass and call done in async tests can cause unpredictable and untracable errors in your test suite.</li>
+</ul>
+<p>In particular you might see failed assertions from another test being printed to the console as if they&#8217;re happening in some other test. Since we&#8217;re concatenating test files together with webpack,
+this error could be coming from any of the tests run before the error occurs (or from another file altogether).</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;My feature&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;Does something asnyc&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="nx">myFeature</span><span class="p">.</span><span class="nx">myAsyncFunction</span><span class="p">()</span>
+       <span class="p">.</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+         <span class="c1">// make some assertions</span>
+         <span class="nx">done</span><span class="p">();</span>
+       <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="test-boilerplate">
+<h4>Test Boilerplate<a class="headerlink" href="#test-boilerplate" title="Permalink to this headline">¶</a></h4>
+<p>The following boilerplate should be included at the top of every test module.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="cm">/*global describe, it, expect, example, before, after, beforeEach, afterEach, mocha, sinon*/</span>
+<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;chai&#39;</span><span class="p">).</span><span class="nx">assert</span><span class="p">;</span>
+<span class="c1">// Add sinon asserts to chai.assert, so we can do assert.calledWith instead of sinon.assert.calledWith</span>
+<span class="nx">sinon</span><span class="p">.</span><span class="nx">assert</span><span class="p">.</span><span class="nx">expose</span><span class="p">(</span><span class="nx">assert</span><span class="p">,</span> <span class="p">{</span><span class="nx">prefix</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="debugging-tests">
+<h4>Debugging tests<a class="headerlink" href="#debugging-tests" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Run karma: <code class="docutils literal"><span class="pre">inv</span> <span class="pre">karma</span></code></li>
+<li>Browse to <code class="docutils literal"><span class="pre">localhost:9876</span></code> in your browser.</li>
+<li>Click the DEBUG button on the top right.</li>
+<li>Open developer tools and open up the debugger tab.</li>
+<li>Add breakpoints or <code class="docutils literal"><span class="pre">debugger;</span></code> statements where necessary.</li>
+</ul>
+<div class="section" id="testing-internet-explorer-on-a-mac">
+<h5>Testing Internet Explorer on a Mac<a class="headerlink" href="#testing-internet-explorer-on-a-mac" title="Permalink to this headline">¶</a></h5>
+<ul>
+<li><p class="first"><a class="reference external" href="http://osxdaily.com/2011/09/04/internet-explorer-for-mac-ie7-ie8-ie-9-free/">Install Virtualbox and Internet Explorer.</a></p>
+</li>
+<li><p class="first">Pick a name for your Microsoft IE localhost, in this example, we will use &#8220;windows.fun&#8221;</p>
+</li>
+<li><p class="first">Add the following lines of code to your website/settings/local.py.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ELASTIC_URI</span> <span class="o">=</span> <span class="s1">&#39;windows.fun:9200&#39;</span>
+<span class="n">DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;http://windows.fun:5000/&#39;</span>
+<span class="n">API_DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;http://windows.fun:8000/&#39;</span>
+<span class="n">ELASTIC_URI</span> <span class="o">=</span> <span class="s1">&#39;windows.fun:9200&#39;</span>
+<span class="n">WATERBUTLER_URL</span> <span class="o">=</span> <span class="s1">&#39;http://windows.fun:7777&#39;</span>
+<span class="n">CAS_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;http://windows.fun:8080&#39;</span>
+<span class="n">MFR_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;http://windows.fun:7778&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add the following to your /etc/hosts file on the mac with this line.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">129.0</span><span class="o">.</span><span class="mf">0.1</span> <span class="n">windows</span><span class="o">.</span><span class="n">fun</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">In VirtualBox,  <a class="reference external" href="http://helpdeskgeek.com/windows-7/windows-7-hosts-file/">update your windows hosts file</a> with the following line.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">10.0</span><span class="o">.</span><span class="mf">2.2</span> <span class="n">windows</span><span class="o">.</span><span class="n">fun</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">In VirtualBox preferences, set the network adaptor Attached To setting to Nat</p>
+</li>
+<li><p class="first">As of this writing, Internet Explorer&#8217;s debugger doesn&#8217;t work without an update.  To update, go to <a class="reference external" href="https://www.microsoft.com/en-us/download/confirmation.aspx?id=45134">this link</a> and patch IE.</p>
+</li>
+<li><p class="first">Restart everything in the OSF, and how you can access the osf on Internet Explorer from <a class="reference external" href="http://windows.fun:5000">http://windows.fun:5000</a>.  The <a class="reference external" href="http://locahost:5000">http://locahost:5000</a> url will still work on your mac browser.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="code_review.html" class="btn btn-neutral float-right" title="Code Reviews for Contributions" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="version_control.html" class="btn btn-neutral" title="Version Control Standards and Guidelines" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Center for Open Science.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v. 1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

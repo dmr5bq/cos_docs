@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How to Contribute to the Documentation &mdash; Center for Open Science Development Documentation v. 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Center for Open Science Development Documentation v. 1.0 documentation" href="../index.html"/>
+        <link rel="up" title="Contributing to the OSF Documentation" href="../documentation.html"/>
+        <link rel="next" title="To-Do: Updates and Edits to the Documentation" href="todo.html"/>
+        <link rel="prev" title="Contributing to the OSF Documentation" href="../documentation.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Center for Open Science Development Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to the OSF Software</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Contributing to the OSF Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How to Contribute to the Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#accessing-the-documents">Accessing the Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-the-documents-for-viewing">Build the Documents for Viewing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autobuilding-on-file-changes">Autobuilding on File Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#send-a-pull-request">Send a Pull Request</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#miscellaneous-style-conventions">Miscellaneous Style Conventions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#header-conventions">Header Conventions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html">To-Do: Updates and Edits to the Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../styles.html">Styles and Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Tools and Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">Help and Troubleshooting</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Center for Open Science Development Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../documentation.html">Contributing to the OSF Documentation</a> &raquo;</li>
+      
+    <li>How to Contribute to the Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/documentation/docs.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-to-contribute-to-the-documentation">
+<h1>How to Contribute to the Documentation<a class="headerlink" href="#how-to-contribute-to-the-documentation" title="Permalink to this headline">¶</a></h1>
+<p>This document explains the basics of contributing to our development documentation. The documentation is always changing, and outside contributions are always welcome from developers. Follow the process below to get started, and see the <a class="reference internal" href="todo.html"><span class="doc">To-Do: Updates and Edits to the Documentation</span></a> page for ideas on where to begin.</p>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>Documentation is written in <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructured Text</a> (rST). A quick rST reference can be found <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">here</a>. Builds are powered by <a class="reference external" href="http://sphinx.pocoo.org/">Sphinx</a> and are hosted by <a class="reference external" href="http://readthedocs.org">ReadTheDocs</a>.</div></blockquote>
+<div class="section" id="accessing-the-documents">
+<h3>Accessing the Documents<a class="headerlink" href="#accessing-the-documents" title="Permalink to this headline">¶</a></h3>
+<p>First, <a class="reference external" href="https://github.com/CenterForOpenScience/COSDev">fork the COSDev repo</a>, clone it to your machine, and install the requirements (requires Python 2.7 or 3.4 with <code class="docutils literal"><span class="pre">pip</span></code>):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span># After forking CenterForOpenScience/COSDev
+# cd into the directory where you want the repository installation
+$ git clone https://github.com/&lt;your_github_username&gt;/COSDev.git
+$ cd COSDev
+$ pip install -r requirements.txt
+</pre></div>
+</div>
+<p>Be sure to replace <code class="docutils literal"><span class="pre">&lt;your_github_username&gt;</span></code> with your Github username. These actions will put an updated repository of our documentation on your local machine.</p>
+</div>
+</div>
+<div class="section" id="build-the-documents-for-viewing">
+<h2>Build the Documents for Viewing<a class="headerlink" href="#build-the-documents-for-viewing" title="Permalink to this headline">¶</a></h2>
+<p>To build the documents with the <code class="docutils literal"><span class="pre">invoke</span></code> library:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ invoke docs -b
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">-b</span></code> (abbreviation for &#8220;browser&#8221;) automatically opens up the HTML-rendered documents in your browser after building.</p>
+<p>Alternatively, you can open up the <code class="docutils literal"><span class="pre">docs/_build/index.html</span></code> file manually with the terminal.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd &lt;path to COSDev&gt;/COSDev
+$ open _build/html/index.html
+</pre></div>
+</div>
+<p>This should automatically open a browser window with the rendered HTML home page.</p>
+<div class="section" id="autobuilding-on-file-changes">
+<h3>Autobuilding on File Changes<a class="headerlink" href="#autobuilding-on-file-changes" title="Permalink to this headline">¶</a></h3>
+<p>You can use <code class="docutils literal"><span class="pre">sphinx-autobuild</span></code> to automatically build the documents when you change a file in the directory.</p>
+<p>To install <code class="docutils literal"><span class="pre">sphinx-autobuild</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install sphinx-autobuild
+</pre></div>
+</div>
+<p>Start the live-reload server with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ invoke watch
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method may require reconfiguration of tasks.py on your machine, depending on your machine architecture, your OS and your Python installation; if this problem occurs, use the previously mentioned manual approach to building the documents.</p>
+</div>
+</div>
+<div class="section" id="send-a-pull-request">
+<h3>Send a Pull Request<a class="headerlink" href="#send-a-pull-request" title="Permalink to this headline">¶</a></h3>
+<p>Once you are done making your edits, send a pull request on Github to the <a class="reference external" href="https://github.com/CenterForOpenScience/COSDev">COSDev</a> repository.</p>
+</div>
+</div>
+<div class="section" id="miscellaneous-style-conventions">
+<h2>Miscellaneous Style Conventions<a class="headerlink" href="#miscellaneous-style-conventions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="header-conventions">
+<h3>Header Conventions<a class="headerlink" href="#header-conventions" title="Permalink to this headline">¶</a></h3>
+<p>Use the following underlining conventions for heading levels:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">=</span></code> for h1</li>
+<li><code class="docutils literal"><span class="pre">*</span></code> for h2</li>
+<li><code class="docutils literal"><span class="pre">-</span></code> for h3</li>
+<li><code class="docutils literal"><span class="pre">^</span></code> for h4</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="todo.html" class="btn btn-neutral float-right" title="To-Do: Updates and Edits to the Documentation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../documentation.html" class="btn btn-neutral" title="Contributing to the OSF Documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Center for Open Science.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v. 1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
