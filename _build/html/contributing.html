@@ -141,10 +141,21 @@
             
   <div class="section" id="contributing-to-the-osf-software">
 <h1>Contributing to the OSF Software<a class="headerlink" href="#contributing-to-the-osf-software" title="Permalink to this headline">¶</a></h1>
+<p>This section contains all of the pertinent to the development of features and add-ons to the Open Science Framework. If you do not yet have the OSF fully installed and running without error, see the <a class="reference internal" href="getting_started.html"><span class="doc">Getting Started</span></a> section before attempting any development; if you run into any trouble, check out the <a class="reference internal" href="help.html"><span class="doc">Help and Troubleshooting</span></a> section.</p>
+<hr class="docutils" />
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="contributing/version_control.html">Version Control Standards and Guidelines</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="contributing/version_control.html#version-control">Version Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/version_control.html#version-control">Version Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/version_control.html#general-guidelines">General Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/version_control.html#useful-tools">Useful Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/version_control.html#releases-features">Releases: Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/version_control.html#releases-package-and-application-maintainers">Releases: Package and Application Maintainers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="contributing/version_control.html#hotfix-releases">Hotfix releases</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="contributing/version_control.html#git-style-guidelines">Git Style Guidelines</a></li>
 </ul>
 </li>
@@ -152,7 +163,35 @@
 <li class="toctree-l2"><a class="reference internal" href="contributing/testing.html#general-testing-guidelines">General Testing Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing/testing.html#unit-tests">Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing/testing.html#functional-tests">Functional Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing/testing.html#testing-the-osf">Testing the OSF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/testing.html#testing-the-osf">Testing the OSF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/testing.html#the-osftestcase">The <code class="docutils literal"><span class="pre">OsfTestCase</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/testing.html#id1">Factories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="contributing/testing.html#using-factories">Using Factories</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/testing.html#id3">Unit Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="contributing/testing.html#testing-models">Testing Models</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/testing.html#views-tests">Views Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/testing.html#id4">Functional Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/testing.html#regression-tests">Regression Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/testing.html#javascript-tests">Javascript Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="contributing/testing.html#running-tests">Running tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contributing/testing.html#writing-tests">Writing Tests</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="contributing/testing.html#osf-specific-guidelines">OSF-specific Guidelines</a></li>
+<li class="toctree-l5"><a class="reference internal" href="contributing/testing.html#common-problems">Common Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="contributing/testing.html#test-boilerplate">Test Boilerplate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="contributing/testing.html#debugging-tests">Debugging tests</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="contributing/testing.html#testing-internet-explorer-on-a-mac">Testing Internet Explorer on a Mac</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing/code_review.html">Code Reviews for Contributions</a><ul>
@@ -171,7 +210,12 @@
 <li class="toctree-l2"><a class="reference internal" href="contributing/add_ons.html#views">Views</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing/add_ons.html#logs">Logs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing/add_ons.html#static-files-for-add-ons">Static Files for Add-ons</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing/add_ons.html#rubeus-and-the-filebrowser">Rubeus and the FileBrowser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/add_ons.html#rubeus-and-the-filebrowser">Rubeus and the FileBrowser</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/add_ons.html#rubeus">Rubeus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/add_ons.html#addons-using-oauth-and-oauth2">Addons using OAuth and OAuth2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/add_ons.html#deselecting-and-deauthorizing">Deselecting and Deauthorizing</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="contributing/add_ons.html#important-privacy-considerations">Important Privacy Considerations</a></li>
 </ul>
 </li>
