@@ -132,6 +132,159 @@
             
   <div class="section" id="installing-the-osf-software">
 <h1>Installing the OSF Software<a class="headerlink" href="#installing-the-osf-software" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="easy-installation">
+<span id="quick"></span><h2>Easy Installation<a class="headerlink" href="#easy-installation" title="Permalink to this headline">¶</a></h2>
+<p>After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtualenvwrapper, you are ready to install the OSF.</p>
+<p><strong>1.  Copy the OSF to your machine</strong></p>
+<blockquote>
+<div><p>Use the terminal to <code class="docutils literal"><span class="pre">cd</span></code> into the directory into which the OSF should be installed and enter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span>  <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">CenterForOpenScience</span><span class="o">/</span><span class="n">osf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>2.  From the terminal, enter your virtual environment</strong></p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">workon</span> <span class="n">osf</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>3.  Create local settings files</strong></p>
+<blockquote>
+<div><p>Navigate to the osf.io directory by entering:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">osf</span><span class="o">.</span><span class="n">io</span>
+</pre></div>
+</div>
+<p>Now enter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">website</span><span class="o">/</span><span class="n">settings</span><span class="o">/</span><span class="n">local</span><span class="o">-</span><span class="n">dist</span><span class="o">.</span><span class="n">py</span> <span class="n">website</span><span class="o">/</span><span class="n">settings</span><span class="o">/</span><span class="n">local</span><span class="o">.</span><span class="n">py</span>
+<span class="n">cp</span> <span class="n">api</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">settings</span><span class="o">/</span><span class="n">local</span><span class="o">-</span><span class="n">dist</span><span class="o">.</span><span class="n">py</span> <span class="n">api</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">settings</span><span class="o">/</span><span class="n">local</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You may need to clear the <code class="docutils literal"><span class="pre">WHEELHOUSE</span></code> environmental variable for setup to function properly. The details of this are not particularly important; it just may need to be cleared.</p>
+<p>To do this, in the terminal, simply enter:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">unset</span> <span class="n">WHEELHOUSE</span>
+</pre></div>
+</div>
+</div>
+<p><strong>4.  Install</strong> <code class="docutils literal"><span class="pre">invoke</span></code> <strong>and then use it to start the setup process</strong></p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">invoke</span><span class="o">==</span><span class="mf">0.13</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">invoke</span> <span class="n">setup</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Invoke is a Python task execution tool &amp; library that provides a clean, high level API for running groups of shell commands and defining/organizing task functions from a <code class="docutils literal"><span class="pre">tasks.py</span></code> file.</p>
+</div>
+<p>If <code class="docutils literal"><span class="pre">invoke</span> <span class="pre">setup</span></code> fails for you, try the step-by-step instructions in the next section, <a class="reference internal" href="../installing_osf.html#trad"><span class="std std-ref">Traditional Installation</span></a>.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="traditional-installation">
+<span id="trad"></span><h2>Traditional Installation<a class="headerlink" href="#traditional-installation" title="Permalink to this headline">¶</a></h2>
+<p>If you haven&#8217;t done so already, perform all the actions in the previous section, <a class="reference internal" href="../installing_osf.html#quick"><span class="std std-ref">Easy Installation</span></a>, omitting the <code class="docutils literal"><span class="pre">invoke</span> <span class="pre">setup</span></code> command in step 4. Although the automatic installer attempts to be helpful, it may sometimes be necessary to perform the installation steps individually — for example, if you are working on a machine running Linux, or updating an existing installation.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Te following step-by-step instructions are provided for Mac OS (using Homebrew), but other operating systems will have their own preferred package management tools.</p>
+</div>
+<div class="section" id="installing-tokumx">
+<h3>Installing TokuMX<a class="headerlink" href="#installing-tokumx" title="Permalink to this headline">¶</a></h3>
+<p>TokuMX is the database that the OSF uses. It is a fork of MongoDB, which is a popular database application. Those who are familiar with PHP are more likely familiar with MySQL syntax and configurations, but databases are not language-specific.</p>
+<p>To install TokuMX first refresh your brew installation and then use brew to install TokuMX. In the terminal, enter:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">tap</span> <span class="n">tokutek</span><span class="o">/</span><span class="n">tokumx</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">tokumx</span><span class="o">-</span><span class="nb">bin</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="installing-rabbitmq">
+<h3>Installing RabbitMQ<a class="headerlink" href="#installing-rabbitmq" title="Permalink to this headline">¶</a></h3>
+<p>To install RabbitMQ first refresh your brew install and then use brew to install RabbitMQ.  In the terminal, enter:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">update</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">rabbitmq</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="installing-libxml2-and-libxslt">
+<h3>Installing libxml2 and libxslt<a class="headerlink" href="#installing-libxml2-and-libxslt" title="Permalink to this headline">¶</a></h3>
+<p>Enter in the terminal:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">libxml2</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">libxslt</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="install-node-packages-with-npm">
+<h3>Install node packages with <code class="docutils literal"><span class="pre">npm</span></code><a class="headerlink" href="#install-node-packages-with-npm" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">npm</span></code> (node package manager) is used to install any required Node.JS packages. To install <code class="docutils literal"><span class="pre">npm</span></code>, you have to install <code class="docutils literal"><span class="pre">node.js</span></code>, which includes <code class="docutils literal"><span class="pre">npm</span></code>. <a class="reference external" href="http://blog.npmjs.org/post/85484771375/how-to-install-npm">official NPM documentation</a> recommends doing this through the <a class="reference external" href="https://nodejs.org/en/">Node.JS installer</a>.</p>
+</div>
+<div class="section" id="install-front-end-dependencies-with-bower-and-npm">
+<h3>Install front end dependencies with <code class="docutils literal"><span class="pre">bower</span></code> and <code class="docutils literal"><span class="pre">npm</span></code><a class="headerlink" href="#install-front-end-dependencies-with-bower-and-npm" title="Permalink to this headline">¶</a></h3>
+<p>Several front end modules required by OSF are installed using bower. Bower is a front end package manager. To install bower, in the terminal, enter:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="n">bower</span>
+<span class="c1"># the -g flag specifies a global installation of bower</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, <code class="docutils literal"><span class="pre">npm</span></code> installs packages locally, in the directory where you run the command (similar <code class="docutils literal"><span class="pre">pip</span></code> packages with <code class="docutils literal"><span class="pre">virtualenv</span></code>). To install a package so that it&#8217;s accessible from anywhere on your computer, you have to include the <code class="docutils literal"><span class="pre">-g</span></code> (global) flag.</p>
+</div>
+<p>Within your OSF folder install dependencies for OSF by running:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">bower</span> <span class="n">install</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="building-assets-with-webpack">
+<h3>Building Assets with WebPack<a class="headerlink" href="#building-assets-with-webpack" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">webpack</span></code> is a module bundler that takes all of the modules (precompiler files are an example of modules, such as .scss, .less, and .coffee files) and turns them into static assets such as .css and .js files. <code class="docutils literal"><span class="pre">webpack</span></code> is more useful than other module bundlers in that it only loads the static assets that it needs to depending on the page visited, instead of compiling every module at the same time.</p>
+<p>The following command makes the modules available to webpack to be compiled whenever they&#8217;re needed. In the terminal, enter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">inv</span> <span class="n">assets</span> <span class="o">-</span><span class="n">dw</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="installing-add-on-requirements">
+<h1>Installing Add-On Requirements<a class="headerlink" href="#installing-add-on-requirements" title="Permalink to this headline">¶</a></h1>
+<p>The OSF uses add-ons that provide diverse functionalities. You can decide to work with the add ons or without them. If you don&#8217;t want add-ons you can turn them off. Otherwise, you will need to install the add-on requirements.</p>
+<p>During your add-on installation some packages will be required and if you don&#8217;t have them you will receive errors. To avoid errors, install the following before running any OSF software.</p>
+<p><strong>Install xQuartz</strong></p>
+<p>This is required for R installation. The xQuartz installation uses an installer that you can download from
+<a class="reference external" href="https://xquartz.macosforge.org/landing/">the xQuartz website</a></p>
+<p><strong>Install gfortran</strong></p>
+<p>Gfortran will also be required for R installation and can be download as a package installer from <a class="reference external" href="https://gcc.gnu.org/wiki/GFortranBinaries">this website</a> .</p>
+<p><strong>Install R</strong></p>
+<p>Tap into the location where R installation exists within brew. Enter in the terminal:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">tap</span> <span class="n">homebrew</span><span class="o">/</span><span class="n">science</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Install R using Homebrew:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">R</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The following command will install the requirements for addons.</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">invoke</span> <span class="n">addon_requirements</span>
+</pre></div>
+</div>
+</div></blockquote>
+<hr class="docutils" />
+<p><strong>This concludes the installation of the OSF. Continue to the</strong> <span class="xref doc">running_osf</span> <strong>section to learn about running your local copy of the OSF</strong></p>
 </div>
 
 

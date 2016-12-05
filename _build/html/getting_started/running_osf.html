@@ -86,7 +86,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../getting_started.html">Getting Started</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="about_osf.html">About the Open Science Framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installing_osf.html">Installing the OSF on Your Machine</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Running the OSF</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Running the OSF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quick-start">Quick Start</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to the OSF Software</a></li>
@@ -142,6 +145,57 @@
             
   <div class="section" id="running-the-osf">
 <h1>Running the OSF<a class="headerlink" href="#running-the-osf" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<p>To run the OSF, each of the following terminal commands must be run. Many of these will run in the background and log output to the console.</p>
+<ol class="arabic">
+<li><p class="first"><code class="docutils literal"><span class="pre">cd</span></code> into your OSF installation&#8217;s root directory in a terminal window.</p>
+</li>
+<li><p class="first">Open six new terminal tabs in the window; for Mac users, this can be done with <code class="docutils literal"><span class="pre">⌘</span></code> + <code class="docutils literal"><span class="pre">T</span></code>.</p>
+</li>
+<li><p class="first">Enter <code class="docutils literal"><span class="pre">workon</span> <span class="pre">osf</span></code> in <strong>every tab</strong> to start using your OSF-specific virtualenv.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Enter each of the following commands in a separate terminal tab:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="n">invoke</span> <span class="n">mongo</span> <span class="o">-</span><span class="n">d</span>  <span class="c1"># Runs mongodb as a daemon</span>
+<span class="n">invoke</span> <span class="n">mailserver</span>
+<span class="n">invoke</span> <span class="n">rabbitmq</span>
+<span class="n">invoke</span> <span class="n">celery_worker</span>
+<span class="n">invoke</span> <span class="n">elasticsearch</span>
+<span class="n">invoke</span> <span class="n">assets</span> <span class="o">-</span><span class="n">dw</span>
+<span class="n">invoke</span> <span class="n">server</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+<p>You now have both the database and application running. You will see the application address in the terminal window where you entered <code class="docutils literal"><span class="pre">invoke</span> <span class="pre">server</span></code>. It will most likely be <strong>http://localhost:5000/</strong>. Navigate to this url in your browser to verify that it works.</p>
+<p>To enable log-in to the OSF, you will also need to run an authentication server.</p>
+<p>To do so, consult <a class="reference external" href="https://github.com/CenterForOpenScience/fakeCAS">the fakeCAS repository</a>.</p>
+<p>First download the binary file and run the commands specified to run the server.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>To develop authentication-related features</strong>, instructions for set-up and execution of a full CAS server ` are available here &lt;<a class="reference external" href="https://github.com/CenterForOpenScience/docker-library/tree/master/cas">https://github.com/CenterForOpenScience/docker-library/tree/master/cas</a>&gt;`_.</p>
+</div>
+<p>The Modular File Renderer (MFR) is used to render uploaded files to HTML via an inline frame (<code class="docutils literal"><span class="pre">&lt;iframe&gt;</span></code>) so that they can be
+viewed directly on the OSF. Files will not be rendered if the MFR is not running. Consult the
+MFR <a class="reference external" href="https://github.com/CenterForOpenScience/modular-file-renderer">repository</a> for information on how to install
+and run the MFR.</p>
+<dl class="docutils">
+<dt>The API Server can be run using:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="n">invoke</span> <span class="n">apiserver</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Navigate to <strong>localhost:8000/v2/</strong> in your browser to go to the root of the browsable API.
+If the page looks strange, run python manage.py collectstatic to ensure that CSS files are deposited in the correct location.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">There are common documented problems that occur when running the OSF; if any errors occur or something is not right, see our <a class="reference internal" href="../help.html"><span class="doc">Help and Troubleshooting</span></a> section.</p>
+</div>
+</div>
 </div>
 
 

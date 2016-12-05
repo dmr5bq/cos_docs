@@ -23,7 +23,7 @@ First, `fork the COSDev repo <https://github.com/CenterForOpenScience/COSDev>`_,
 Be sure to replace ``<your_github_username>`` with your Github username. These actions will put an updated repository of our documentation on your local machine.
 
 Build the documents
-**************
+-------------------
 
 To build docs: ::
 
@@ -32,7 +32,7 @@ To build docs: ::
 The ``-b`` (for "browse") automatically opens up the docs in your browser after building. Alternatively, you can open up the ``docs/_build/index.html`` file manually.
 
 Autobuilding on File Changes
-----------------------------
+****************************
 
 You can use ``sphinx-autobuild`` to automatically build the docs when you change a file in the ``docs`` directory.
 
@@ -47,14 +47,17 @@ You can now start the livereload server with: ::
 
 Point your browser to http://localhost:8000 to see your docs.
 
-Send a PR!
-**********
+Send a Pull Request
+*******************
 
 Once you are done making your edits, send a pull request on Github to the `COSDev <https://github.com/CenterForOpenScience/COSDev>`_ repo.
 
 .. _Sphinx: http://sphinx.pocoo.org/
 .. _`reStructured Text`: http://docutils.sourceforge.net/rst.html
 
+
+Miscellaneous Styles
+--------------------
 
 Header Conventions
 ******************

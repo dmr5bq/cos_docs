@@ -132,6 +132,227 @@
             
   <div class="section" id="preparing-to-install-the-osf">
 <h1>Preparing to Install the OSF<a class="headerlink" href="#preparing-to-install-the-osf" title="Permalink to this headline">¶</a></h1>
+<p>This section contains information on installations and configurations that must be made on your machine in order to develop for and run the Open Science Framework on your machine.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>These instructions are prepared for <strong>researchers, technical staff, or developers new to Python</strong>, and primarily focus on Mac OS (10.7 or later).</p>
+<p class="last">If you are already familiar with Python, more compact instructions can be found in the OSF <a class="reference external" href="https://github.com/CenterForOpenScience/osf.io/blob/develop/README.md">README</a> file.</p>
+</div>
+<div class="section" id="preparing-your-machine-for-installation">
+<h2>Preparing your Machine for Installation<a class="headerlink" href="#preparing-your-machine-for-installation" title="Permalink to this headline">¶</a></h2>
+<p>Before you can install the OSF, you will first need to install several pre-requisite programs. You may already have these installed, but instructions are provided to ensure that things are up-to-date.</p>
+<div class="section" id="installing-homebrew">
+<h3>Installing Homebrew<a class="headerlink" href="#installing-homebrew" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://brew.sh/">Homebrew</a> is a package manager that allows you to install many varieties of software easily, and it will greatly ease the process of installing OSF requirements. To see if Homebrew is already installed, open a new window in your terminal and type</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>If you see a list of options you already have homebrew. If not you will want to install homebrew globally, not just in your osf environment. To install it, open a new terminal window and run the following command.</p>
+<p>For Mac OS users:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ruby</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Or for Linux users:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ruby</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Homebrew installation will ask you to press <code class="docutils literal"><span class="pre">ENTER</span></code> to continue and enter your password. When it&#8217;s done installing type</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">doctor</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>This will show any errors or other tasks that need to be done to complete installation. Homebrew is quite clear about what to do in these cases; usually you just need to copy and paste the provided commands and run them.</p>
+</div>
+<div class="section" id="installing-python">
+<h3>Installing Python<a class="headerlink" href="#installing-python" title="Permalink to this headline">¶</a></h3>
+<p>Now that we have Homebrew, we can install Python.  Python is the programming language in which much of the OSF is written. Even if it is already on your computer, installing the newest version via Homebrew will avoid many common problems for new developers.  It will also automatically install pip, which is a common tool to manage Python packages.</p>
+<p>To install Python, go to your terminal and run:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">Python</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="updating-the-path">
+<h3>Updating the Path<a class="headerlink" href="#updating-the-path" title="Permalink to this headline">¶</a></h3>
+<p>Now that you have installed Homebrew, you will need to make a change to help your computer find the newly installed software.
+This is done by editing the variable <code class="docutils literal"><span class="pre">PATH</span></code> in a file loaded whenever you open a new terminal window.</p>
+<p>The file will usually be in your home directory (such as <code class="docutils literal"><span class="pre">/Users/&lt;your_username&gt;</span></code>, commonly abbreviated as <code class="docutils literal"><span class="pre">~</span></code>). If you are using bash this file could be .bash_profile, .bashrc, or .profile.
+If you are using another shell like zsh you will need to add this section to the file .zshrc. Further tools installed later like virtualenvwrapper will work with bash, zsh or ksh.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You most likely have bash, and if you don&#8217;t know what this means, <a class="reference external" href="http://natelandau.com/my-mac-osx-bash_profile/">this article</a>  can explain its utility and purpose.</p>
+</div>
+</div>
+</div>
+<div class="section" id="updating-the-bash-profile">
+<span id="bash"></span><h2>Updating the Bash Profile<a class="headerlink" href="#updating-the-bash-profile" title="Permalink to this headline">¶</a></h2>
+<p>You can open your .bash_profile from the command line with:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">open</span> <span class="o">-</span><span class="n">e</span> <span class="o">~/.</span><span class="n">bash_profile</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>If you get the error &#8220;The file .bash_profile does not exist,&#8221; then run</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="o">~/.</span><span class="n">bash_profile</span>
+<span class="nb">open</span> <span class="o">-</span><span class="n">e</span> <span class="o">~/.</span><span class="n">bash_profile</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>In your text editor, add the following line to your .bash_profile:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>PATH=/usr/local/bin:/usr/local/sbin:$PATH
+</pre></div>
+</div>
+</div></blockquote>
+<p>Save the bash profile and close it.</p>
+<p>To load the bash profile changes, enter:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bash_profile</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="section" id="installing-xcode-and-java">
+<h3>Installing XCode and Java<a class="headerlink" href="#installing-xcode-and-java" title="Permalink to this headline">¶</a></h3>
+<p>You will also need the XCode command line tools and Java to install the OSF.  To install Xcode, in the terminal, execute:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xcode</span><span class="o">-</span><span class="n">select</span> <span class="o">--</span><span class="n">install</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>In order to install Java (via Homebrew), in the terminal, enter:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">Caskroom</span><span class="o">/</span><span class="n">cask</span><span class="o">/</span><span class="n">java</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="virtual-environments">
+<h3>Virtual Environments<a class="headerlink" href="#virtual-environments" title="Permalink to this headline">¶</a></h3>
+<p>A common problem for software developers is dealing with different projects that all require different settings or library versions.
+If your computer had only a single work environment shared by multiple projects, you would not be able to use two versions of a library simultaneously,
+and updating a library for one project could break other things that depend on an older version or on legacy versions.</p>
+<p>To avoid this problem, Python provides a tool called <a class="reference external" href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">virtual environments</a> (called a &#8216;virtualenv&#8217;). Since it is not always possible to avoid conflicts, and not often practical
+to use a different computer for each thing you work on, it&#8217;s best to use Python virtual environments. This lets you have separate, individually customized
+Python setups for each thing you are working on.</p>
+<p>You can install this tool using <code class="docutils literal"><span class="pre">pip</span></code>, which is a tool for installing and managing Python packages. This seems like an extra layer of complexity, but working with libraries in a package format makes it much easier to manage and update your applications without having to handle low-level issues and complex integrations.</p>
+</div>
+</div>
+<div class="section" id="installing-a-python-virtual-environment-with-virtualenv">
+<h2>Installing a Python Virtual Environment with Virtualenv<a class="headerlink" href="#installing-a-python-virtual-environment-with-virtualenv" title="Permalink to this headline">¶</a></h2>
+<p>Virtualenv is the tool we use to isolate the Python environments for each project you need to run, helping to separate configurations and settings.</p>
+<p>Open your Linux/Mac OS terminal and enter:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="installing-virtualenvwrapper">
+<h2>Installing Virtualenvwrapper<a class="headerlink" href="#installing-virtualenvwrapper" title="Permalink to this headline">¶</a></h2>
+<p>Now that you installed virtualenv itself, we will also install a virtual environment management tool called virtualenvwrapper. Virtualenvwrapper wraps the virtual environments so that you can easily manage them and work with multiple environments at once without the headache of tracking each down separately.</p>
+<p>To install virtualenvwrapper, enter into the terminal:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenvwrapper</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>To conclude the installation you need to add the following lines to the end of your bash profile.</p>
+<p>For how to open the bash profile file, see above in the <a class="reference internal" href="../installing_osf.html#bash"><span class="std std-ref">Updating the Bash Profile</span></a> section.</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+</pre></div>
+</div>
+</div></blockquote>
+<p>The first line shows where the virtual environments are. If you installed virtualenv normally you shouldn&#8217;t need to adjust this setting. The second line is the folder that has your development projects, this folder should exist before you do anything with virtualenvwrapper. Finally the third file is the location of the virtualenvwrapper.sh file.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you don&#8217;t know where a certain file is on your computer you can use the <code class="docutils literal"><span class="pre">find</span></code> command in the terminal. To search for <code class="docutils literal"><span class="pre">virtualenvwrapper.sh</span></code> file anywhere on your computer type the following:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">find</span> <span class="o">/</span> <span class="o">-</span><span class="n">name</span> <span class="s2">&quot;virtualenvwrapper.sh&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>Once you made the changes remember to load the changed file by typing:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bash_profile</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="creating-a-virtual-environment">
+<h2>Creating a Virtual Environment<a class="headerlink" href="#creating-a-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<p>You now have a development environment framework you can use for any of your projects. To start using OSF we will create a virtual environment for it.</p>
+<p>First lets see which virtual environments you already have by using the command to show the short version of your existing environments.</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lsvirtualenv</span> <span class="o">-</span><span class="n">b</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>You&#8217;ll see that there isn&#8217;t anything there yet. Let&#8217;s create a virtual environment titled &#8220;try&#8221;</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkvirtualenv</span> <span class="k">try</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>When you make a virtual environment it will automatically enter that environment so to get out of that virtual environment type:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>now when you run the <code class="docutils literal"><span class="pre">lsvirtualenv</span></code> command above you will see that &#8220;try&#8221; is listed. To start working on this virtual environment type</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">workon</span> <span class="k">try</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The terminal lines will change to reflect that you are currently in that environment and should look something like <code class="docutils literal"><span class="pre">(try)$</span> <span class="pre">...</span></code>.</p>
+<p>You can switch environments by typing the name of another existing environment</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">workon</span> <span class="n">another</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>These commands work from within other environments. To get out of the virtual environment again type:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>To delete a virtual environment enter:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rmvirtualenv</span> <span class="k">try</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>To create the OSF virtual environment and work on it. This will create and start the virtual environment.</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkvirtualenv</span> <span class="n">osf</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Next time you need to start <code class="docutils literal"><span class="pre">osf</span></code> you will have to type:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">workon</span> <span class="n">osf</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Remember that the reason we created these environments is that next time we need to install something just for OSF we will go to the <code class="docutils literal"><span class="pre">osf</span></code> virtual environment we just created.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The remainder of these instructions should be executed within the new <code class="docutils literal"><span class="pre">osf</span></code> virtual environment, unless explicitly stated that it should not take place in the virtualenv.</p>
+</div>
+</div>
 </div>
 
 
