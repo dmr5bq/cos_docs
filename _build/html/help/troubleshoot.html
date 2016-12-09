@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Center for Open Science Development Documentation v. 1.0 documentation" href="../index.html"/>
         <link rel="up" title="Help and Troubleshooting" href="../help.html"/>
         <link rel="next" title="Frequently Asked Questions" href="faq.html"/>
@@ -89,7 +92,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../styles.html">Styles and Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../resources.html">Tools and Resources</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../help.html">Help and Troubleshooting</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Common Problems and Troubleshooting</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Common Problems and Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-installation-problems">Common Installation Problems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#miscellaneous-runtime-problems">Miscellaneous Runtime Problems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-helpful-tips">Other Helpful Tips</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contact.html">Need More Help?</a></li>
 </ul>
@@ -130,7 +138,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/help/troubleshoot.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/help/troubleshoot.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -142,6 +150,171 @@
             
   <div class="section" id="common-problems-and-troubleshooting">
 <h1>Common Problems and Troubleshooting<a class="headerlink" href="#common-problems-and-troubleshooting" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="common-installation-problems">
+<h2>Common Installation Problems<a class="headerlink" href="#common-installation-problems" title="Permalink to this headline">¶</a></h2>
+<p><strong>1. Mongodb path /data/db does not exist</strong></p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>sudo mkdir -p /data/db/
+sudo chown `id -u` /data/db
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>2. Unable to execute clang: No such file or directory</strong></p>
+<p>Xcode Command Line Tools installation is missing or launch was not successful. Install (or reinstall) XCode.</p>
+<p><strong>3. Unable to lock file: /data/db/mongod.lock</strong></p>
+<p>If the TokuMX server is still running or if you turn off the computer without stopping the server the TokuMX lock file will cause errors. If you see an error like the one below:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>...exception in initAndListen: 10310 Unable to lock file: /data/db/mongod.lock. Is a mongod instance already running?, terminating...
+</pre></div>
+</div>
+</div></blockquote>
+<p>first check other terminals to see if TokuMX is running. If it isn&#8217;t go to the folder  /data/db/mongod.lock and delete the file.</p>
+<p><strong>4. RuntimeError: Broken toolchain: cannot link a simple C program OR clang: error: unknown argument: &#8216;-mno-fused-madd&#8217;</strong></p>
+<p>Add the following to your bash profile document</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">CFLAGS</span><span class="o">=-</span><span class="n">Qunused</span><span class="o">-</span><span class="n">arguments</span>
+<span class="n">export</span> <span class="n">CPPFLAGS</span><span class="o">=-</span><span class="n">Qunused</span><span class="o">-</span><span class="n">arguments</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>5. ImportError: No module named kombu.five</strong>
+This error is related to Celery and not part of OSF. Until the source code is improved what you can do is uninstall celery and reinstall using:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">celery</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">celery</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>6. Incompatible library version: etree.so requires 12.0.0 or later......</strong></p>
+<p>If you have pip and conda installed, make sure remove lxml from conda and from pip. Then install again using conda.</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">remove</span> <span class="n">lxml</span>
+<span class="n">pip</span> <span class="n">uninstall</span> <span class="n">lxml</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">lxml</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>7.  Fatal error: &#8216;libxml/xmlversion.h&#8217; file not found #include &#8220;libxml/xmlversion.h&#8221;</strong></p>
+<p>Problem: Libxml installation fails with the error.</p>
+<p>Solution: Xcode Command Line Tools installation is missing or was not successful.Install (or reinstall) XCode.</p>
+<p><strong>8.  High disk watermark [10%] exceeded on ..., shards will be relocated away from this node</strong></p>
+<p>Problem: Mongodb needs 10% of your total disk space to function with the OSF, and more then that to not throw a lot of warnings.</p>
+<p>Solution:  Free up space on your disk.</p>
+<p><strong>9. Import Error: cannot import name URITemplate</strong></p>
+<p>Problem: github3.py needs uritemplate.py but conflicting package uritemplate is installed instead</p>
+<p>Solution: Uninstall uritemplate and install uritemplate.py.</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">uritemplate</span><span class="o">.</span><span class="n">py</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">uritemplate</span><span class="o">.</span><span class="n">py</span><span class="o">==</span><span class="mf">0.3</span><span class="o">.</span><span class="mi">0</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>10. Error: Cannot write to /usr/local/Cellar</strong></p>
+<p>Problem: Can&#8217;t install packages because homebrew complains about permissions.</p>
+<p>Solution: Take control, Gotham! Homebrew prefers to be run by one user, so you&#8217;ll need to take ownership of it and homebrew-cask.  This assumes you have admin privileges.</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">username</span><span class="o">&gt;</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span>
+<span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">username</span><span class="o">&gt;</span> <span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Caches</span><span class="o">/</span><span class="n">Homebrew</span>
+<span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">username</span><span class="o">&gt;</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">-</span><span class="n">cask</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>11. Error: Failed to download resource &#8220;tokumx-bin&#8221;</strong></p>
+<p>Problem: The 2.0.0 version of &#8220;tokumx-bin&#8221; may not be available.</p>
+<p>Solution: Manually update tokumx-bin.rb:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">edit</span> <span class="n">tokumx</span><span class="o">-</span><span class="nb">bin</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Replace</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">version</span> <span class="s2">&quot;2.0.0&quot;</span>
+<span class="n">url</span> <span class="s2">&quot;https://s3.amazonaws.com/tokumx-2.0.0/tokumx-2.0.0-osx-x86_64-main.tar.gz&quot;</span>
+<span class="n">sha1</span> <span class="s2">&quot;ad575f0868a778bca45eea404346e9823d6d5ef2&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>with</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">version</span> <span class="s2">&quot;2.0.1&quot;</span>
+<span class="n">url</span> <span class="s2">&quot;https://s3.amazonaws.com/tokumx-2.0.1/tokumx-2.0.1-osx-x86_64-main.tar.gz&quot;</span>
+<span class="n">sha1</span> <span class="s2">&quot;26f77ce6faa10c774d32a1a85aebc838c36b7e22&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="miscellaneous-runtime-problems">
+<h2>Miscellaneous Runtime Problems<a class="headerlink" href="#miscellaneous-runtime-problems" title="Permalink to this headline">¶</a></h2>
+<p><strong>1. &#8220;Emails not working on my development server&#8221;</strong></p>
+<p>Solution: You may not have a celery worker running. If you have Celery and RabbitMQ installed (see the <a class="reference external" href="https://github.com/CenterForOpenScience/osf">README</a> for installation instructions), run <code class="docutils literal"><span class="pre">invoke</span> <span class="pre">celery</span></code>.</p>
+<p>Less ideally, you can turn Celery off and send emails synchronously by adding <code class="docutils literal"><span class="pre">USE_CELERY</span> <span class="pre">=</span> <span class="pre">False</span></code> to your <code class="docutils literal"><span class="pre">website/settings/local.py</span></code> file.</p>
+<p><strong>2. &#8220;My view test keeps failing&#8221;</strong></p>
+<p>Solution: You have to reload the database record.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_change_name_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">UserFactory</span><span class="p">()</span>
+    <span class="c1"># Hit some endpoint that updates the user&#39;s database record</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">post_json</span><span class="p">(</span><span class="s1">&#39;/{}/changename/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">_primary_key</span><span class="p">),</span>
+        <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Freddie Mercurial&#39;</span><span class="p">})</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">reload</span><span class="p">()</span>  <span class="c1"># Make sure object is up to date</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>3. ImportError: No module named five</strong></p>
+<p>Celery may raise an exception when attempting to run the OSF tests. A partial
+traceback:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ne">Exception</span> <span class="n">occurred</span><span class="p">:</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;...&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">49</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="kn">from</span> <span class="nn">kombu.five</span> <span class="k">import</span> <span class="n">monotonic</span>
+<span class="ne">ImportError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="n">five</span>
+</pre></div>
+</div>
+<p>error: [Errno 61] Connection refused` is raised in ampq/transport.py</p>
+<p>Solution: You may have to start your Rabbitmq and Celery workers.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ invoke rabbitmq
+$ invoke celery_worker
+</pre></div>
+</div>
+<p><strong>4. Error when importing uritemplate</strong></p>
+<p>If invoking assets or server commands throw an error about uritemplate, run the following to resolve the conflict:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">uritemplate</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">yes</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">uritemplate</span><span class="o">.</span><span class="n">py</span><span class="o">==</span><span class="mf">0.3</span><span class="o">.</span><span class="mi">0</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>and then re run the command that failed.</p>
+</div>
+<div class="section" id="other-helpful-tips">
+<h2>Other Helpful Tips<a class="headerlink" href="#other-helpful-tips" title="Permalink to this headline">¶</a></h2>
+<p>Using PyCharm&#8217;s Remote Debugger</p>
+<p>Some debugging tasks make it difficult to use the standard debug tools (i.e. pdb, ipdb, or PyCharm&#8217;s debugger).
+Usually this is becuase you&#8217;re running code in a way where you don&#8217;t have ready access to the process&#8217;s
+standard in/out. Examples of this include:</p>
+<ul class="simple">
+<li>celery tasks</li>
+<li>local testing/debugging using uWSGI</li>
+</ul>
+<p>One way to debug code running in these kinds of enviornments is to use the PyCharm remote debugger. Follow the
+JetBrains documentation for creating a new run configuration for the remote debugger: <a class="reference external" href="https://www.jetbrains.com/pycharm/help/remote-debugging.html">https://www.jetbrains.com/pycharm/help/remote-debugging.html</a>. At some point you may be required to add pycharm-debug.egg to your system&#8217;s PYTHONPATH. The
+easist way to do this is to modify your ~/.bash_profile to automatically append this module to the python path. This looks like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PYTHONPATH</span><span class="o">=</span><span class="s2">&quot;$PYTHONPATH:&lt;your_path_to&gt;/pycharm-debug.egg&quot;</span>
+</pre></div>
+</div>
+<p>To apply these changes to the current bash session, simply</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bash_profile</span>
+</pre></div>
+</div>
+<p>When you start the remote debug server in PyCharm you will get some console output like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Use</span> <span class="n">the</span> <span class="n">following</span> <span class="n">code</span> <span class="n">to</span> <span class="n">connect</span> <span class="n">to</span> <span class="n">the</span> <span class="n">debugger</span><span class="p">:</span>
+<span class="kn">import</span> <span class="nn">pydevd</span>
+<span class="n">pydevd</span><span class="o">.</span><span class="n">settrace</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">54735</span><span class="p">,</span> <span class="n">stdoutToServer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stderrToServer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>So to use, simple copy paste the bottom two lines wherever you need to run a debugger. In celery tasks for example,
+this often means inside a task definition where it would be otherwise impossible to step into the code. Trigger
+whatever is needed to queue the celery task, and watch the PyCharm console to see when a new connection is initiated.</p>
+</div>
 </div>
 
 
