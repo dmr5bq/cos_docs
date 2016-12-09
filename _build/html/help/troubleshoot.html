@@ -35,7 +35,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Center for Open Science Development Documentation v. 1.0 documentation" href="../index.html"/>
         <link rel="up" title="Help and Troubleshooting" href="../help.html"/>
-        <link rel="next" title="Frequently Asked Questions" href="faq.html"/>
+        <link rel="next" title="Need More Help?" href="contact.html"/>
         <link rel="prev" title="Help and Troubleshooting" href="../help.html"/> 
 
   
@@ -98,7 +98,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#other-helpful-tips">Other Helpful Tips</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contact.html">Need More Help?</a></li>
 </ul>
 </li>
@@ -160,7 +159,7 @@ sudo chown `id -u` /data/db
 </div>
 </div></blockquote>
 <p><strong>2. Unable to execute clang: No such file or directory</strong></p>
-<p>Xcode Command Line Tools installation is missing or launch was not successful. Install (or reinstall) XCode.</p>
+<p>Xcode Command Line Tools installation is missing or launch was not successful. <a class="reference external" href="http://railsapps.github.io/xcode-command-line-tools.html">Install (or reinstall) XCode</a>.</p>
 <p><strong>3. Unable to lock file: /data/db/mongod.lock</strong></p>
 <p>If the TokuMX server is still running or if you turn off the computer without stopping the server the TokuMX lock file will cause errors. If you see an error like the one below:</p>
 <blockquote>
@@ -185,7 +184,7 @@ This error is related to Celery and not part of OSF. Until the source code is im
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>6. Incompatible library version: etree.so requires 12.0.0 or later......</strong></p>
+<p><strong>6. Incompatible library version: etree.so requires 12.0.0 or later</strong></p>
 <p>If you have pip and conda installed, make sure remove lxml from conda and from pip. Then install again using conda.</p>
 <blockquote>
 <div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">remove</span> <span class="n">lxml</span>
@@ -196,7 +195,7 @@ This error is related to Celery and not part of OSF. Until the source code is im
 </div></blockquote>
 <p><strong>7.  Fatal error: &#8216;libxml/xmlversion.h&#8217; file not found #include &#8220;libxml/xmlversion.h&#8221;</strong></p>
 <p>Problem: Libxml installation fails with the error.</p>
-<p>Solution: Xcode Command Line Tools installation is missing or was not successful.Install (or reinstall) XCode.</p>
+<p>Solution: Xcode Command Line Tools installation is missing or was not successful. <a class="reference external" href="http://railsapps.github.io/xcode-command-line-tools.html">Install (or reinstall) XCode</a>.</p>
 <p><strong>8.  High disk watermark [10%] exceeded on ..., shards will be relocated away from this node</strong></p>
 <p>Problem: Mongodb needs 10% of your total disk space to function with the OSF, and more then that to not throw a lot of warnings.</p>
 <p>Solution:  Free up space on your disk.</p>
@@ -324,7 +323,7 @@ whatever is needed to queue the celery task, and watch the PyCharm console to se
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="faq.html" class="btn btn-neutral float-right" title="Frequently Asked Questions" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="contact.html" class="btn btn-neutral float-right" title="Need More Help?" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../help.html" class="btn btn-neutral" title="Help and Troubleshooting" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

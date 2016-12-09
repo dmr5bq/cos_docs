@@ -9,5 +9,4 @@ This section serves as the landing page for all help and troubleshooting documen
 	:maxdepth: 2
 
 	help/troubleshoot
-	help/faq
 	help/contact

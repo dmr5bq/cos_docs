@@ -14,7 +14,7 @@ Common Installation Problems
 
 **2. Unable to execute clang: No such file or directory**
 
-Xcode Command Line Tools installation is missing or launch was not successful. Install (or reinstall) XCode.
+Xcode Command Line Tools installation is missing or launch was not successful. `Install (or reinstall) XCode <http://railsapps.github.io/xcode-command-line-tools.html>`_.
 
 **3. Unable to lock file: /data/db/mongod.lock**
 
@@ -58,7 +58,7 @@ If you have pip and conda installed, make sure remove lxml from conda and from p
 
 Problem: Libxml installation fails with the error.
 
-Solution: Xcode Command Line Tools installation is missing or was not successful.Install (or reinstall) XCode.
+Solution: Xcode Command Line Tools installation is missing or was not successful. `Install (or reinstall) XCode <http://railsapps.github.io/xcode-command-line-tools.html>`_.
 
 **8.  High disk watermark [10%] exceeded on ..., shards will be relocated away from this node**
 
