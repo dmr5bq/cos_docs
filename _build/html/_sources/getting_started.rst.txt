@@ -10,3 +10,4 @@ Welcome to the Center for Open Science's development documentation. This is the 
 	getting_started/about_osf
 	getting_started/installing_osf
 	getting_started/running_osf
+	getting_started/windows

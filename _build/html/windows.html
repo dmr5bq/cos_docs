@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Running the OSF on a Windows Virtual Machine &mdash; Center for Open Science Development Documentation v. 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Center for Open Science Development Documentation v. 1.0 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Center for Open Science Development Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to the OSF Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Contributing to the OSF Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="styles.html">Styles and Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Tools and Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="help.html">Help and Troubleshooting</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Center for Open Science Development Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Running the OSF on a Windows Virtual Machine</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/windows.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="running-the-osf-on-a-windows-virtual-machine">
+<h1>Running the OSF on a Windows Virtual Machine<a class="headerlink" href="#running-the-osf-on-a-windows-virtual-machine" title="Permalink to this headline">¶</a></h1>
+<p>Follow <a class="reference external" href="https://docs.google.com/document/d/1BJ20XDHlVVeW_pRgsNUMKAJg6r3yoVWAZCZ9Sf-Idzw/edit">these instructions</a> to install your Windows Virtual Machine.
+The instructions here were created with IE 11 on Windows 8.1</p>
+<p><strong>NOTE:</strong> local.py and defaults.py changes will need to be reverted for your local osf to work properly on localhost again. It can be found on osf.localhost instead.</p>
+<ol class="arabic simple">
+<li>In your mac OSF dist open <code class="docutils literal"><span class="pre">local.py</span></code> and change:</li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">DOMAIN</span> <span class="pre">=</span> <span class="pre">PROTOCOL</span> <span class="pre">+</span> <span class="pre">'osf.localhost:5000/'</span></code></p>
+<p><code class="docutils literal"><span class="pre">API_DOMAIN</span> <span class="pre">=</span> <span class="pre">PROTOCOL</span> <span class="pre">+</span> <span class="pre">'osf.localhost:8000/'</span></code></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>In your mac OSF dist <code class="docutils literal"><span class="pre">local.py</span></code> add:</li>
+</ol>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">CAS_SERVER_URL</span> <span class="pre">=</span> <span class="pre">'http://osf.localhost:8080'</span></code></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>If you need WATERBUTLER to work:</li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>In your mac OSF dist <code class="docutils literal"><span class="pre">local.py</span></code> add:</li>
+</ol>
+<p><code class="docutils literal"><span class="pre">WATERBUTLER_URL</span> <span class="pre">=</span> <span class="pre">'http://osf.localhost:7777'</span></code></p>
+<ol class="loweralpha simple" start="2">
+<li>In your WATERBUTLER repo <code class="docutils literal"><span class="pre">waterbutler/auth/osf/settings.py</span></code> change:</li>
+</ol>
+<p><code class="docutils literal"><span class="pre">API_URL</span> <span class="pre">=</span> <span class="pre">config.get('API_URL',</span> <span class="pre">'http://osf.localhost:5000/api/v1/files/auth/')</span></code></p>
+<ol class="loweralpha simple" start="3">
+<li>In your WATERBUTLER repo <code class="docutils literal"><span class="pre">waterbutler/serser/setting.py</span></code> change:</li>
+</ol>
+<p><code class="docutils literal"><span class="pre">ADDRESS</span> <span class="pre">=</span> <span class="pre">config.get('ADDRESS',</span> <span class="pre">'osf.localhost')</span></code></p>
+<p><code class="docutils literal"><span class="pre">DOMAIN</span> <span class="pre">=</span> <span class="pre">config.get('DOMAIN',</span> <span class="pre">&quot;http://osf.localhost:7777&quot;)</span></code></p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>If you need MFR to work:</li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>In your mac OSF dist <code class="docutils literal"><span class="pre">local.py</span></code> add:</li>
+</ol>
+<p><code class="docutils literal"><span class="pre">MFR_SERVER_URL</span> <span class="pre">=</span> <span class="pre">'http://osf.localhost:7778'</span></code></p>
+<ol class="loweralpha simple" start="2">
+<li>In your MFR repo <code class="docutils literal"><span class="pre">mfr/server/settings.py</span></code> change:</li>
+</ol>
+<p><code class="docutils literal"><span class="pre">ADDRESS</span> <span class="pre">=</span> <span class="pre">config.get('ADDRESS',</span> <span class="pre">'osf.localhost')</span></code></p>
+<p><code class="docutils literal"><span class="pre">ALLOWED_PROVIDER_DOMAINS</span> <span class="pre">=</span> <span class="pre">config.get('ALLOWED_PROVIDER_DOMAINS',</span> <span class="pre">['http://osf.localhost:5000/',</span> <span class="pre">'http://osf.localhost:7777/'])</span></code></p>
+<ol class="loweralpha simple" start="2">
+<li>In your WATERBUTLER repo <code class="docutils literal"><span class="pre">waterbutler/auth/osf/settings.py</span></code> change:</li>
+</ol>
+<p><code class="docutils literal"><span class="pre">MFR_DOMAIN</span> <span class="pre">=</span> <span class="pre">analytics_config.get('MFR_DOMAIN',</span> <span class="pre">'http://osf.localhost:7778').rstrip('/')</span></code></p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Once your VM is working, open the windows commandline and run: <code class="docutils literal"><span class="pre">ipconfig</span></code> and note the Default Gateway IP (e.g., 10.0.2.2)</li>
+<li>Run <code class="docutils literal"><span class="pre">explorer</span> <span class="pre">C:\Windows\System32\drivers\etc</span></code> and a files window will open.</li>
+<li>Right click <code class="docutils literal"><span class="pre">hosts</span></code> and click <code class="docutils literal"><span class="pre">properties</span></code>. Under the <code class="docutils literal"><span class="pre">Security</span></code> tab, under groups click <code class="docutils literal"><span class="pre">Users</span></code> and grant full control (fine for a VM just used for development, but not advised for normal machines)</li>
+<li>Open <code class="docutils literal"><span class="pre">hosts</span></code> with notepad and add to the bottom of the file:</li>
+</ol>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">10.0.2.2</span> <span class="pre">osf.localhost</span></code></div></blockquote>
+<p>where 10.0.2.2 is your Default Gateway IP from step 3</p>
+<ol class="arabic simple" start="9">
+<li>Open IE and navigate to <code class="docutils literal"><span class="pre">http://osf.localhost:5000</span></code></li>
+</ol>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Center for Open Science.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v. 1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
