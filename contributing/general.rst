@@ -1,5 +1,5 @@
-OSF Guidelines
-==============
+General Guidelines
+==================
 
 General
 *******
