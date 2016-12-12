@@ -12,3 +12,4 @@ This section contains all of the pertinent to the development of features and ad
 	contributing/code_review
 	contributing/add_ons
 	contributing/pull_requests
+	contributing/analytics
