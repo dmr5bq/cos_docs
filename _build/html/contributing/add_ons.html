@@ -88,6 +88,7 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../contributing.html">Contributing to the OSF Software</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="general.html">General Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="version_control.html">Version Control Standards and Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="testing.html">Testing Standards and Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="code_review.html">Code Reviews for Contributions</a></li>
@@ -110,7 +111,33 @@
 <li class="toctree-l3"><a class="reference internal" href="#important-privacy-considerations">Important Privacy Considerations</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#developing-javascript-module-add-ons">Developing JavaScript Module Add-Ons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#writing-modules">Writing Modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a-note-on-utility-functions">A Note on Utility Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#third-party-libraries">Third-party Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-and-using-modules">Building and Using Modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#webpack-entry-points">Webpack Entry Points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-with-webpack">Building with Webpack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#loading-the-modules-in-html-with-webpack-asset">Loading the Modules in HTML with <code class="docutils literal"><span class="pre">webpack_asset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#knockout-modules">Knockout Modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#templates">Templates</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#js-module-template">JS Module Template</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#knockout-module-template">Knockout Module Template</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pull_requests.html">Pull Request Standards and Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analytics.html">Running Analytics</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation.html">Contributing to the OSF Documentation</a></li>
@@ -686,6 +713,293 @@ user issuing the request has the required permission.</p>
         <span class="n">abort_if_not_subdir</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">node_addon</span><span class="o">.</span><span class="n">folder</span><span class="p">)</span>
     <span class="o">...</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="developing-javascript-module-add-ons">
+<h1>Developing JavaScript Module Add-Ons<a class="headerlink" href="#developing-javascript-module-add-ons" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how to write Javascript modules for the OSF, use <a class="reference external" href="https://webpack.github.io/docs/">webpack</a> to build assets, and include built assets in HTML. We also provide starter templates for new JS modules.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Looking for the JS style guidelines? See <a class="reference internal" href="../styles/javascript.html#javascript-style"><span class="std std-ref">here</span></a> .</p>
+</div>
+<div class="section" id="writing-modules">
+<h2>Writing Modules<a class="headerlink" href="#writing-modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Use the CommonJS module style.</li>
+<li>Reuseable modules go in <code class="docutils literal"><span class="pre">website/static/js/</span></code>. Name modules in <code class="docutils literal"><span class="pre">lowerCamelCase</span></code>.</li>
+<li>Initialization code for a page goes in a module within <code class="docutils literal"><span class="pre">website/static/js/pages/</span></code>. Name page modules with <code class="docutils literal"><span class="pre">lower-dashed-case</span></code>.</li>
+</ul>
+<div class="section" id="a-note-on-utility-functions">
+<h3>A Note on Utility Functions<a class="headerlink" href="#a-note-on-utility-functions" title="Permalink to this headline">¶</a></h3>
+<p>Put reusable utility functions in <code class="docutils literal"><span class="pre">website/static/js/osfHelpers.js</span></code>.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// osfHelpers.js</span>
+
+<span class="kd">var</span> <span class="nx">myCopaceticFunction</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{...}</span>
+
+<span class="c1">// ...</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="nx">myCopaceticFunction</span><span class="o">:</span> <span class="nx">myCopaceticFunction</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s say you&#8217;re creating a reuseable Markdown parser module for the wiki edit page. Your module would go in <code class="docutils literal"><span class="pre">website/static/js/</span></code>.</p>
+<p><strong>website/static/js/osfMarkdownParser.js</strong></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * A Markdown parser with special syntax for linking to</span>
+<span class="cm"> * OSF projects.</span>
+<span class="cm">**/</span>
+<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="c1">// CommonJS/Node-style imports at the top of the file</span>
+
+<span class="kd">var</span> <span class="nx">$osf</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;js/osfHelpers&#39;</span><span class="p">);</span>
+
+<span class="c1">// Private methods go up here</span>
+<span class="kd">function</span> <span class="nx">someHelper</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ....</span>
+<span class="p">}</span>
+<span class="c1">// This is the public API</span>
+<span class="c1">// The constructor</span>
+<span class="kd">function</span> <span class="nx">OSFMarkdownParser</span> <span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">selector</span> <span class="o">=</span> <span class="nx">selector</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">options</span> <span class="o">=</span> <span class="nx">options</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="c1">// Methods</span>
+<span class="nx">OSFMarkdownParser</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//...</span>
+<span class="p">}</span>
+
+<span class="nx">OSFMarkdownParser</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">somePublicMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//...</span>
+<span class="p">}</span>
+
+<span class="c1">// Export the constructor</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">OSFMarkdownParser</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The initialization of your Markdown parser would go in <code class="docutils literal"><span class="pre">website/static/js/pages/wiki-edit-page.js</span></code> (assume that this file already exists).</p>
+<p><strong>website/static/js/pages/wiki-edit-page.js</strong></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Initialization of the Markdown parser</span>
+<span class="kd">var</span> <span class="nx">OSFMarkdownParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;js/osfMarkdownParser&#39;</span><span class="p">);</span>
+
+<span class="k">new</span> <span class="nx">OSFMarkdownParser</span><span class="p">(</span><span class="s1">&#39;#wikiInput&#39;</span><span class="p">,</span> <span class="p">{...});</span>
+
+<span class="c1">// ... other wiki-related initialization.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="third-party-libraries">
+<h2>Third-party Libraries<a class="headerlink" href="#third-party-libraries" title="Permalink to this headline">¶</a></h2>
+<p>The following libraries can be imported in your JS modules (using <code class="docutils literal"><span class="pre">require('name')</span></code>):</p>
+<ul class="simple">
+<li>Any library listed in <a class="reference external" href="https://github.com/CenterForOpenScience/osf.io/blob/develop/bower.json">bower.json</a></li>
+<li>Any library listed in <a class="reference external" href="https://github.com/CenterForOpenScience/osf.io/blob/develop/package.json">package.json</a></li>
+<li>Any library listed in the <a class="reference external" href="https://github.com/CenterForOpenScience/osf.io/blob/d504cefa315d00f4dce3c6ca4310ad3d4e126987/webpack.common.config.js#L77-103">resolve.alias</a> entry of <code class="docutils literal"><span class="pre">webpack.common.config.js</span></code></li>
+</ul>
+</div>
+<div class="section" id="building-and-using-modules">
+<h2>Building and Using Modules<a class="headerlink" href="#building-and-using-modules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="webpack-entry-points">
+<h3>Webpack Entry Points<a class="headerlink" href="#webpack-entry-points" title="Permalink to this headline">¶</a></h3>
+<p>Each module in <code class="docutils literal"><span class="pre">website/static/js/pages</span></code> corresponds to an entry point in <a class="reference external" href="https://webpack.github.io/docs/multiple-entry-points.html">webpack</a> and has a rough one-to-one mapping with a page on the OSF. Here is what the <code class="docutils literal"><span class="pre">wiki-edit-page</span></code> entry would look like in the webpack configuration file.</p>
+<p><strong>webpack.common.config.js</strong></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Entry points built by webpack. The keys of this object correspond to the</span>
+<span class="c1">// names of the built files which are put in /website/static/public/js/. The values</span>
+<span class="c1">// in the object are the source files.</span>
+<span class="kd">var</span> <span class="nx">entry</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//...</span>
+    <span class="s1">&#39;wiki-edit-page&#39;</span><span class="o">:</span> <span class="nx">staticPath</span><span class="p">(</span><span class="s1">&#39;js/pages/wiki-edit-page.js&#39;</span><span class="p">),</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You will seldom have to modify <code class="docutils literal"><span class="pre">webpack.common.config.js</span></code>. The only time you may need to care about it is when a completely new page is added to the OSF.</p>
+</div>
+</div>
+<div class="section" id="building-with-webpack">
+<h3>Building with Webpack<a class="headerlink" href="#building-with-webpack" title="Permalink to this headline">¶</a></h3>
+<p>Webpack parses the dependency graphs of the modules defined in the entry points and builds them into single files which can be included on HTML pages. The built files reside in <code class="docutils literal"><span class="pre">website/static/public/js/</span></code>. Therefore, the built file which would include your Markdown parser initialization would be in <code class="docutils literal"><span class="pre">/static/public/js/wiki-edit-page.&lt;hash&gt;.js</span></code>. This is the file that would be included in the HTML template.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Webpack will add a hash to the filenames of the built files to prevent users&#8217; browsers from caching old versions (example: <code class="docutils literal"><span class="pre">wiki-edit-page.js</span></code> becomes <code class="docutils literal"><span class="pre">wiki-edit-page.4ec1318376695bcd241b.js</span></code>).</p>
+<p class="last">Therefore, we need to resolve the short filenames to the full filenames when we include them in the HTML. More on that in the next section.</p>
+</div>
+<p>To build the assets for local development, use the <code class="docutils literal"><span class="pre">assets</span></code> invoke task.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ inv assets --debug --watch
+# OR
+$ inv assets -dw
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-the-modules-in-html-with-webpack-asset">
+<h3>Loading the Modules in HTML with <code class="docutils literal"><span class="pre">webpack_asset</span></code><a class="headerlink" href="#loading-the-modules-in-html-with-webpack-asset" title="Permalink to this headline">¶</a></h3>
+<p>Once you have the built assets, you can include them on HTML pages with a <cite>&lt;script&gt;</cite> tag. In order to resolve the short filenames to the filenames on disk (which include hashes), use the <code class="docutils literal"><span class="pre">webpack_asset</span></code> Mako filter.</p>
+<p><strong>website/templates/wiki/edit.mako</strong></p>
+<div class="highlight-mako"><div class="highlight"><pre><span></span><span class="cp">&lt;%</span><span class="nb">def</span> <span class="na">name=</span><span class="s">&quot;javascript_bottom()&quot;</span><span class="cp">&gt;</span><span class="x"></span>
+<span class="x">&lt;script src=</span><span class="cp">${</span><span class="s2">&quot;/static/public/js/wiki-edit-page.js&quot;</span> <span class="o">|</span> <span class="n">webpack_asset</span><span class="cp">}</span><span class="x">&gt;&lt;/script&gt;</span>
+<span class="cp">&lt;/%</span><span class="nb">def</span><span class="cp">&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/folderPicker.js">js/folderPicker.js</a></li>
+<li><a class="reference external" href="https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/nodeControl.js">js/nodeControl.js</a> is used within <a class="reference external" href="https://github.com/CenterForOpenScience/osf.io/blob/12cce5b9578c4d129f9d6f12ed78516b7e1640a0/website/static/js/pages/project-base-page.js#L4">js/pages/project-base-page.js</a>. The built file is included in <a class="reference external" href="https://github.com/CenterForOpenScience/osf.io/blob/d504cefa315d00f4dce3c6ca4310ad3d4e126987/website/templates/project/project_base.mako#L65">templates/project_base.mako</a>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="knockout-modules">
+<h2>Knockout Modules<a class="headerlink" href="#knockout-modules" title="Permalink to this headline">¶</a></h2>
+<p>A module contains the Knockout model(s) and ViewModel(s) for a single unit of funtionality (e.g. login form, contributor manager, log list, etc.)</p>
+<p>Knockout modules aren&#8217;t much different from regular modules.</p>
+<ul class="simple">
+<li>Apply bindings in the constructor.</li>
+<li>Use the <code class="docutils literal"><span class="pre">osfHelpers.applyBindings</span></code> helper. This will ensure that your ViewModel will be bound to the element that you expect (and not fall back to &lt;body&gt;, as <code class="docutils literal"><span class="pre">ko.applyBindings</span></code> will sometimes do). You can also pass <code class="docutils literal"><span class="pre">$osf.applyBindings</span></code> a selector instead of an <code class="docutils literal"><span class="pre">HTMLElement</span></code>.</li>
+<li>Name the HTML ID that you bind to with &#8220;Scope&#8221;. Example: <code class="docutils literal"><span class="pre">&lt;div</span> <span class="pre">id=&quot;logfeedScope&quot;&gt;</span></code>.</li>
+<li>Adding the <code class="docutils literal"><span class="pre">scripted</span></code> CSS class to the div you bind to will hide the div until <code class="docutils literal"><span class="pre">$osf.applyBindings</span></code> finishes executing. This is useful if you don&#8217;t want to show any HTML for your component until the ViewModel is bound.</li>
+</ul>
+<p><strong>website/static/js/logFeed.js</strong></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Renders a log feed.</span>
+<span class="cm"> **/</span>
+<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">ko</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;knockout&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">$osf</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;js/osfHelpers&#39;</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm">* Log model.</span>
+<span class="cm">*/</span>
+<span class="kd">var</span> <span class="nx">Log</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm">* View model for a log list.</span>
+<span class="cm">* @param {Log[]} logs An array of Log model objects to render.</span>
+<span class="cm">*/</span>
+<span class="kd">var</span> <span class="nx">LogViewModel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">logs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">logs</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observableArray</span><span class="p">(</span><span class="nx">logs</span><span class="p">);</span>
+    <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="c1">////////////////</span>
+<span class="c1">// Public API //</span>
+<span class="c1">////////////////</span>
+
+<span class="kd">var</span> <span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">progBar</span><span class="o">:</span> <span class="s1">&#39;#logProgressBar&#39;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">LogFeed</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">selector</span> <span class="o">=</span> <span class="nx">selector</span><span class="p">;</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">options</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="nx">defaults</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">$progBar</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">progBar</span><span class="p">);</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">logs</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">log</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Log</span><span class="p">(</span><span class="nx">log</span><span class="p">.</span><span class="nx">params</span><span class="p">);</span>
+    <span class="p">})</span>
+<span class="p">};</span>
+<span class="c1">// Apply ViewModel bindings</span>
+<span class="nx">LogFeed</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">$progBar</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="nx">$osf</span><span class="p">.</span><span class="nx">applyBindings</span><span class="p">(</span><span class="k">new</span> <span class="nx">LogViewModel</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">logs</span><span class="p">),</span> <span class="nx">self</span><span class="p">.</span><span class="nx">selector</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">LogFeed</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>website/static/pages/some-template-page.js</strong></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">LogFeed</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;js/logFeed&#39;</span><span class="p">);</span>
+
+<span class="c1">// Initialize the LogFeed</span>
+<span class="k">new</span> <span class="nx">LogFeed</span><span class="p">(</span><span class="s1">&#39;#logScope&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">...});</span>
+</pre></div>
+</div>
+<p><strong>website/templates/some_template.mako</strong></p>
+<div class="highlight-mako"><div class="highlight"><pre><span></span><span class="x">&lt;div class=&quot;scripted&quot; id=&quot;logScope&quot;&gt;</span>
+<span class="x">    &lt;ul data-bind=&quot;foreach: {data: logs, as: &#39;log&#39;}&quot;&gt;</span>
+<span class="x">        ...</span>
+<span class="x">    &lt;/ul&gt;</span>
+<span class="x">&lt;/div&gt;</span>
+
+<span class="cp">&lt;%</span><span class="nb">def</span> <span class="na">name=</span><span class="s">&quot;javascript_bottom()&quot;</span><span class="cp">&gt;</span><span class="x"></span>
+<span class="x">&lt;script src=</span><span class="cp">${</span><span class="s2">&quot;/static/public/js/some-template-page.js&quot;</span> <span class="o">|</span> <span class="n">webpack_asset</span><span class="cp">}</span><span class="x">&gt;&lt;/script&gt;</span>
+<span class="cp">&lt;/%</span><span class="nb">def</span><span class="cp">&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h3>Examples<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/logFeed.js">Full LogFeed module</a></li>
+<li><a class="reference external" href="https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/comment.js">comment.js</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="templates">
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h2>
+<p>To help you get started on your JS modules, here are some templates that you can copy and paste.</p>
+<div class="section" id="js-module-template">
+<h3>JS Module Template<a class="headerlink" href="#js-module-template" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * [description]</span>
+<span class="cm"> */</span>
+<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">$</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;jquery&#39;</span><span class="p">);</span>
+
+
+<span class="kd">function</span> <span class="nx">MyModule</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// YOUR CODE HERE</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">MyModule</span><span class="o">:</span> <span class="nx">MyModule</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="knockout-module-template">
+<h3>Knockout Module Template<a class="headerlink" href="#knockout-module-template" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * [description]</span>
+<span class="cm"> */</span>
+<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">ko</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;knockout&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">$osf</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;js/osfHelpers&#39;</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">ViewModel</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="c1">// YOUR CODE HERE</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">MyModule</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">viewModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ViewModel</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+    <span class="nx">$osf</span><span class="p">.</span><span class="nx">applyBindings</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">viewModel</span><span class="p">,</span> <span class="nx">selector</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">MyModule</span>
+<span class="p">};</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
