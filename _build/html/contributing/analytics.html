@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Running Analytics &mdash; Center for Open Science Development Documentation v. 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Center for Open Science Development Documentation v. 1.0 documentation" href="../index.html"/>
+        <link rel="up" title="Contributing to the OSF Software" href="../contributing.html"/>
+        <link rel="next" title="Contributing to the OSF Documentation" href="../documentation.html"/>
+        <link rel="prev" title="Pull Request Standards and Guidelines" href="pull_requests.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Center for Open Science Development Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../contributing.html">Contributing to the OSF Software</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="version_control.html">Version Control Standards and Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing Standards and Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_review.html">Code Reviews for Contributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_ons.html">Developing Add-On Features for the OSF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pull_requests.html">Pull Request Standards and Guidelines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Running Analytics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-a-google-analytics-account">Getting a Google Analytics Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-your-local-copy-of-local-py">Update Your Local Copy of local.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewing-live-events-within-google-analytics">Viewing Live Events Within Google Analytics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Contributing to the OSF Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../styles.html">Styles and Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Tools and Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">Help and Troubleshooting</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Center for Open Science Development Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../contributing.html">Contributing to the OSF Software</a> &raquo;</li>
+      
+    <li>Running Analytics</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/contributing/analytics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="running-analytics">
+<h1>Running Analytics<a class="headerlink" href="#running-analytics" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how to set up and test Google Web Analytics features locally for the OSF software.</p>
+<div class="section" id="getting-a-google-analytics-account">
+<h2>Getting a Google Analytics Account<a class="headerlink" href="#getting-a-google-analytics-account" title="Permalink to this headline">¶</a></h2>
+<p>Open a web browser and navigate to <a class="reference external" href="http://www.google.com/analytics/">Google Analytics</a>.</p>
+<p>Click <strong>Access Google Analytics</strong>. If you have not used Google Analytics before, you will
+be prompted to sign up. Follow the process and confirm your account.</p>
+<p>Click <strong>Admin</strong> on the navigating bar.</p>
+<p>Click the <strong>Property</strong> drop down and select <strong>Create New Property</strong>.</p>
+<p>Fill out <strong>Website Name</strong> and <strong>Website URL</strong> &#8211; they don&#8217;t need to point to real URLs.
+In this example the former will be &#8220;<em>osf analytics testing</em>&#8221; and the latter will be
+&#8220;<em>test.osf.io</em>&#8220;</p>
+<p>Once completed, click <strong>Get Tracking ID</strong> and you will be redirected to a page containing
+the tracking info you will need.</p>
+<p>Take note of copy the <strong>Tracking ID</strong>. It should look similar to <em>UA-43352009-1</em>.</p>
+</div>
+<div class="section" id="update-your-local-copy-of-local-py">
+<h2>Update Your Local Copy of local.py<a class="headerlink" href="#update-your-local-copy-of-local-py" title="Permalink to this headline">¶</a></h2>
+<p>Ensure that you have set up your <code class="docutils literal"><span class="pre">website/settings/local.py</span></code> file as outlined in <a class="reference internal" href="../getting_started/installing_osf.html"><span class="doc">Installing the OSF on Your Machine</span></a> .</p>
+<p>Add <code class="docutils literal"><span class="pre">GOOGLE_ANALYTICS_ID</span> <span class="pre">=</span> <span class="pre">&lt;your_tracking_id&gt;</span></code> to your <code class="docutils literal"><span class="pre">website/settings/local.py</span></code> file.</p>
+<p>Now any events that trigger Google Analytics, currently or new things you implement, will be sent to the property
+we set up in the previous section.</p>
+</div>
+<div class="section" id="viewing-live-events-within-google-analytics">
+<h2>Viewing Live Events Within Google Analytics<a class="headerlink" href="#viewing-live-events-within-google-analytics" title="Permalink to this headline">¶</a></h2>
+<p>Click <strong>Home</strong> on the nav bar.</p>
+<p>You will see one, or more if you have previously created properties, folders. The descriptions
+match the <strong>Website Name</strong> of the associated property.</p>
+<p>Click on the property you created, <strong>osf analytics testing</strong> in your example.</p>
+<p>Click <strong>All Website Data</strong> and you will be redirected to an overview page for this property.</p>
+<p>On the left hand navigation bar, click <strong>Real-Time</strong> -&gt; <strong>Overview</strong>.</p>
+<p>(Optional) Follow the <strong>ANALYTICS EDUCATION</strong> if you are unfamiliar with Google Analytics.</p>
+<p>Click <strong>Events</strong> flag underneath the <strong>Real-Time</strong> section of the left hand navigation bar.</p>
+<p>From here you can view live events (events received within the last 30 minutes) triggered by either you or your
+test code from your local environment.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../documentation.html" class="btn btn-neutral float-right" title="Contributing to the OSF Documentation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pull_requests.html" class="btn btn-neutral" title="Pull Request Standards and Guidelines" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Center for Open Science.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v. 1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

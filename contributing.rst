@@ -7,6 +7,7 @@ This section contains all of the pertinent to the development of features and ad
 
 .. toctree::
 
+	contributing/general
 	contributing/version_control
 	contributing/testing
 	contributing/code_review
